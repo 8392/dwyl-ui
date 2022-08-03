@@ -6,32 +6,13 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 import Unocss from 'unocss/vite'
 
-// https://vitejs.dev/config/
-
-const configProxy = {
-  dyw: {
-    auth: 'http://192.168.1.3:8819',
-    manager: 'http://192.168.1.3:8881'
-  },
-  line: {
-    auth: 'http://222.209.208.86:2548',
-    manager: 'http://222.209.208.86:2548'
-  },
-  test: {
-    auth: 'http://139.186.136.53:2548',
-    manager: 'http://139.186.136.53:2548'
-  }
-}
-
-const getProxy = (name) => {
+const getProxy = () => {
   return {
-    '/auth': {
-      target: configProxy[name].auth,
-      rewrite: path => name === 'dyw' ? path.replace('/auth', '') : path
-    },
-    '/manager': {
-      target: configProxy[name].manager,
-      rewrite: path => name === 'dyw' ? path.replace('/manager', '') : path
+    '/proxy': {
+      target: 'https://test.diweiyunlian.cn/gateway', // 后端接口的域名
+      // target: 'http://192.168.1.3:9091', // dyw
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/proxy/, '')
     }
   }
 }
@@ -55,6 +36,9 @@ export default defineConfig({
     rollupOptions: {
       // 请确保外部化那些你的库中不需要的依赖
       external: [
+        'axios',
+        'element-plus',
+        '@element-plus/icons-vue',
         'vue',
         'pinia',
         'sass',

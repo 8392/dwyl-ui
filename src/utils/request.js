@@ -1,15 +1,10 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { useUserStore } from '@/store'
-let router = {}
-import('@/router').then(({ router: r }) => {
-  router = r
-})
+
+const token = '1e45638ee5d940de82741ced38e9ad88'
+
 const service = axios.create({
-  // baseURL: "/api",
   baseURL: '',
-  // baseURL: process.env.VUE_APP_BASE_API,
-  // baseURL: "http://rap2.taobao.org:38080/app/mock/25365/",
   timeout: 60000 // 请求超时
 })
 
@@ -19,10 +14,11 @@ service.interceptors.request.use(
     if (config.noAuth) {
       return config
     } else {
-      const user = useUserStore()
-      const { token } = user.$state
+      // if (token) {
+      //   config.headers.Authorization = 'Bearer ' + token
+      // }
       if (token) {
-        config.headers.Authorization = 'Bearer ' + token
+        config.headers.Authorization = token
       }
     }
     return config
@@ -50,7 +46,7 @@ service.interceptors.response.use(
     if (response.config.noAuth || response.config.noCode) {
       return response
     }
-    if (res.code === 1) {
+    if (Number(res.code) === 1) {
       return res
     }
     if (!response.config.noMessage) {
@@ -60,12 +56,6 @@ service.interceptors.response.use(
   },
   (error) => {
     const { data, status, config } = error.response
-    if (status === 401) {
-      const user = useUserStore()
-      user.loginOut()
-      router.replace('/login')
-      return
-    }
     if (!config.noMessage) {
       ElMessage.error(data?.msg || error?.message || '请求出错')
     }

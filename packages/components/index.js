@@ -1,11 +1,11 @@
 // 导入组件
 import DwSteps from './DwSteps/index.vue'
 import DwStep from './DwSteps/DwStep.vue'
+import DwTable from './DwTable'
 
 import 'uno.css'
 
 const modules = [
-
   {
     name: 'DwSteps',
     path: DwSteps
@@ -13,8 +13,11 @@ const modules = [
   {
     name: 'DwStep',
     path: DwStep
+  },
+  {
+    name: 'DwTable',
+    path: DwTable
   }
-
 ]
 
 const install = (Vue) => {

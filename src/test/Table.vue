@@ -1,0 +1,65 @@
+
+<template>
+  <div>
+    <DwTable
+      ref="tableRef"
+      :column="column"
+      :api="sysUserListPage"
+    >
+      <template #cz="{ row }">
+        <button type="danger" @click="onDelete(row)">
+          删除
+        </button>
+      </template>
+    </DwTable>
+  </div>
+</template>
+
+<script setup>
+
+import { ref } from 'vue'
+import { sysUserListPage } from '@/api'
+
+const activeIndex = ref(1)
+
+const column = [
+  {
+    prop: 'name',
+    label: '名称'
+  },
+  {
+    prop: 'roleName',
+    label: '角色'
+  },
+  {
+    prop: 'roleCode',
+    label: 'roleCode'
+  },
+  {
+    prop: 'phoneNumber',
+    label: '联系人电话'
+  },
+  {
+    prop: 'cz',
+    slot: 'cz',
+    width: 490,
+    label: '操作'
+  }
+]
+
+const tableData = [{
+  unitName: '迪威云联',
+  location: '成都',
+  unitContactName: '张三',
+  unitContactPhone: '15856565689'
+}]
+
+const onDelete = () => {
+
+}
+
+</script>
+
+<style>
+
+</style>

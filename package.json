@@ -1,14 +1,15 @@
 {
   "name": "dwyl-ui",
   "private": false,
-  "version": "0.0.2",
-  "main": "./dist/xx.es.umd.js",
-  "module": "./dist/xx.es.es.js",
+  "version": "0.0.22",
+  "main": "dist/dwyl-ui.es.js",
+  "module": "dist/dwyl-ui.umd.js",
   "exports": {
     ".": {
-      "import": "./dist/xx.es.es.js",
-      "require": "./dist/xx.es.umd.js"
-    }
+      "import": "./dist/dwyl-ui.es.js",
+      "require": "./dist/dwyl-ui.umd.js"
+    },
+    "./*": "./*"
   },
   "description": "dwyl-ui",
   "keywords": [
@@ -34,6 +35,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.0-beta.0",
     "@vueuse/core": "^8.9.1",
+    "axios": "^0.27.2",
     "dayjs": "^1.11.3",
     "element-plus": "^2.2.2",
     "pinia": "^2.0.14",
