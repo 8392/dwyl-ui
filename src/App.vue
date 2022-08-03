@@ -6,13 +6,15 @@
       <DwStep title="添加版本" />
       <DwStep title="选择智能化模型方式" />
     </DwSteps> -->
-    <TestTable />
+    <!-- <TestTable /> -->
+    <TestImgView />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import TestTable from './test/Table'
+// import TestTable from './test/Table'
+import TestImgView from './test/imgView'
 
 const activeIndex = ref(1)
 

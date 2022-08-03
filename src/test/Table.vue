@@ -1,7 +1,7 @@
 
 <template>
   <div class="main flex flex-col">
-    <div class="h-200px bg-#ccc">
+    <div class="h-20px bg-#ccc">
         AAA
     </div>
     <DwTable
@@ -15,7 +15,7 @@
         </button>
       </template>
     </DwTable>
-    <div class="h-100px bg-#ccc">
+    <div class="h-10px bg-#ccc">
         AAA
     </div>
   </div>
