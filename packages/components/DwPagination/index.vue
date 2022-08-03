@@ -6,8 +6,8 @@
       style="margin:0"
       small
       background
-      v-model:current-page="currentPage"
-      v-model:page-size="pageSize"
+      :current-page="currentPage"
+      :page-size="pageSize"
       layout="prev, pager, next"
       :total="total"
       class="mt-4"
@@ -16,6 +16,7 @@
 </template>
 
 <script lang='jsx' setup>
+import { reactive, watch, watchEffect } from 'vue'
 import { ElPagination } from 'element-plus'
 const props = defineProps({
   total: [Number, String],

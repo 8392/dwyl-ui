@@ -1,6 +1,9 @@
 
 <template>
-  <div>
+  <div class="main flex flex-col">
+    <div class="h-200px bg-#ccc">
+        AAA
+    </div>
     <DwTable
       ref="tableRef"
       :column="column"
@@ -12,6 +15,9 @@
         </button>
       </template>
     </DwTable>
+    <div class="h-100px bg-#ccc">
+        AAA
+    </div>
   </div>
 </template>
 
@@ -60,6 +66,8 @@ const onDelete = () => {
 
 </script>
 
-<style>
-
+<style lang="scss">
+.main {
+  height: 100vh;
+}
 </style>

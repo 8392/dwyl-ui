@@ -1,8 +1,10 @@
 <template>
-  <div class="flex-1">
+  <div class="flex flex-col flex-1 overflow-hidden">
     <el-table
+      class="flex-1"
       v-loading="tableLoading"
       empty-text=" "
+      :height="height"
       :data="tableData"
       v-bind="$attrs"
       :header-cell-style="{color: '#292A2C', backgroundColor: '#f2f3f5'}"
@@ -25,8 +27,8 @@
     </el-table>
     <DwPagination
       v-if='props.isPage && total !== 0'
-      v-model:current-page="pageData.page"
-      v-model:page-size="pageData.limit"
+      :current-page="pageData.page"
+      :page-size="pageData.limit"
       :total="total"
       @current-change="clickPage"
     />
@@ -66,6 +68,10 @@ const props = defineProps({
       return city
     }
   },
+  height: {
+    type: [Number, String],
+    default: '100%'
+  },
   isPage: {
     type: Boolean,
     default: true
@@ -81,7 +87,7 @@ const pageData = reactive({
   // pageSize: 20
 
   page: searchPage.value,
-  limit: 10
+  limit: 20
 })
 
 watchEffect(() => {

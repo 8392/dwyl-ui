@@ -57,7 +57,12 @@ import { useUrlSearchParams } from '@vueuse/core'
 const searchParams = useUrlSearchParams('hash')
 const props = defineProps({
   column: Array,
-  params: Object,
+  params: {
+    type: Object,
+    default () {
+      return {}
+    }
+  },
   api: Function,
   loading: {
     /* 没传，默认设置undefined */
