@@ -9,7 +9,9 @@
 </template>
 
 <script lang="jsx" setup>
-import { imgView } from '../../packages/utils/imgView'
+// import { imgView } from '../../packages/utils/imgView'
+import { dwUtils } from '../../dist/dwyl-ui.es'
+
 const imgUrl = 'https://images.pexels.com/photos/10340617/pexels-photo-10340617.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 const list = [
   imgUrl,
@@ -18,7 +20,9 @@ const list = [
 ]
 
 const handleBtn = () => {
-  imgView(list)
+  // imgView(list)
+  console.log('utils', dwUtils)
+  dwUtils.dwImgView(list)
 }
 
 </script>

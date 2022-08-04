@@ -56,26 +56,18 @@ export default defineConfig({
         'vite',
         'vite-plugin-svg-icons'
       ],
-      // output: {
-      //   // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-      //   globals: {
-      //     vue: 'Vue'
-      //   }
-      // }
-      input: {
-        components: fileURLToPath(new URL('./packages/components/index.js', import.meta.url)),
-        utils: fileURLToPath(new URL('./packages/utils/utils.js', import.meta.url))
+      output: {
+        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+        globals: {
+          vue: 'Vue'
+        }
       }
-      // output: {
-      //   file: 'dwyl-ui.js',
-      //   format: 'cjs'
-      // }
-
+    },
+    lib: {
+      entry: './packages/index.js',
+      // entry: './packages/components/index.js',
+      name: 'dwyl-ui'
     }
-    // lib: {
-    //   entry: './packages/components/index.js',
-    //   name: 'dwyl-ui'
-    // }
   },
   // base: '/admin',
   resolve: {

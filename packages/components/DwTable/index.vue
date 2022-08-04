@@ -35,7 +35,7 @@
 
     <el-tooltip
       ref="tooltipRef"
-      v-model:visible="visible"
+      :visible="visible"
       :virtual-ref="buttonRef"
       effect="light"
       placement="top"
