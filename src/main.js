@@ -4,8 +4,8 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 import App from './App.vue'
 
-// import dwylUi from '../packages/components/index'
-import dwylUi from '../dist/dwyl-ui.es'
+import dwylUi from '../packages/index'
+// import dwylUi from '../dist/dwyl-ui.es'
 // import dwylUi from '../dist/assets/components.a6d69bf0.js'
 
 import 'uno.css'
