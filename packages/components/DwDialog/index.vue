@@ -1,6 +1,6 @@
 <template>
    <el-dialog
-    v-model="modelValue"
+    :modelValue="modelValue"
     :draggable="draggable"
     v-bind="$attrs"
     :width="width"

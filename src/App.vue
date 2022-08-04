@@ -8,13 +8,16 @@
     </DwSteps> -->
     <!-- <TestTable /> -->
     <TestImgView />
+    <!-- <testButton /> -->
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-// import TestTable from './test/Table'
+import TestTable from './test/Table'
+
 import TestImgView from './test/imgView'
+import testButton from './test/testButton'
 
 const activeIndex = ref(1)
 

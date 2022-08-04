@@ -1,11 +1,17 @@
 // 导入组件
+import DwButton from './DwButton/index.vue'
 import DwSteps from './DwSteps/index.vue'
 import DwStep from './DwSteps/DwStep.vue'
 import DwTable from './DwTable'
+import DwDialog from './DwDialog'
 
 import 'uno.css'
 
 const modules = [
+  {
+    name: 'DwButton',
+    path: DwButton
+  },
   {
     name: 'DwSteps',
     path: DwSteps
@@ -17,6 +23,10 @@ const modules = [
   {
     name: 'DwTable',
     path: DwTable
+  },
+  {
+    name: 'DwDialog',
+    path: DwDialog
   }
 ]
 
