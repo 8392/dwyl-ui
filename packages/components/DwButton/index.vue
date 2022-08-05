@@ -9,6 +9,9 @@
 
 <script lang="jsx" setup>
 import { ElButton } from 'element-plus'
+defineOptions({
+  name: 'DwButton'
+})
 
 </script>
 

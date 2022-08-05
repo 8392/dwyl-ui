@@ -1,7 +1,7 @@
 {
   "name": "dwyl-ui",
   "private": false,
-  "version": "0.0.33",
+  "version": "0.0.34",
   "main": "dist/dwyl-ui.es.js",
   "module": "dist/dwyl-ui.umd.js",
   "exports": {
@@ -54,6 +54,7 @@
     "eslint-plugin-vue": "^9.1.1",
     "sass": "^1.52.1",
     "unocss": "^0.34.1",
+    "unplugin-vue-define-options": "^0.7.3",
     "vite": "^2.9.9",
     "vite-plugin-svg-icons": "^2.0.1"
   }

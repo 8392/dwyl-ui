@@ -12,7 +12,9 @@
 <script lang="jsx" setup>
 import { reactive, ref, computed, inject, getCurrentInstance, h } from 'vue'
 const currentInstance = getCurrentInstance()
-
+defineOptions({
+  name: 'DwStep'
+})
 const props = defineProps({
   active: Number,
   title: [String, Number]

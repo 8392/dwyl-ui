@@ -18,6 +18,9 @@
 <script lang='jsx' setup>
 import { reactive, watch, watchEffect } from 'vue'
 import { ElPagination } from 'element-plus'
+defineOptions({
+  name: 'DwPagination'
+})
 const props = defineProps({
   total: [Number, String],
   currentPage: Number,

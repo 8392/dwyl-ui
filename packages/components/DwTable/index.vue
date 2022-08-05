@@ -56,6 +56,10 @@ import Render from './render'
 import EmptyStatus from '../EmptyStatus'
 import { judgeTextOverflow } from '../../utils/utils'
 import { useUrlSearchParams } from '@vueuse/core'
+defineOptions({
+  name: 'DwTable'
+})
+
 const searchParams = useUrlSearchParams('hash')
 const props = defineProps({
   column: Array,

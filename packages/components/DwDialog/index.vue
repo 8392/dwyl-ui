@@ -16,9 +16,9 @@
         <CloseBold style="width: 20px; height: 20px;" class="color-#4e5969 cursor-pointer" @click="close" />
       </div>
     </template>
-     <el-scrollbar max-height='70vh'>
-       <slot></slot>
-     </el-scrollbar>
+    <el-scrollbar max-height='70vh'>
+      <slot></slot>
+    </el-scrollbar>
     <template #footer>
       <slot name="footer"></slot>
     </template>
@@ -29,6 +29,9 @@
 import { ref, reactive } from 'vue'
 import { ElDialog, ElButton } from 'element-plus'
 import { CloseBold } from '@element-plus/icons-vue'
+defineOptions({
+  name: 'DwDialog'
+})
 
 const props = defineProps({
   modelValue: Boolean,
