@@ -6,8 +6,8 @@
       <DwStep title="添加版本" />
       <DwStep title="选择智能化模型方式" />
     </DwSteps> -->
-    <!-- <TestTable /> -->
-    <testLoading />
+    <TestTable />
+    <!-- <testLoading /> -->
     <!-- <TestImgView /> -->
     <!-- <testButton /> -->
   </div>

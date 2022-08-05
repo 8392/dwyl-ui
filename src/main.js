@@ -7,8 +7,8 @@ import App from './App.vue'
 import 'uno.css'
 import '@/styles/global.scss'
 
-import dwylUi from '../packages'
-// import dwylUi from '../dist/dwyl-ui.es'
+// import dwylUi from '../packages'
+import dwylUi from '../dist/dwyl-ui.es'
 // import '../dist/style.css'
 
 async function setupApp () {

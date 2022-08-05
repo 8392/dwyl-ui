@@ -2,7 +2,7 @@
   <div class="flex flex-col flex-1 overflow-hidden">
     <el-table
       class="flex-1"
-      v-loading="tableLoading"
+      v-dwloading="tableLoading"
       empty-text=" "
       :height="height"
       :data="tableData"
