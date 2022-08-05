@@ -7,6 +7,7 @@
     <DwTable
       ref="tableRef"
       :column="column"
+      :params="params"
       :api="sysUserListPage"
     >
       <template #cz="{ row }">
@@ -47,11 +48,14 @@ const column = [
   {
     prop: 'cz',
     slot: 'cz',
-    width: 490,
+    width: 120,
     label: '操作'
   }
 ]
 
+const params = ref({
+  limit: 5
+})
 const tableData = [{
   unitName: '迪威云联',
   location: '成都',

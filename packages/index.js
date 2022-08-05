@@ -1,11 +1,12 @@
 import { version as dwVersion } from '../package.json'
-import * as utils from './utils'
-import components from './components'
-import hooks from './hooks'
-import directive from './directive'
+import * as utils from '~/utils'
+import components from '~/components'
+import hooks from '~/hooks'
+import directive from '~/directive'
 import 'uno.css'
+import '~/styles/common/index.scss'
 /* 按需导入组件 */
-export * from './components'
+export * from '~/components'
 
 /* 常用工具函数 */
 export const dwUtils = utils

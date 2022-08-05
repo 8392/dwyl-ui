@@ -5,7 +5,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 export default (defParams, deleteApi) => {
   const dwTable = ref()
   const dialogVisible = ref(false)
-  const params = reactive(defParams || { limit: 10, page: 1 })
+  const params = reactive(defParams || { limit: 20, page: 1 })
   const onSearch = () => {
     params.page = 1
     getTable()

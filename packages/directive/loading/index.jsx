@@ -1,5 +1,6 @@
 
 import { h, ref, render, createApp, nextTick } from 'vue'
+import loadingSvg from './loadingSvg'
 
 const renderLoading = {
   props: {
@@ -8,38 +9,61 @@ const renderLoading = {
   },
   setup (props) {
     return () => {
-      return <div style={{ background: props.background }} class="w h-300px flex-col flex-center">
-        <img src="http://samherbert.net/svg-loaders/svg-loaders/bars.svg" alt="" />
-        <span class="lh-60px color-#fff">{props.text}</span>
-      </div>
+      return (
+        <div class="loadingbg absolute top-0 left-0 wh-full flex-col flex-center">
+          <loadingSvg />
+          {/* <span class="color-#fff">{props.text}</span> */}
+        </div>
+      )
     }
   }
 }
 
-let triggerFather = null
-const getLoading = (trigger, binding) => {
-  const { value } = binding
-  // if (triggerFather && value) return
-  const vnode = h(renderLoading, { background: '#ccc', text: '加载中' })
-  const app = createApp(vnode)
-  const div = app.mount(document.createElement('div'))
-  div.$el.setAttribute('id', 'dwLoadingId')
-  console.log('triggerFather', trigger.parentNode)
+const createInstance = (trigger, binding) => {
+  const { value, oldValue } = binding
 
-  if (value) {
-    triggerFather = trigger.parentNode
-    triggerFather.replaceChild(div.$el, trigger)
-  } else {
-    const childDiv = triggerFather.querySelector('#dwLoadingId')
-    triggerFather.replaceChild(trigger, childDiv)
+  // if (value) {
+  //   if (!hasLoading) {
+  //     trigger.style.position = 'relative'
+  //     trigger.appendChild(loadingEl)
+  //   }
+  // } else {
+  //   const childDiv = trigger.querySelector('#dwLoadingId')
+  //   trigger.removeChild(childDiv)
+  //   // triggerFather.replaceChild(trigger, childDiv)
+  // }
+
+  if (oldValue !== value) {
+    if (value && !oldValue) {
+      const vnode = h(renderLoading, { background: '#000', text: '加载中' })
+      const app = createApp(vnode)
+      const loadingEl = app.mount(document.createElement('div')).$el
+      loadingEl.setAttribute('id', 'dwLoadingId')
+      const hasLoading = trigger.querySelector('#dwLoadingId')
+      trigger.style.position = 'relative'
+      trigger.appendChild(loadingEl)
+    } else if (value && oldValue) {
+      console.log('BBB')
+    } else {
+      // instance?.instance.close()
+      // console.log('CCC')
+      const childDiv = trigger.querySelector('#dwLoadingId')
+      trigger.removeChild(childDiv)
+    }
   }
 }
 
 export default {
+
   mounted (el, binding) {
-    // getLoading(el, binding)
+    if (binding.value) {
+      createInstance(el, binding)
+    }
   },
   updated (el, binding) {
-    getLoading(el, binding)
+    createInstance(el, binding)
+  },
+  unmounted (el) {
+    // el[INSTANCE_KEY]?.instance.close()
   }
 }

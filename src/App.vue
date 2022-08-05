@@ -7,7 +7,8 @@
       <DwStep title="选择智能化模型方式" />
     </DwSteps> -->
     <!-- <TestTable /> -->
-    <TestImgView />
+    <testLoading />
+    <!-- <TestImgView /> -->
     <!-- <testButton /> -->
   </div>
 </template>
@@ -18,6 +19,7 @@ import TestTable from './test/Table'
 
 import TestImgView from './test/imgView'
 import testButton from './test/testButton'
+import testLoading from './test/testLoading'
 
 const activeIndex = ref(1)
 
