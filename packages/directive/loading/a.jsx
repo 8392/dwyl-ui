@@ -26,8 +26,6 @@ const getLoading = (trigger, binding) => {
   const app = createApp(vnode)
   const div = app.mount(document.createElement('div'))
   div.$el.setAttribute('id', 'dwLoadingId')
-  console.log('triggerFather', trigger.parentNode)
-
   if (value) {
     triggerFather = trigger.parentNode
     triggerFather.replaceChild(div.$el, trigger)

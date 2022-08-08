@@ -10,7 +10,7 @@ const renderLoading = {
   setup (props) {
     return () => {
       return (
-        <div class="loadingbg absolute top-0 left-0 wh-full flex-col flex-center">
+        <div class="dwloadingmain absolute top-0 left-0 wh-full flex-col flex-center">
           <loadingSvg />
           {/* <span class="color-#fff">{props.text}</span> */}
         </div>
@@ -21,18 +21,6 @@ const renderLoading = {
 
 const createInstance = (trigger, binding) => {
   const { value, oldValue } = binding
-
-  // if (value) {
-  //   if (!hasLoading) {
-  //     trigger.style.position = 'relative'
-  //     trigger.appendChild(loadingEl)
-  //   }
-  // } else {
-  //   const childDiv = trigger.querySelector('#dwLoadingId')
-  //   trigger.removeChild(childDiv)
-  //   // triggerFather.replaceChild(trigger, childDiv)
-  // }
-
   if (oldValue !== value) {
     if (value && !oldValue) {
       const vnode = h(renderLoading, { background: '#000', text: '加载中' })
@@ -42,11 +30,7 @@ const createInstance = (trigger, binding) => {
       const hasLoading = trigger.querySelector('#dwLoadingId')
       trigger.style.position = 'relative'
       trigger.appendChild(loadingEl)
-    } else if (value && oldValue) {
-      console.log('BBB')
     } else {
-      // instance?.instance.close()
-      // console.log('CCC')
       const childDiv = trigger.querySelector('#dwLoadingId')
       trigger.removeChild(childDiv)
     }

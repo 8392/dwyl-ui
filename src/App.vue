@@ -6,10 +6,11 @@
       <DwStep title="添加版本" />
       <DwStep title="选择智能化模型方式" />
     </DwSteps> -->
-    <TestTable />
+    <!-- <TestTable /> -->
     <!-- <testLoading /> -->
     <!-- <TestImgView /> -->
     <!-- <testButton /> -->
+    <dwgrid />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import TestTable from './test/Table'
 import TestImgView from './test/imgView'
 import testButton from './test/testButton'
 import testLoading from './test/testLoading'
+import dwgrid from './test/dwgrid'
 
 const activeIndex = ref(1)
 
