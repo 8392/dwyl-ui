@@ -1,9 +1,9 @@
 
 <template>
-  <div class="main flex flex-col">
-    <div class="h-20px bg-#ccc">
+  <div class="main flex flex-col pb-20px">
+    <!-- <div class="h-20px bg-#ccc">
         AAA
-    </div>
+    </div> -->
     <DwTable
       ref="tableRef"
       :column="column"
@@ -15,9 +15,9 @@
         <dw-button type="danger" link @click="onDelete(row)">删除</dw-button>
       </template>
     </DwTable>
-    <div class="h-10px bg-#ccc">
+    <!-- <div class="h-10px bg-#ccc">
         AAA
-    </div>
+    </div> -->
   </div>
 </template>
 
