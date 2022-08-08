@@ -1,31 +1,26 @@
 <template>
-  <div>
-    <slot />
-  </div>
+  <slot />
 </template>
 
 <script lang="jsx" setup>
-import { ref, watch, provide, useSlots, computed } from 'vue'
+import { ref, watch, provide, computed, watchEffect } from 'vue'
+import configData from './config.js'
+
 defineOptions({
-  name: 'DwSteps'
+  name: 'DwProjectConfig'
 })
 const props = defineProps({
-  active: Number
+  config: Object,
+  id: [Number, String]
 })
 
-const slot = useSlots()
+const currProjectData = computed(() => configData.get(props.id))
 
-const slotLeg = computed(() => slot?.default?.()?.length)
-
-const steps = ref([])
-
-watch(steps, () => {
-  steps.value.forEach((instance, index) => {
-    instance.setIndex(index)
-  })
+watchEffect(() => {
+  console.log('currProjectData', currProjectData)
 })
 
-provide('dwsteps', { props, steps, slotLeg: slotLeg.value })
+provide('projectConfigData', currProjectData)
 
 </script>
 

@@ -8,10 +8,14 @@ import DwPagination from './DwPagination'
 import DwDialogFoot from './DwDialogFoot'
 import DwGrid from './DwGrid'
 import DwCol from './DwGrid/DwCol'
+import DwSelect from './DwSelect'
+import DwOption from './DwSelect/DwOption'
+import DwUpload from './DwUpload'
+import DwProjectConfig from './DwProjectConfig'
 
-const modules = [DwButton, DwSteps, DwStep, DwTable, DwDialog, DwPagination, DwDialogFoot, DwGrid, DwCol]
+const modules = [DwButton, DwSteps, DwStep, DwTable, DwDialog, DwPagination, DwDialogFoot, DwGrid, DwCol, DwSelect, DwOption, DwUpload, DwProjectConfig]
 
 // 提供按需导入
-export { DwButton, DwSteps, DwStep, DwTable, DwDialog, DwPagination, DwDialogFoot, DwGrid, DwCol }
+export { DwButton, DwSteps, DwStep, DwTable, DwDialog, DwPagination, DwDialogFoot, DwGrid, DwCol, DwSelect, DwOption, DwUpload, DwProjectConfig }
 
 export default modules
