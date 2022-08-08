@@ -17,6 +17,9 @@
 <script lang="jsx" setup>
 import { ref, reactive, watchEffect } from 'vue'
 import { ElImage } from 'element-plus'
+defineOptions({
+  name: 'DwImage'
+})
 
 const props = defineProps({
   fit: {

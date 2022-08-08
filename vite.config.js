@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'url'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 import Unocss from 'unocss/vite'
@@ -20,6 +21,7 @@ const getProxy = () => {
 export default defineConfig({
   plugins: [
     vue(),
+    DefineOptions(),
     vueJsx(),
     Unocss(),
     createSvgIconsPlugin({
@@ -72,7 +74,8 @@ export default defineConfig({
   // base: '/admin',
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '~': fileURLToPath(new URL('./packages', import.meta.url))
     },
     extensions: ['.js', '.jsx', '.json', '.vue', '.css', '.scss']
   },

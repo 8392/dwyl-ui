@@ -6,7 +6,9 @@
 
 <script lang="jsx" setup>
 import { ref, watch, provide, useSlots, computed } from 'vue'
-
+defineOptions({
+  name: 'DwSteps'
+})
 const props = defineProps({
   active: Number
 })

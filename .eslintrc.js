@@ -2,19 +2,15 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true
+    node: true,
+    'vue/setup-compiler-macros': true
   },
-  extends: [
-    'plugin:vue/vue3-essential',
-    'standard'
-  ],
+  extends: ['plugin:vue/vue3-essential', 'standard'],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: [
-    'vue'
-  ],
+  plugins: ['vue'],
   rules: {
     'vue/multi-word-component-names': 0, // 关闭组件没有名称定义
     'no-unused-vars': 'off',
@@ -26,6 +22,7 @@ module.exports = {
     'no-useless-escape': 0,
     camelcase: 'off',
     'vue/prefer-import-from-vue': 0,
-    'prefer-const': 0
+    'prefer-const': 0,
+    'no-undef': 0
   }
 }

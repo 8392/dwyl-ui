@@ -1,47 +1,15 @@
 // 导入组件
+import DwButton from './DwButton/index.vue'
 import DwSteps from './DwSteps/index.vue'
 import DwStep from './DwSteps/DwStep.vue'
 import DwTable from './DwTable'
+import DwDialog from './DwDialog'
+import DwPagination from './DwPagination'
+import DwDialogFoot from './DwDialogFoot'
 
-import 'uno.css'
+const modules = [DwButton, DwSteps, DwStep, DwTable, DwDialog, DwPagination, DwDialogFoot]
 
-const modules = [
-  {
-    name: 'DwSteps',
-    path: DwSteps
-  },
-  {
-    name: 'DwStep',
-    path: DwStep
-  },
-  {
-    name: 'DwTable',
-    path: DwTable
-  }
-]
+// 提供按需导入
+export { DwButton, DwSteps, DwStep, DwTable, DwDialog, DwPagination, DwDialogFoot }
 
-const install = (Vue) => {
-  modules.forEach((item) => {
-    Vue.component(item.name, item.path)
-  })
-}
-
-const dwylUi = {
-  version: '0.0.1',
-  install
-}
-
-/* istanbul ignore if */
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
-
-export {
-  // 导出的对象必须具有 install，才能被 app.use() 方法安装
-  install,
-  // 以下是具体的组件列表
-  DwSteps,
-  DwStep
-}
-
-export default dwylUi
+export default modules

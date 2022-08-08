@@ -7,6 +7,9 @@
 
 <script lang='jsx' setup>
 import { computed } from 'vue'
+defineOptions({
+  name: 'DwDialogFoot'
+})
 
 const props = defineProps({
   type: String,

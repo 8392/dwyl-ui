@@ -1,11 +1,11 @@
-import {reactive, ref} from 'vue'
-import {ElMessage, ElMessageBox} from 'element-plus'
+import { reactive, ref } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 // 请求参数、删除请求、列表回调
 export default (defParams, deleteApi) => {
   const dwTable = ref()
   const dialogVisible = ref(false)
-  const params = reactive(defParams || { limit: 10, page: 1 })
+  const params = reactive(defParams || { limit: 20, page: 1 })
   const onSearch = () => {
     params.page = 1
     getTable()

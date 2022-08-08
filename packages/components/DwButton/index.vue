@@ -1,15 +1,20 @@
 
 <template>
-  <div>
-
-  </div>
+  <ElButton
+    v-bind="$attrs"
+  >
+    <slot></slot>
+  </ElButton>
 </template>
 
 <script lang="jsx" setup>
-import { ref } from 'vue'
+import { ElButton } from 'element-plus'
+defineOptions({
+  name: 'DwButton'
+})
 
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

@@ -2,7 +2,7 @@
   <div class="flex flex-col flex-1 overflow-hidden">
     <el-table
       class="flex-1"
-      v-loading="tableLoading"
+      v-dwloading="tableLoading"
       empty-text=" "
       :height="height"
       :data="tableData"
@@ -56,6 +56,10 @@ import Render from './render'
 import EmptyStatus from '../EmptyStatus'
 import { judgeTextOverflow } from '../../utils/utils'
 import { useUrlSearchParams } from '@vueuse/core'
+defineOptions({
+  name: 'DwTable'
+})
+
 const searchParams = useUrlSearchParams('hash')
 const props = defineProps({
   column: Array,

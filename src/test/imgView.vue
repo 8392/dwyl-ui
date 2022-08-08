@@ -1,19 +1,27 @@
 
 <template>
   <div class="main flex flex-col">
-    aq
-    {{params}}
-    <el-button @click="onDelete">dddd</el-button>
+    <dw-dialog
+      v-model="dialogVisible"
+      width="650px"
+    >
+      <div>666</div>
+    </dw-dialog>
+
     <div class="w-200px">
-      <el-button @click="handleBtn">预览图片</el-button>
+      <dw-button @click="handleBtn">预览图片1</dw-button>
+    </div>
+    <div class="w-200 h-200 bg-#ccc" v-dwloading="true">
+
     </div>
   </div>
 </template>
 
 <script lang="jsx" setup>
 // import { imgView } from '../../packages/utils/imgView'
-// import { dwUtils } from '../../dist/dwyl-ui.es'
-import useDwTable from "../../packages/hooks/useDwTable";
+import { ref } from 'vue'
+// import * as dwUtils from '../../dist/dwyl-ui.es'
+import * as dwUtils from '../../packages'
 
 const imgUrl = 'https://images.pexels.com/photos/10340617/pexels-photo-10340617.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 const list = [
@@ -21,11 +29,12 @@ const list = [
   imgUrl,
   imgUrl
 ]
+console.log('utils', dwUtils)
 
-const {params, onDelete} = useDwTable({a: 1}, 'asdjh')
+const dialogVisible = ref(false)
 const handleBtn = () => {
   // imgView(list)
-  // console.log('utils', dwUtils)
+  dialogVisible.value = true
   // dwUtils.dwImgView(list)
 }
 

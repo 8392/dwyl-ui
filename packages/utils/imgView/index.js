@@ -1,7 +1,7 @@
 import { render, createVNode } from 'vue'
 import ElImageViewer from './imgView.vue'
 
-const dwImgView = (options = [], index = 0) => {
+export const dwImgView = (options = [], index = 0) => {
   if (!options || options.length === 0) return
   /* 是字符串 */
   let previewSrcList = []
@@ -29,5 +29,3 @@ const dwImgView = (options = [], index = 0) => {
   document.body.appendChild(container)
   document.body.style.overflow = 'hidden'
 }
-
-export default dwImgView

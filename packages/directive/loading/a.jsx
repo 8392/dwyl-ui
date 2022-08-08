@@ -8,10 +8,12 @@ const renderLoading = {
   },
   setup (props) {
     return () => {
-      return <div style={{ background: props.background }} class="w h-300px flex-col flex-center">
-        <img src="http://samherbert.net/svg-loaders/svg-loaders/bars.svg" alt="" />
-        <span class="lh-60px color-#fff">{props.text}</span>
-      </div>
+      return (
+        <div style={{ background: props.background }} class="w h-300px flex-col flex-center">
+          <img src="http://samherbert.net/svg-loaders/svg-loaders/bars.svg" alt="" />
+          <span class="lh-60px color-#fff">{props.text}</span>
+        </div>
+      )
     }
   }
 }
@@ -20,7 +22,7 @@ let triggerFather = null
 const getLoading = (trigger, binding) => {
   const { value } = binding
   // if (triggerFather && value) return
-  const vnode = h(renderLoading, { background: '#ccc', text: '加载中' })
+  const vnode = h(renderLoading, { background: '#000', text: '加载中' })
   const app = createApp(vnode)
   const div = app.mount(document.createElement('div'))
   div.$el.setAttribute('id', 'dwLoadingId')

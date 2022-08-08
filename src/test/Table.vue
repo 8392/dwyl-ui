@@ -7,12 +7,12 @@
     <DwTable
       ref="tableRef"
       :column="column"
+      :params="params"
       :api="sysUserListPage"
     >
       <template #cz="{ row }">
-        <button type="danger" @click="onDelete(row)">
-          删除
-        </button>
+        <dw-button type="primary" link @click="onDelete(row)">编辑</dw-button>
+        <dw-button type="danger" link @click="onDelete(row)">删除</dw-button>
       </template>
     </DwTable>
     <div class="h-10px bg-#ccc">
@@ -48,11 +48,14 @@ const column = [
   {
     prop: 'cz',
     slot: 'cz',
-    width: 490,
+    width: 120,
     label: '操作'
   }
 ]
 
+const params = ref({
+  limit: 5
+})
 const tableData = [{
   unitName: '迪威云联',
   location: '成都',

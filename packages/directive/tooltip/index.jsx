@@ -1,6 +1,6 @@
 
 import { h, ref, render } from 'vue'
-import { judgeTextOverflow, on, off } from '@/utils/utils'
+import { judgeTextOverflow, on } from '../../utils/utils'
 import { ElTooltip } from 'element-plus'
 
 const getTooltip = (trigger, binding) => {

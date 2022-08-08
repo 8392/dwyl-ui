@@ -1,5 +1,5 @@
-import useDwTable from "./useDwTable";
+import useDwTable from './useDwTable'
 
 export default {
-    useDwTable
+  useDwTable
 }
