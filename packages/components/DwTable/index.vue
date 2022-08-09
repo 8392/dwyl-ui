@@ -27,8 +27,8 @@
     </el-table>
     <DwPagination
       v-if='props.isPage && total !== 0'
-      :current-page="pageData.page"
-      :page-size="pageData.limit"
+      :current-page="pageData[pageField]"
+      :page-size="pageData[limitField]"
       :total="total"
       @current-change="clickPage"
     />
@@ -49,7 +49,7 @@
 </template>
 
 <script lang='jsx' setup>
-import { ref, reactive, watch, watchEffect, computed, nextTick } from 'vue'
+import { ref, reactive, watch, watchEffect, computed, nextTick, inject } from 'vue'
 import { ElTable, ElTableColumn, ElTooltip } from 'element-plus'
 import DwPagination from '../DwPagination'
 import Render from './render'
@@ -59,6 +59,11 @@ import { useUrlSearchParams } from '@vueuse/core'
 defineOptions({
   name: 'DwTable'
 })
+
+const configData = inject('projectConfigData')
+const tableConfig = computed(() => configData.value.table)
+const pageField = computed(() => tableConfig.value.pageField)
+const limitField = computed(() => tableConfig.value.limitField)
 
 const searchParams = useUrlSearchParams('hash')
 const props = defineProps({
@@ -87,11 +92,8 @@ const total = ref(0)
 const tableLoading = ref(true)
 const searchPage = computed(() => Number(searchParams.page || 1))
 const pageData = reactive({
-  // pageNumber: searchPage.value,
-  // pageSize: 20
-
-  page: searchPage.value,
-  limit: 20
+  [tableConfig.value.pageField]: searchPage.value,
+  [tableConfig.value.limitField]: 20
 })
 
 watchEffect(() => {
@@ -136,7 +138,7 @@ const getList = async () => {
 /* 点击当前页 */
 const clickPage = (e) => {
   searchParams.page = e
-  pageData.page = e
+  pageData[tableConfig.value.pageField] = e
   getList()
 }
 
@@ -145,7 +147,7 @@ getList()
 /* 刷新 */
 const refresh = () => {
   searchParams.page = 1
-  pageData.page = 1
+  pageData[tableConfig.value.pageField] = 1
   nextTick(() => {
     getList()
   })

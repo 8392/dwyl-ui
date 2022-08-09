@@ -18,6 +18,34 @@ const getProxy = () => {
   }
 }
 
+// const configProxy = {
+//   dyw: {
+//     auth: 'http://192.168.1.3:8819',
+//     manager: 'http://192.168.1.3:8881'
+//   },
+//   line: {
+//     auth: 'http://222.209.208.86:1548',
+//     manager: 'http://222.209.208.86:1548'
+//   },
+//   test: {
+//     auth: 'http://139.186.136.53:1548',
+//     manager: 'http://139.186.136.53:1548'
+//   }
+// }
+
+// const getProxy = (name) => {
+//   return {
+//     '/auth': {
+//       target: configProxy[name].auth,
+//       rewrite: path => name === 'dyw' ? path.replace('/auth', '') : path
+//     },
+//     '/manager': {
+//       target: configProxy[name].manager,
+//       rewrite: path => name === 'dyw' ? path.replace('/manager', '') : path
+//     }
+//   }
+// }
+
 export default defineConfig({
   plugins: [
     vue(),
