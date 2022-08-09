@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="fw">
     <!-- <DwSteps :active="activeIndex">
       <DwStep title="选择产品类型" />
       <DwStep title="添加版本" />
@@ -13,7 +13,8 @@
     <!-- <TestDwSelect /> -->
     <DwProjectConfig :id="2" :config="projectConfig">
       <!-- <TestDwUpload /> -->
-      <TestTable />
+      <!-- <TestTable /> -->
+      <DwEmpty type="loadFail" />
     </DwProjectConfig>
   </div>
 </template>

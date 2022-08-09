@@ -1,19 +1,22 @@
 # dwyl-ui组件库
 
 ### 所有组件
-- DwButton
-- DwSteps
-- DwStep
-- DwTable
-- DwDialog
-- DwPagination
-- DwDialogFoot
-- DwGrid
-- DwCol
-- DwSelect
-- DwOption
-- DwUpload
-- DwProjectConfig
+-  DwButton
+-  DwSteps
+-  DwStep
+-  DwTable
+-  DwDialog
+-  DwPagination
+-  DwDialogFoot
+-  DwGrid
+-  DwCol
+-  DwSelect
+-  DwOption
+-  DwUpload
+-  DwProjectConfig
+-  DwPicker
+-  DwEmpty
+-  DwImage
 
 ### 常用业务hooks
 - dwHooks
@@ -31,6 +34,7 @@
 + 1代表物联网
 + 2代表后台
 
+```vue
 <template>
   <DwProjectConfig :id="2">
     <router-view />
@@ -41,7 +45,6 @@
 import { ref } from 'vue'
 
 </script>
-
 ```
 
 `DwSelect`
@@ -157,3 +160,81 @@ const sizeChange = (e) => {
 
 </style>
 ```
+
+
+
+`DwPicker`
+
+`如果需要单个时间，请与作者联系`
+
+- 目前只支持时间范围，单个时间还是用el-date-picker
+
+```vue
+
+<template>
+  <div>
+    <DwPicker
+      v-model:start="params.startTime"
+      v-model:end="params.endTime"
+    />
+    <dw-button @click="getTime">获取时间</dw-button>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const params = ref({
+  startTime: '',
+  endTime: ''
+})
+
+const getTime = () => {
+  console.log('时间结果', params.value)
+}
+</script>
+```
+
+
+
+`DwImage`
+
+
+```vue
+
+<template>
+  <div>
+    <DwImage class="w-200px" :src="currImg" />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const currImg = ref('https://fire.diweiyunlian.cn/file/312009389047525376.png')
+
+</script>
+```
+
+
+`DwEmpty`
+
+`目前支持4种状态，默认是暂无数据（noData）`
+
++ noData
++ 404
++ error
++ loadFail
+
+```vue
+
+<template>
+  <DwEmpty type="noData" />
+  <DwEmpty type="404" />
+  <DwEmpty type="error" />
+  <DwEmpty type="loadFail" />
+</template>
+
+```
+
+

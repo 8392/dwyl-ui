@@ -12,10 +12,47 @@ import DwSelect from './DwSelect'
 import DwOption from './DwSelect/DwOption'
 import DwUpload from './DwUpload'
 import DwProjectConfig from './DwProjectConfig'
+import DwPicker from './DwPicker'
+import DwEmpty from './DwEmpty'
+import DwImage from './DwImage'
 
-const modules = [DwButton, DwSteps, DwStep, DwTable, DwDialog, DwPagination, DwDialogFoot, DwGrid, DwCol, DwSelect, DwOption, DwUpload, DwProjectConfig]
+const modules = [
+  DwButton,
+  DwSteps,
+  DwStep,
+  DwTable,
+  DwDialog,
+  DwPagination,
+  DwDialogFoot,
+  DwGrid,
+  DwCol,
+  DwSelect,
+  DwOption,
+  DwUpload,
+  DwProjectConfig,
+  DwPicker,
+  DwEmpty,
+  DwImage
+]
 
 // 提供按需导入
-export { DwButton, DwSteps, DwStep, DwTable, DwDialog, DwPagination, DwDialogFoot, DwGrid, DwCol, DwSelect, DwOption, DwUpload, DwProjectConfig }
+export {
+  DwButton,
+  DwSteps,
+  DwStep,
+  DwTable,
+  DwDialog,
+  DwPagination,
+  DwDialogFoot,
+  DwGrid,
+  DwCol,
+  DwSelect,
+  DwOption,
+  DwUpload,
+  DwProjectConfig,
+  DwPicker,
+  DwEmpty,
+  DwImage
+}
 
 export default modules
