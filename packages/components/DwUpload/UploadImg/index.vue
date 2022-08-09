@@ -36,12 +36,11 @@
 </template>
 
 <script setup>
-import { ref, watchEffect, nextTick } from 'vue'
+import { ref, watchEffect, nextTick, computed, inject } from 'vue'
 import Item from './Item'
 import { ElMessage } from 'element-plus'
 import { uploadFile } from '~/utils/utils'
 import { dwImgView } from '~/utils/imgView'
-import { uploadMoreApi } from '~/api/wlw'
 
 const props = defineProps({
   modelValue: [Array, String],
@@ -53,6 +52,9 @@ const props = defineProps({
 const itemRef = ref(null)
 
 const fileArr = ref([])
+
+const configData = inject('projectConfigData')
+const uploadConfig = computed(() => configData.value.upload)
 
 watchEffect(() => {
   const { modelValue } = props
@@ -84,7 +86,7 @@ const uploadFileMeth = async () => {
   try {
     const formData = await getFormData()
     loading.value = true
-    const { data } = await uploadMoreApi(formData)
+    const { data } = await uploadConfig.value.uploadMoreApi(formData)
     loading.value = false
     fileArr.value.push(...data)
     emit('change', fileArr.value.join(','))
@@ -107,7 +109,7 @@ const handleBtn = async (type, index) => {
       itemRef.value[index].showThum = false
       const formData = await getFormData()
       itemRef.value[index].loading = true
-      const { data } = await uploadMoreApi(formData)
+      const { data } = await uploadConfig.value.uploadMoreApi(formData)
       fileArr.value.splice(index, 1, data)
       emit('change', fileArr.value.join(','))
       itemRef.value[index].loading = false

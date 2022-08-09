@@ -11,7 +11,7 @@
     <!-- <testButton /> -->
     <!-- <dwgrid /> -->
     <!-- <TestDwSelect /> -->
-    <DwProjectConfig :id="2">
+    <DwProjectConfig :id="2" :config="projectConfig">
       <!-- <TestDwUpload /> -->
       <TestTable />
     </DwProjectConfig>
@@ -28,11 +28,14 @@ import testLoading from './test/testLoading'
 import dwgrid from './test/dwgrid'
 import TestDwSelect from './test/DwSelect'
 import TestDwUpload from './test/dwUpload'
+import { uploadMoreApi } from '@/api'
 
 const activeIndex = ref(1)
 
 const projectConfig = {
-
+  upload: {
+    uploadMoreApi
+  }
 }
 
 </script>

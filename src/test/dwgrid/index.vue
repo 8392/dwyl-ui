@@ -1,13 +1,14 @@
 
 <template>
-  <div class="w">
+  <div class="p-20px w">
     <DwGrid
       :minWidth="200"
       :columnGap="20"
       :rowGap="20"
       @sizeChange="sizeChange"
     >
-      <DwCol class="bg-#fae3d9" :key="item" v-for="item in 26">
+      <DwCol class="bg-#fae3d9 h-200px" :key="item" v-for="item in 26">
+        <!-- <div>asdassa</div>
         <div>asdassa</div>
         <div>asdassa</div>
         <div>asdassa</div>
@@ -17,8 +18,7 @@
         <div>asdassa</div>
         <div>asdassa</div>
         <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
+        <div>asdassa</div> -->
       </DwCol>
     </DwGrid>
   </div>

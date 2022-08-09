@@ -14,11 +14,16 @@ const props = defineProps({
   id: [Number, String]
 })
 
-const currProjectData = computed(() => configData.get(props.id))
-
-watchEffect(() => {
-  console.log('currProjectData', currProjectData)
+const currProjectData = computed(() => {
+  return {
+    ...configData.get(props.id),
+    ...props.config
+  }
 })
+
+// watchEffect(() => {
+//   console.log('config', props.config)
+// })
 
 provide('projectConfigData', currProjectData)
 

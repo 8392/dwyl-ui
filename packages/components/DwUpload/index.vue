@@ -26,9 +26,8 @@
 
 <script lang='jsx' setup>
 
-import { computed, watch, ref, useSlots } from 'vue'
+import { computed, watch, ref, inject } from 'vue'
 import { ElMessage, ElUpload } from 'element-plus'
-import { uploadApi } from '~/api/wlw'
 import { dwImgView } from '~/utils/imgView'
 import { pdfView } from '~/utils/pdfView'
 import { downloadBlob, getBlob } from '~/utils/utils'
@@ -37,6 +36,10 @@ import UploadImg from './UploadImg'
 defineOptions({
   name: 'DwUpload'
 })
+
+const configData = inject('projectConfigData')
+const uploadConfig = computed(() => configData.value.upload)
+
 const props = defineProps({
   listType: {
     type: String,
@@ -124,10 +127,10 @@ const httpRequest = async e => {
   try {
     const formData = new FormData()
     formData.append('files', e.file)
-    const { data } = await uploadApi(formData)
+    const { data } = await uploadConfig.value.uploadMoreApi(formData)
     /* 是数组 */
     if (Array.isArray(props.modelValue)) {
-      emit('update:modelValue', [...props.modelValue, data])
+      emit('update:modelValue', [...props.modelValue, ...data])
     } else {
       const arr = props.modelValue.split(',')
       let resArr = [...arr, data]

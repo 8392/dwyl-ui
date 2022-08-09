@@ -25,6 +25,25 @@
 
 ### 示例代码
 
+
+`DwProjectConfig`
++ 项目初始化配置（必须），项目初始化的时候加在最外层，在APP.vue中添加，代表是那个项目
++ 1代表物联网
++ 2代表后台
+
+<template>
+  <DwProjectConfig :id="2">
+    <router-view />
+  </DwProjectConfig>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+</script>
+
+```
+
 `DwSelect`
 ```vue
 
@@ -78,10 +97,19 @@ const options = [
 
 `DwUpload`
 ```vue
+
 <template>
   <div>
     <!-- 上传 -->
     <DwUpload fileType="img" multiple v-model="imageLink" />
+
+    <DwUpload fileType="pdf" list-type="text" class="uploadPdf" v-model="testReportPdf">
+      <dw-button icon="plus">上传PDF</dw-button>
+    </DwUpload>
+    <div>
+      <div>结果</div>
+      <div>{{testReportPdf}}</div>
+    </div>
   </div>
 </template>
 
@@ -90,8 +118,10 @@ const options = [
 import { ref } from 'vue'
 
 const imageLink = ref('https://iot.diweiyunlian.cn:1443/iot-file/311738491240075264/a.png')
+const testReportPdf = ref('https://fire.diweiyunlian.cn/file/特斯拉.pdf,https://fire.diweiyunlian.cn/file/特斯拉 - 副本.pdf')
 
 </script>
+
 
 ```
 
@@ -108,17 +138,7 @@ const imageLink = ref('https://iot.diweiyunlian.cn:1443/iot-file/311738491240075
       @sizeChange="sizeChange"
     >
       <DwCol class="bg-#fae3d9" :key="item" v-for="item in 26">
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
-        <div>asdassa</div>
+      
       </DwCol>
     </DwGrid>
   </div>
