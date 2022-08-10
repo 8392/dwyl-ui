@@ -7,28 +7,33 @@
       :index="index"
       :imgUrl="item"
       :fileArr="fileArr"
-      @handleBtn='handleBtn($event, index)'
+      @handleBtn="handleBtn($event, index)"
     />
     <div
+      v-if="(limit === 1 && fileArr.length === 0) || limit !== 1"
       class="flex-col-center relative rounded-6px w-100px h-100px bg-#fff mainBox"
       @click="uploadFileMeth"
-      v-if="(limit === 1 && fileArr.length === 0) || limit !== 1"
     >
       <template v-if="!loading">
         <img class="w-30px h-25px" src="https://fire.diweiyunlian.cn/file/285171761802764288.png" alt="">
         <div class="color-#B1B5BB pt-8px text-12px">上传图片</div>
       </template>
       <template v-if="loading">
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;display:block;" width="100px" height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-        <circle cx="27.5" cy="57.5" r="5" fill="#fe718d">
-          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite" values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.6s"></animate>
-        </circle> <circle cx="42.5" cy="57.5" r="5" fill="#f47e60">
-          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite" values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.44999999999999996s"></animate>
-        </circle> <circle cx="57.5" cy="57.5" r="5" fill="#f8b26a">
-          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite" values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.3s"></animate>
-        </circle> <circle cx="72.5" cy="57.5" r="5" fill="#abbd81">
-          <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite" values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.15s"></animate>
-        </circle>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;display:block;" width="100px"
+             height="100px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+          <circle cx="27.5" cy="57.5" r="5" fill="#fe718d">
+            <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite"
+                     values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.6s"></animate>
+          </circle> <circle cx="42.5" cy="57.5" r="5" fill="#f47e60">
+            <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite"
+                     values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.44999999999999996s"></animate>
+          </circle> <circle cx="57.5" cy="57.5" r="5" fill="#f8b26a">
+            <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite"
+                     values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.3s"></animate>
+          </circle> <circle cx="72.5" cy="57.5" r="5" fill="#abbd81">
+            <animate attributeName="cy" calcMode="spline" keySplines="0 0.5 0.5 1;0.5 0 1 0.5;0.5 0.5 0.5 0.5" repeatCount="indefinite"
+                     values="57.5;42.5;57.5;57.5" keyTimes="0;0.3;0.6;1" dur="1s" begin="-0.15s"></animate>
+          </circle>
         </svg>
       </template>
     </div>

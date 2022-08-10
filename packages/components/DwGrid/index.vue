@@ -1,6 +1,6 @@
 <template>
-  <div class="overflow-hidden flex-1 dwgrid" ref="gridRef">
-    <div class="fixedGrid" v-if="fixed" ref="gridChildRef">
+  <div ref="gridRef" class="overflow-hidden flex-1 dwgrid">
+    <div v-if="fixed" ref="gridChildRef" class="fixedGrid">
       <slot></slot>
     </div>
     <slot v-else></slot>

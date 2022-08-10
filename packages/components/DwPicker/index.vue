@@ -1,15 +1,15 @@
 <template>
   <el-date-picker
-    class='vertical-top mr-12px'
     v-model="timeData"
+    class="vertical-top mr-12px"
     :type="type"
     :range-separator="rangeSeparator"
     v-bind="$attrs"
     :start-placeholder="startPlaceholder"
     :end-placeholder="endPlaceholder"
-    @change="changeDate"
     :default-time="defaultTime"
     :format="format"
+    @change="changeDate"
   >
   </el-date-picker>
 </template>

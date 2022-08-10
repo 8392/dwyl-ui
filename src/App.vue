@@ -1,6 +1,6 @@
 
 <template>
-  <div class="fw ">
+  <div class="fw">
     <!-- <DwSteps :active="activeIndex">
       <DwStep title="选择产品类型" />
       <DwStep title="添加版本" />
@@ -11,11 +11,21 @@
     <!-- <testButton /> -->
     <!-- <dwgrid /> -->
     <!-- <TestDwSelect /> -->
-    <DwProjectConfig :id="2" :config="projectConfig">
+    <DwProjectConfig
+      ref="testRef"
+      :age="2"
+      :title="2"
+      class="66"
+      :x="2"
+      :y="2"
+      :yz="2"
+      :config="projectConfig"
+    >
       <!-- <TestDwUpload /> -->
       <!-- <TestTable /> -->
       <DwEmpty type="loadFail" />
     </DwProjectConfig>
+    <div>{{ testVal }}</div>
   </div>
 </template>
 
@@ -32,7 +42,8 @@ import TestDwUpload from './test/dwUpload'
 import { uploadMoreApi } from '@/api'
 
 const activeIndex = ref(1)
-
+const testVal = ref(999)
+const testRef = ref(null)
 const projectConfig = {
   upload: {
     uploadMoreApi

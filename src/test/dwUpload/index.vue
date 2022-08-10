@@ -2,14 +2,14 @@
 <template>
   <div>
     <!-- 上传 -->
-    <DwUpload fileType="img" multiple v-model="imageLink" />
+    <DwUpload v-model="imageLink" fileType="img" multiple />
 
-    <DwUpload list-type="text" class="uploadPdf" v-model="testReportPdf">
+    <DwUpload v-model="testReportPdf" list-type="text" class="uploadPdf">
       <dw-button icon="plus">上传PDF</dw-button>
     </DwUpload>
     <div>
       <div>结果1</div>
-      <div>{{testReportPdf}}</div>
+      <div>{{ testReportPdf }}</div>
     </div>
 
     <!-- <DwPicker
@@ -19,9 +19,9 @@
     /> -->
 
     <DwPicker
-      class='vertical-top mr-12px mt-1px'
       v-model:start="params.startTime"
       v-model:end="params.endTime"
+      class="vertical-top mr-12px mt-1px"
     />
     <!-- <DwPicker
       class='vertical-top mr-12px mt-1px'

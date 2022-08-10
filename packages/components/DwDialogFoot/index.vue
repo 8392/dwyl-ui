@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-center gap-60px">
-    <el-button class="w-120px" :loading="leftLoading" type="primary" @click="handleBtn(1)">{{btnText.leftText}}</el-button>
-    <el-button class="w-120px" @click="handleBtn(2)">{{btnText.rightText}}</el-button>
+    <el-button class="w-120px" :loading="leftLoading" type="primary" @click="handleBtn(1)">{{ btnText.leftText }}</el-button>
+    <el-button class="w-120px" @click="handleBtn(2)">{{ btnText.rightText }}</el-button>
   </div>
 </template>
 

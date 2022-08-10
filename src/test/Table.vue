@@ -29,28 +29,11 @@ import { sysUserListPage } from '@/api'
 const activeIndex = ref(1)
 
 const column = [
-  {
-    prop: 'name',
-    label: '名称'
-  },
-  {
-    prop: 'roleName',
-    label: '角色'
-  },
-  {
-    prop: 'roleCode',
-    label: 'roleCode'
-  },
-  {
-    prop: 'phoneNumber',
-    label: '联系人电话'
-  },
-  {
-    prop: 'cz',
-    slot: 'cz',
-    width: 120,
-    label: '操作'
-  }
+  { prop: 'name', label: '名称' },
+  { prop: 'roleName', label: '角色' },
+  { prop: 'roleCode', label: 'roleCode' },
+  { prop: 'phoneNumber', label: '联系人电话' },
+  { prop: 'cz', slot: 'cz', width: 120, label: '操作' }
 ]
 
 const params = ref({

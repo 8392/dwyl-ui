@@ -4,7 +4,7 @@
     <dw-select
       v-model="value"
       placeholder="Select"
-      >
+    >
       <dw-option
         v-for="item in options"
         :key="item.value"
@@ -14,9 +14,9 @@
       />
     </dw-select>
     <div>
-      值{{value}}
+      值{{ value }}
     </div>
-    <div class="w-200px truncate">{{testToolTip}}</div>
+    <div class="w-200px truncate">{{ testToolTip }}</div>
   </div>
 </template>
 

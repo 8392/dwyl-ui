@@ -1,12 +1,18 @@
 <template>
-  <UploadImg v-if="listType === 'picture-card'"  v-bind="$attrs" :limit="limit" :modelValue="modelValue" @change="changeUploadImg"  />
+  <UploadImg
+    v-if="listType === 'picture-card'"
+    v-bind="$attrs"
+    :limit="limit"
+    :modelValue="modelValue"
+    @change="changeUploadImg"
+  />
   <el-upload
     v-else
+    v-bind="$attrs"
+    ref="uploadRef"
     class="upload"
     action="#"
     :list-type="listType"
-    v-bind="$attrs"
-    ref="uploadRef"
     :accept="accept"
     :limit="limit"
     :on-remove="onRemove"
@@ -16,7 +22,7 @@
     :on-exceed="handleExceed"
     :http-request="httpRequest"
   >
-    <div class="flex-col flex-center w-100px h-100px" v-if="!$slots.default">
+    <div v-if="!$slots.default" class="flex-col flex-center w-100px h-100px">
       <img class="w-30px h-25px" src="https://fire.diweiyunlian.cn/file/285171761802764288.png" alt="">
       <div class="color-#B1B5BB pt-4px text-12px">上传图片</div>
     </div>

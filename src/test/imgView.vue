@@ -11,7 +11,7 @@
     <div class="w-200px">
       <dw-button @click="handleBtn">预览图片1</dw-button>
     </div>
-    <div class="w-200 h-200 bg-#ccc" v-dwloading="true">
+    <div v-dwloading="true" class="w-200 h-200 bg-#ccc">
 
     </div>
   </div>

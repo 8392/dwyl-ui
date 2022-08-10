@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col flex-1 overflow-hidden">
     <el-table
-      class="flex-1"
       v-dwloading="tableLoading"
+      class="flex-1"
       empty-text=" "
       :height="height"
       :data="tableData"
@@ -11,22 +11,22 @@
       :cell-style="{color: '#1D2129'}"
       @cell-mouse-enter="handleCellMouseEnter"
       @cell-mouse-leave="handleCellMouseLeave"
-      >
-      <template :key="item.prop" v-for="item in column" >
+    >
+      <template v-for="item in column" :key="item.prop">
         <!-- <el-table-column :show-overflow-tooltip="!item.slot && !item.render" v-bind="item"> -->
         <el-table-column :className="(!item.slot && !item.render) ? 'dwTableCol' : ''" v-bind="item">
           <template #default="scoped">
-            <slot :name="item.slot" v-bind="scoped" v-if="item.slot"></slot>
-            <Render :row="scoped" :render="item.render" v-if="item.render" />
+            <slot v-if="item.slot" :name="item.slot" v-bind="scoped"></slot>
+            <Render v-if="item.render" :row="scoped" :render="item.render" />
           </template>
         </el-table-column>
       </template>
-      <template #empty v-if="!tableLoading">
+      <template v-if="!tableLoading" #empty>
         <EmptyStatus type="No_DATA" class="bg-#dwboxbg pa-20px rounded flex-1 flex-center" />
       </template>
     </el-table>
     <DwPagination
-      v-if='props.isPage && total !== 0'
+      v-if="props.isPage && total !== 0"
       :current-page="pageData[pageField]"
       :page-size="pageData[limitField]"
       :total="total"
@@ -42,7 +42,7 @@
       virtual-triggering
     >
       <template #content>
-        <div class="max-w-300px lh-22px">{{tooltipText}}</div>
+        <div class="max-w-300px lh-22px">{{ tooltipText }}</div>
       </template>
     </el-tooltip>
   </div>

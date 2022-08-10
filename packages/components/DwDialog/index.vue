@@ -1,22 +1,22 @@
 <template>
-   <el-dialog
+  <el-dialog
     :modelValue="modelValue"
     :draggable="draggable"
     v-bind="$attrs"
     :width="width"
-    top='10vh'
+    top="10vh"
     :show-close="showClose"
     custom-class="dw-dialog"
     :before-close="handleClose"
   >
     <template #header="{ close }">
       <div class="flex items-center justify-between h-63px border-b-1px border-#F2F3F5">
-        <div class="color-#292A2C text-16px font-600">{{title}}</div>
+        <div class="color-#292A2C text-16px font-600">{{ title }}</div>
         <!-- <el-icon class="cursor-pointer" color="#4e5969" :size="20" @click="close"><CloseBold /></el-icon> -->
         <CloseBold style="width: 20px; height: 20px;" class="color-#4e5969 cursor-pointer" @click="close" />
       </div>
     </template>
-    <el-scrollbar max-height='70vh'>
+    <el-scrollbar max-height="70vh">
       <slot></slot>
     </el-scrollbar>
     <template #footer>

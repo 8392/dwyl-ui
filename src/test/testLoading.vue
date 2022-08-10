@@ -4,7 +4,7 @@
     <dw-button type="primary" @click="setLoading">触发</dw-button>
   </div>
 
-  <div class="w-500px bg-#ddd h-200px" v-dwloading="loading">
+  <div v-dwloading="loading" class="w-500px bg-#ddd h-200px">
     loading
   </div>
 </template>

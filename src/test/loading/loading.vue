@@ -1,5 +1,5 @@
 <template>
-  <div class="demo" v-loading:[title]="loading"></div>
+  <div v-loading:[title]="loading" class="demo"></div>
 </template>
 <script setup>
 import { ref } from 'vue'

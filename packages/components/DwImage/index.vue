@@ -6,7 +6,13 @@
     @click="handleImg"
   >
     <template #error>
-      <el-image @click="handleImg" :title="title || '暂无图片'" class="wh-full" src="https://fire.diweiyunlian.cn/file/290168546839285760.png" fit="contain" />
+      <el-image
+        :title="title || '暂无图片'"
+        class="wh-full"
+        src="https://fire.diweiyunlian.cn/file/290168546839285760.png"
+        fit="contain"
+        @click="handleImg"
+      />
     </template>
     <template #placeholder>
       <div class="wh-full color-#ccc flex-center">加载中...</div>

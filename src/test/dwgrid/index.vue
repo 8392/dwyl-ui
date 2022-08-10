@@ -7,7 +7,7 @@
       :rowGap="20"
       @sizeChange="sizeChange"
     >
-      <DwCol class="bg-#fae3d9 h-200px" :key="item" v-for="item in 26">
+      <DwCol v-for="item in 26" :key="item" class="bg-#fae3d9 h-200px">
         <!-- <div>asdassa</div>
         <div>asdassa</div>
         <div>asdassa</div>
