@@ -1,6 +1,6 @@
 
 <template>
-  <div class="fw">
+  <div class="fw ">
     <!-- <DwSteps :active="activeIndex">
       <DwStep title="选择产品类型" />
       <DwStep title="添加版本" />
