@@ -29,6 +29,7 @@ const list = [
   imgUrl,
   imgUrl
 ]
+
 console.log('utils', dwUtils)
 
 const dialogVisible = ref(false)

@@ -11,18 +11,21 @@
       :api="sysUserListPage"
     >
       <template #cz="{ row }">
-        <dw-button type="primary" link @click="onDelete(row)">编辑</dw-button>
+        <dw-button type="primary" link @click="onDelete(row)">编辑1</dw-button>
         <dw-button type="danger" link @click="onDelete(row)">删除</dw-button>
       </template>
     </DwTable>
     <!-- <div class="h-10px bg-#ccc">
         AAA
+        truncate
+        truncate
+        truncate
+        truncate
     </div> -->
   </div>
 </template>
 
 <script setup>
-
 import { ref } from 'vue'
 import { sysUserListPage } from '@/api'
 

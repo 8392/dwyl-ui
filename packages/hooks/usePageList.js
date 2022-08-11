@@ -1,5 +1,6 @@
-import { reactive, ref, computed } from 'vue'
+import { reactive, ref, computed, inject } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { getObjectKey } from '~/utils/utils'
 
 // 请求参数、列表请求、删除请求、列表回调
 export default ({
@@ -9,31 +10,40 @@ export default ({
   callback,
   diaName
 }) => {
+  const configData = inject('projectConfigData')
+  const tableConfig = computed(() => configData.value.table)
+  const pageField = computed(() => tableConfig.value.pageField)
+  const limitField = computed(() => tableConfig.value.limitField)
+  const totalField = computed(() => tableConfig.value.totalField)
+  const dataField = computed(() => tableConfig.value.dataField)
+
   const total = ref(0)
   const listData = ref([])
   const dialogVisible = ref(false)
   const loading = ref(false)
-  const params = reactive(defParams || { limit: 10, page: 1 })
+  const params = reactive(defParams || { [limitField.value]: 10, [pageField.value]: 1 })
   const diaTitle = ref('')
   const currentItem = ref(null)
   const isAdd = computed(() => !currentItem.value)
 
   const onSearch = () => {
-    params.page = 1
+    params[pageField.value] = 1
     getTable()
   }
-  const getTable = () => {
-    loading.value = true
-    listApi(params).then(rs => {
-      rs.data.total ? total.value = Number(rs.data.total) : ''
-      listData.value = rs.data.records
+  const getTable = async () => {
+    try {
+      loading.value = true
+      const rs = await listApi(params)
+      listData.value = getObjectKey(rs, dataField.value)
+      total.value = Number(getObjectKey(rs, totalField.value))
+      callback && callback(listData.value)
+    } finally {
       loading.value = false
-      callback && callback(rs.data.records)
-    })
+    }
   }
 
   const onPageChange = e => {
-    params.page = e
+    params[pageField.value] = e
     getTable()
   }
   const updatePage = () => {

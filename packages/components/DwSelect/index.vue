@@ -32,6 +32,11 @@ const props = defineProps({
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
+:deep(.el-input__inner) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 </style>

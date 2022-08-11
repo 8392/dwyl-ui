@@ -15,15 +15,12 @@ const props = defineProps({
 })
 
 const currProjectData = computed(() => {
+  let defaultConfig = configData.get(props.id) || {}
   return {
-    ...configData.get(props.id),
+    ...defaultConfig,
     ...props.config
   }
 })
-
-// watchEffect(() => {
-//   console.log('config', props.config)
-// })
 
 provide('projectConfigData', currProjectData)
 

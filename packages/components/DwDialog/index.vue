@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :modelValue="modelValue"
+    v-model="modelValue"
     :draggable="draggable"
     v-bind="$attrs"
     :width="width"
@@ -17,16 +17,18 @@
       </div>
     </template>
     <el-scrollbar max-height="70vh">
-      <slot></slot>
+      <div class="p-20px">
+        <slot></slot>
+      </div>
     </el-scrollbar>
-    <template #footer>
+    <template v-if="slots.footer" #footer>
       <slot name="footer"></slot>
     </template>
   </el-dialog>
 </template>
 
 <script lang='jsx' setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, useSlots } from 'vue'
 import { ElDialog, ElButton } from 'element-plus'
 import { CloseBold } from '@element-plus/icons-vue'
 defineOptions({
@@ -54,6 +56,9 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'before-close'])
 
+const slots = useSlots()
+console.log('slot', slots)
+
 const handleClose = () => {
   emit('update:modelValue', false)
   emit('before-close', false)
@@ -62,13 +67,14 @@ const handleClose = () => {
 </script>
 
 <style lang="scss">
+
 .dw-dialog {
   .el-dialog__header {
     padding: 0 20px !important;
     margin: 0 !important;
   }
   .el-dialog__body {
-    padding: 20px !important;
+    padding: 0 !important;
   }
 }
 </style>

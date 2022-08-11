@@ -2,7 +2,9 @@
 const wlwConfig = {
   table: {
     pageField: 'pageNumber',
-    limitField: 'pageSize'
+    limitField: 'pageSize',
+    totalField: 'total',
+    dataField: 'data'
   }
 }
 
@@ -10,7 +12,9 @@ const wlwConfig = {
 const htConfig = {
   table: {
     pageField: 'page',
-    limitField: 'limit'
+    limitField: 'limit',
+    totalField: 'data.total',
+    dataField: 'data.records'
   }
 }
 

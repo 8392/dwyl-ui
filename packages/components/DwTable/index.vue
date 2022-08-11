@@ -54,7 +54,7 @@ import { ElTable, ElTableColumn, ElTooltip } from 'element-plus'
 import DwPagination from '../DwPagination'
 import Render from './render'
 import EmptyStatus from '../EmptyStatus'
-import { judgeTextOverflow } from '../../utils/utils'
+import { judgeTextOverflow, getObjectKey } from '../../utils/utils'
 import { useUrlSearchParams } from '@vueuse/core'
 defineOptions({
   name: 'DwTable'
@@ -64,6 +64,8 @@ const configData = inject('projectConfigData')
 const tableConfig = computed(() => configData.value.table)
 const pageField = computed(() => tableConfig.value.pageField)
 const limitField = computed(() => tableConfig.value.limitField)
+const totalField = computed(() => tableConfig.value.totalField)
+const dataField = computed(() => tableConfig.value.dataField)
 
 const searchParams = useUrlSearchParams('hash')
 const props = defineProps({
@@ -120,14 +122,13 @@ const getList = async () => {
     emit('update:loading', true)
     tableLoading.value = true
 
-    const { data: res } = await props.api({
+    const resData = await props.api({
       ...pageData
       // ...props.params
     })
 
-    const { records, total: resTotal } = res
-    tableData.value = records || []
-    total.value = Number(resTotal)
+    tableData.value = getObjectKey(resData, dataField.value)
+    total.value = Number(getObjectKey(resData, totalField.value))
     emit('callback', tableData.value)
   } finally {
     emit('update:loading', false)

@@ -1,19 +1,12 @@
-import { version as dwVersion } from '../package.json'
-import * as utils from '~/utils'
 import components from '~/components'
-import hooks from '~/hooks'
 import directive from '~/directive'
 import 'uno.css'
 import '~/styles/common/index.scss'
+export { default as dwUtils } from '~/utils'
+export { default as dwHooks } from '~/hooks'
+export { version } from '../package.json'
 /* 按需导入组件 */
 export * from '~/components'
-
-/* 常用工具函数 */
-export const dwUtils = utils
-/* 常用hooks */
-export const dwHooks = hooks
-/* 框架版本 */
-export const version = dwVersion
 
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {

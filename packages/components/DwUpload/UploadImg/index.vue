@@ -63,19 +63,42 @@ const uploadConfig = computed(() => configData.value.upload)
 
 watchEffect(() => {
   const { modelValue } = props
-  if (modelValue) {
-    const res = modelValue.split(',')
-    fileArr.value = res
+
+  let arr = []
+  if (Array.isArray(modelValue)) {
+    arr = modelValue
   } else {
-    fileArr.value = []
+    // 字符串
+    arr = modelValue?.split?.(',')
+    if (arr?.[0] === '') {
+      arr = []
+    }
   }
+
+  fileArr.value = arr
+
+  // if (modelValue) {
+  //   const res = modelValue.split(',')
+  //   fileArr.value = res
+  // } else {
+  //   fileArr.value = []
+  // }
 })
 
-watchEffect(() => {
-  emit('update:modelValue', fileArr.value.join(','))
-})
+// watchEffect(() => {
+//   if (Array.isArray(props.modelValue)) {
+//     emit('update:modelValue', fileArr)
+//   } else {
+//     emit('update:modelValue', fileArr.value.join(','))
+//     // const arr = props.modelValue.split(',')
+//     // let resArr = [...arr, data]
+//     // resArr = resArr.filter(o => !!o)
+//     // emit('update:modelValue', resArr.join(','))
+//   }
+//   console.log('结果', Array.isArray(props.modelValue))
+// })
 
-const emit = defineEmits(['update:modelValue', 'change'])
+const emit = defineEmits(['change'])
 const loading = ref(false)
 
 const getFormData = async () => {

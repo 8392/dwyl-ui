@@ -149,16 +149,14 @@ const httpRequest = async e => {
   }
 }
 
-/* 单图片上传 */
-const changeUploadOneImg = (val) => {
-  emit('update:modelValue', val)
-  emit('change', val)
-}
-
 /* 图片上传 */
 const changeUploadImg = (val) => {
-  emit('update:modelValue', val)
-  emit('change', val)
+  let resData = val
+  if (typeof val === 'string') {
+    resData = val.split(',')
+  }
+  emit('update:modelValue', resData)
+  emit('change', resData)
 }
 
 const onRemove = (e) => {

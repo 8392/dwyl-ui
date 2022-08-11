@@ -1,11 +1,17 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
+// import * as _ from 'lodash'
+import { deepClone } from '~/utils/utils'
 
-export default ({ api, callback }) => {
-  const form = ref({})
+export default ({ api, callback, defForm = {} }) => {
+  const form = ref(_.deepClone(defForm))
   const subApi = ref(api)
   const editRef = ref()
   const loading = ref(false)
+
+  const onReset = () => {
+    form.value = _.deepClone(defForm.value)
+  }
   const onSubmit = async () => {
     await editRef.value.validate((valid, fields) => {
       if (valid) {
@@ -35,6 +41,7 @@ export default ({ api, callback }) => {
     subApi,
     editRef,
     loading,
+    onReset,
     onSubmit
   }
 }

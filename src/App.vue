@@ -13,17 +13,11 @@
     <!-- <TestDwSelect /> -->
     <DwProjectConfig
       ref="testRef"
-      :age="2"
-      :title="2"
-      class="66"
-      :x="2"
-      :y="2"
-      :yz="2"
       :config="projectConfig"
     >
       <!-- <TestDwUpload /> -->
-      <!-- <TestTable /> -->
-      <DwEmpty type="loadFail" />
+      <TestTable />
+      <!-- <DwEmpty type="loadFail" /> -->
     </DwProjectConfig>
     <div>{{ testVal }}</div>
   </div>
@@ -45,11 +39,16 @@ const activeIndex = ref(1)
 const testVal = ref(999)
 const testRef = ref(null)
 const projectConfig = {
+  table: {
+    pageField: 'page',
+    limitField: 'limit',
+    totalField: 'data.total',
+    dataField: 'data.records'
+  },
   upload: {
     uploadMoreApi
   }
 }
-
 </script>
 
 <style>
