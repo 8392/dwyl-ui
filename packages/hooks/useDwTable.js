@@ -2,7 +2,7 @@ import { reactive, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getObjectKey } from '~/utils/utils'
 
-// 请求参数、删除请求、列表回调
+// 请求参数、删除请求、弹窗标题
 export default ({ defParams, deleteApi, diaName } = {}) => {
   const dwTable = ref()
   const dialogVisible = ref(false)

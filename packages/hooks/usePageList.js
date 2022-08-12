@@ -46,6 +46,10 @@ export default ({
     params[pageField.value] = e
     getTable()
   }
+  const onSizeChange = e => {
+    params[limitField.value] = e * 4
+    getTable()
+  }
   const updatePage = () => {
     getTable()
     dialogVisible.value = false
@@ -89,6 +93,7 @@ export default ({
     onSearch, // 搜索
     onPageChange, // 翻页
     onDelete, // 删除
+    onSizeChange, // 自适应分页
     onAdd, // 新增
     onClose, // 关闭弹窗
     getTable, // 获取列表

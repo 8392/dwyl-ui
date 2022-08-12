@@ -1,13 +1,12 @@
 <template>
   <el-dialog
-    v-model="modelValue"
-    :draggable="draggable"
+    ref="dialogRef"
     v-bind="$attrs"
+    :draggable="draggable"
     :width="width"
     top="10vh"
     :show-close="showClose"
     custom-class="dw-dialog"
-    :before-close="handleClose"
   >
     <template #header="{ close }">
       <div class="flex items-center justify-between h-63px border-b-1px border-#F2F3F5">
@@ -21,22 +20,43 @@
         <slot></slot>
       </div>
     </el-scrollbar>
-    <template v-if="slots.footer" #footer>
-      <slot name="footer"></slot>
+    <template v-if="showFooter || slots.footer" #footer>
+      <slot v-if="slots.footer" name="footer"></slot>
+      <DwDialogFoot
+        v-if="showFooter"
+        :type="footerType"
+        :leftLoading="leftLoading"
+        @leftBtn="() => emits('leftBtn')"
+        @rightBtn="() => emits('rightBtn')"
+        @close="() => emits('close')"
+        @reset="() => emits('reset')"
+        @save="() => emits('save')"
+        @add="() => emits('add')"
+      />
     </template>
   </el-dialog>
 </template>
 
 <script lang='jsx' setup>
-import { ref, reactive, useSlots } from 'vue'
-import { ElDialog, ElButton } from 'element-plus'
+import { ref, useSlots } from 'vue'
+import { ElDialog } from 'element-plus'
 import { CloseBold } from '@element-plus/icons-vue'
+import DwDialogFoot from '../DwDialogFoot'
+
 defineOptions({
   name: 'DwDialog'
 })
 
 const props = defineProps({
-  modelValue: Boolean,
+  showFooter: { // 是否显示默认footer
+    type: Boolean,
+    default: false
+  },
+  footerType: String,
+  leftLoading: {
+    type: Boolean,
+    default: false
+  },
   draggable: {
     type: Boolean,
     default: true
@@ -54,15 +74,17 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:modelValue', 'before-close'])
+const emits = defineEmits(['leftBtn', 'rightBtn', 'close', 'reset', 'save', 'add'])
 
 const slots = useSlots()
-console.log('slot', slots)
-
-const handleClose = () => {
-  emit('update:modelValue', false)
-  emit('before-close', false)
+const dialogRef = ref()
+const closeDialog = () => {
+  dialogRef.value.visible = false
 }
+
+defineExpose({
+  closeDialog
+})
 
 </script>
 

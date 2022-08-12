@@ -1,31 +1,15 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import { deepClone } from '~/utils/utils'
 
-export default ({ api, callback, defForm = {} }) => {
-  const form = ref(deepClone(defForm))
+export default (api, context, callback) => {
+  const form = ref({})
   const subApi = ref(api)
   const editRef = ref()
   const loading = ref(false)
-  const dwDialogRef = ref()
-
-  const onReset = () => {
-    form.value = deepClone(defForm)
-  }
-  const initPicture = () => {
-    if (!defForm.picture) {
-      defForm.picture = {
-        pictureList: []
-      }
-      form.value = deepClone(defForm)
-    }
-  }
-  const onClose = () => {
-    dwDialogRef.value.closeDialog()
-  }
   const onSubmit = async () => {
     await editRef.value.validate((valid, fields) => {
       if (valid) {
+        console.log('submit!')
         if (loading.value) {
           return
         }
@@ -38,6 +22,7 @@ export default ({ api, callback, defForm = {} }) => {
               type: 'success'
             })
             callback && callback()
+            context.emit('submit')
           })
           .finally(() => {
             loading.value = false
@@ -49,13 +34,8 @@ export default ({ api, callback, defForm = {} }) => {
   }
   return {
     form,
-    dwDialogRef,
     subApi,
     editRef,
-    onClose,
-    loading,
-    initPicture,
-    onReset,
     onSubmit
   }
 }

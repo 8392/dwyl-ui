@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex-center pt-80px pb-20px">
+  <div class="w-full flex-center pb-20px">
     <DwImage class="w-200px" :src="currImg" />
   </div>
 </template>

@@ -19,7 +19,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['leftBtn', 'rightBtn'])
+const emit = defineEmits(['leftBtn', 'rightBtn', 'close', 'reset', 'save', 'add'])
 
 const btnText = computed(() => {
   const { type } = props
