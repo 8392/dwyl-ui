@@ -5,6 +5,7 @@ import '~/styles/common/index.scss'
 export { default as dwUtils } from '~/utils'
 export { default as dwHooks } from '~/hooks'
 export { version } from '../package.json'
+export { DwLoading } from '~/directive/loading'
 /* 按需导入组件 */
 export * from '~/components'
 

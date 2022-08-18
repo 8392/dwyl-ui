@@ -19,7 +19,7 @@ const renderLoading = {
   }
 }
 
-const createInstance = (trigger, binding) => {
+const createInstance = async (trigger, binding) => {
   const { value, oldValue } = binding
   if (oldValue !== value) {
     if (value && !oldValue) {
@@ -27,12 +27,18 @@ const createInstance = (trigger, binding) => {
       const app = createApp(vnode)
       const loadingEl = app.mount(document.createElement('div')).$el
       loadingEl.setAttribute('id', 'dwLoadingId')
-      const hasLoading = trigger.querySelector('#dwLoadingId')
       trigger.style.position = 'relative'
       trigger.appendChild(loadingEl)
+      nextTick(() => {
+        const triggerH = trigger.offsetHeight
+        if (triggerH < 200) {
+          trigger.classList.add('!h-320px')
+        }
+      })
     } else {
       const childDiv = trigger.querySelector('#dwLoadingId')
       trigger.removeChild(childDiv)
+      trigger.classList.remove('!h-320px')
     }
   }
 }
@@ -49,5 +55,23 @@ export default {
   },
   unmounted (el) {
     // el[INSTANCE_KEY]?.instance.close()
+  }
+}
+
+export const DwLoading = {
+  el: null,
+  service ({ text, background = '#ccc' } = { }) {
+    const vnode = h(<renderLoading />)
+    // const app = createApp(vnode)
+    // const div = app.mount(document.createElement('div'))
+    const div = document.createElement('div')
+    render(vnode, div)
+
+    document.body.appendChild(div)
+    this.el = div
+    return DwLoading
+  },
+  close () {
+    document.body.removeChild(this.el)
   }
 }

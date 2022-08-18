@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col flex-1 overflow-hidden">
     <el-table
+      ref="dwTableRef"
       v-dwloading="tableLoading"
       class="flex-1"
       empty-text=" "
@@ -12,9 +13,9 @@
       @cell-mouse-enter="handleCellMouseEnter"
       @cell-mouse-leave="handleCellMouseLeave"
     >
-      <template v-for="item in column" :key="item.prop">
+      <template v-for="item in columnList" :key="item.prop">
         <!-- <el-table-column :show-overflow-tooltip="!item.slot && !item.render" v-bind="item"> -->
-        <el-table-column :className="(!item.slot && !item.render) ? 'dwTableCol' : ''" v-bind="item">
+        <el-table-column :className="(!item.slot && !item.render && item.showOverflowToolip) ? 'dwTableCol' : ''" v-bind="item">
           <template #default="scoped">
             <slot v-if="item.slot" :name="item.slot" v-bind="scoped"></slot>
             <Render v-if="item.render" :row="scoped" :render="item.render" />
@@ -49,110 +50,41 @@
 </template>
 
 <script lang='jsx' setup>
-import { ref, reactive, watch, watchEffect, computed, nextTick, inject } from 'vue'
+import { ref, computed } from 'vue'
 import { ElTable, ElTableColumn, ElTooltip } from 'element-plus'
 import DwPagination from '../DwPagination'
 import Render from './render'
 import EmptyStatus from '../EmptyStatus'
-import { judgeTextOverflow, getObjectKey } from '../../utils/utils'
-import { useUrlSearchParams } from '@vueuse/core'
+import { judgeTextOverflow } from '../../utils/utils'
+import useList, { listProps, listEmit } from '~/components/hooks/useList'
+
 defineOptions({
   name: 'DwTable'
 })
 
-const configData = inject('projectConfigData')
-const tableConfig = computed(() => configData.value.table)
-const pageField = computed(() => tableConfig.value.pageField)
-const limitField = computed(() => tableConfig.value.limitField)
-const totalField = computed(() => tableConfig.value.totalField)
-const dataField = computed(() => tableConfig.value.dataField)
-
-const searchParams = useUrlSearchParams('hash')
 const props = defineProps({
   column: Array,
-  params: Object,
-  api: Function,
-  loading: {
-    /* 没传，默认设置undefined */
-    type: Boolean,
-    default ({ city }) {
-      return city
-    }
-  },
   height: {
     type: [Number, String],
     default: '100%'
   },
-  isPage: {
-    type: Boolean,
-    default: true
-  }
+  ...listProps
+})
+const dwTableRef = ref(null)
+const columnList = computed(() => {
+  return props.column.map(item => {
+    if (item.showOverflowToolip !== false) {
+      item.showOverflowToolip = true
+    }
+    return item
+  })
 })
 
-const tableData = ref([])
-const total = ref(0)
-const tableLoading = ref(true)
-const searchPage = computed(() => Number(searchParams.page || 1))
-const pageData = reactive({
-  [tableConfig.value.pageField]: searchPage.value,
-  [tableConfig.value.limitField]: 20
-})
+const emits = defineEmits(listEmit)
 
-watchEffect(() => {
-  const { loading } = props
-  if (loading !== undefined) {
-    tableLoading.value = loading
-  } else {
-    tableLoading.value = false
-  }
-})
-
-watchEffect(() => {
-  Object.assign(pageData, props.params)
-})
-
-const emit = defineEmits(['update:loading', 'callback'])
-
-/* 获取列表数据 */
-const getList = async () => {
-  if (!props.api) {
-    return
-  }
-  try {
-    emit('update:loading', true)
-    tableLoading.value = true
-
-    const resData = await props.api({
-      ...pageData
-      // ...props.params
-    })
-
-    tableData.value = getObjectKey(resData, dataField.value)
-    total.value = Number(getObjectKey(resData, totalField.value))
-    emit('callback', tableData.value)
-  } finally {
-    emit('update:loading', false)
-    tableLoading.value = false
-  }
-}
-
-/* 点击当前页 */
-const clickPage = (e) => {
-  searchParams.page = e
-  pageData[tableConfig.value.pageField] = e
-  getList()
-}
+const { pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, refresh } = useList(props, emits)
 
 getList()
-
-/* 刷新 */
-const refresh = () => {
-  searchParams.page = 1
-  pageData[tableConfig.value.pageField] = 1
-  nextTick(() => {
-    getList()
-  })
-}
 
 const buttonRef = ref()
 const tooltipRef = ref()
@@ -182,7 +114,8 @@ const handleCellMouseLeave = (e, row) => {
 defineExpose({
   getList,
   refresh,
-  pageData
+  pageData,
+  dwTableRef
 })
 
 </script>
