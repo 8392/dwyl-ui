@@ -152,9 +152,13 @@ const httpRequest = async e => {
 /* 图片上传 */
 const changeUploadImg = (val) => {
   let resData = val
-  if (typeof val === 'string') {
+  const { modelValue } = props
+  if (Array.isArray(modelValue)) {
     resData = val.split(',')
   }
+  // if (typeof val === 'string') {
+  //   resData = val.split(',')
+  // }
   emit('update:modelValue', resData)
   emit('change', resData)
 }
