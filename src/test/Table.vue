@@ -28,6 +28,8 @@
 <script setup>
 import { ref } from 'vue'
 import { sysUserListPage } from '@/api'
+import { dwHooks } from '../../dist/dwyl-ui.mjs'
+const { useDwTable } = dwHooks
 
 const activeIndex = ref(1)
 
@@ -49,9 +51,12 @@ const tableData = [{
   unitContactPhone: '15856565689'
 }]
 
-const onDelete = () => {
-
-}
+const {
+  onDelete
+} = useDwTable({
+  defParams: { name: '' },
+  diaName: '消防车'
+})
 
 </script>
 
