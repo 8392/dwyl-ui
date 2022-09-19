@@ -1,7 +1,7 @@
 {
   "name": "dwyl-ui",
   "private": false,
-  "version": "0.0.49",
+  "version": "0.0.50",
   "main": "dist/dwyl-ui.mjs",
   "module": "dist/dwyl-ui.umd.js",
   "exports": {
