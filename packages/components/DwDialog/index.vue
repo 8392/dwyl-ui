@@ -6,7 +6,7 @@
     :width="width"
     top="10vh"
     :show-close="showClose"
-    custom-class="dw-dialog"
+    class="dw-dialog"
   >
     <template #header="{ close }">
       <div class="flex items-center justify-between h-63px border-b-1px border-#F2F3F5">
