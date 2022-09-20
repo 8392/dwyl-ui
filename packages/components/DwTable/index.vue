@@ -8,8 +8,8 @@
       :height="height"
       :data="tableData"
       v-bind="$attrs"
-      :header-cell-style="{color: '#292A2C', backgroundColor: '#f2f3f5'}"
-      :cell-style="{color: '#1D2129'}"
+      :header-cell-style="{color: 'var(--dw-table-header-color)', backgroundColor: 'var(--dw-table-header-bg)'}"
+      :cell-style="{color: 'var(--dw-table-column-bg)'}"
       @cell-mouse-enter="handleCellMouseEnter"
       @cell-mouse-leave="handleCellMouseLeave"
     >

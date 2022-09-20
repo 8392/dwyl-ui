@@ -1,13 +1,21 @@
 @import url('element-plus/dist/index.css');
 
+
 :root {
   --el-color-primary: #167EFF;
   --el-color-danger: #FF4400;
 
   --dw-bg: #f7f8fa;
   --dw-box-bg: #fff;
-  // --dw-box-bg: rgb(95, 207, 235);
+
+  --dw-dialog-title-bg: #292A2C;
+  --dw-dialog-title-xbg: #4e5969;
+
+  --dw-table-header-color: #292A2C;
+  --dw-table-header-bg: #f2f3f5;
+  --dw-table-column-bg: #1D2129;
 }
+
 
 
 .el-button--primary:focus {

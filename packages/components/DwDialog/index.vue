@@ -10,9 +10,9 @@
   >
     <template #header="{ close }">
       <div class="flex items-center justify-between h-63px border-b-1px border-#F2F3F5">
-        <div class="color-#292A2C text-16px font-600">{{ title }}</div>
+        <div class="text-16px font-600" style="color: var(--dw-dialog-title-bg)">{{ title }}</div>
         <!-- <el-icon class="cursor-pointer" color="#4e5969" :size="20" @click="close"><CloseBold /></el-icon> -->
-        <CloseBold style="width: 20px; height: 20px;" class="color-#4e5969 cursor-pointer" @click="close" />
+        <CloseBold style="width: 20px; height: 20px;color: var(--dw-dialog-title-xbg)" class="cursor-pointer" @click="close" />
       </div>
     </template>
     <el-scrollbar max-height="70vh">

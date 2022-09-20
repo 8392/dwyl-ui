@@ -10,7 +10,7 @@
       @handleBtn="handleBtn($event, index)"
     />
     <div
-      v-if="(limit === 1 && fileArr.length === 0) || limit !== 1"
+      v-if="(limit === 1 && fileArr.length === 0) || limit > fileArr.length"
       class="flex-col-center relative rounded-6px w-100px h-100px bg-#fff mainBox"
       @click="uploadFileMeth"
     >
