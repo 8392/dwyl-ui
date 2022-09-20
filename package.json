@@ -1,7 +1,7 @@
 {
   "name": "dwyl-ui",
   "private": false,
-  "version": "0.0.50",
+  "version": "0.0.51",
   "main": "dist/dwyl-ui.mjs",
   "module": "dist/dwyl-ui.umd.js",
   "exports": {
@@ -34,13 +34,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.0.0-beta.0",
+    "@element-plus/icons-vue": "^2.0.9",
     "@vueuse/core": "^8.9.1",
     "axios": "^0.27.2",
     "dayjs": "^1.11.3",
-    "element-plus": "^2.2.2",
+    "element-plus": "^2.2.17",
     "pinia": "^2.0.14",
-    "vue": "^3.2.25",
+    "vue": "^3.2.39",
     "vue-router": "^4.0.15"
   },
   "devDependencies": {
