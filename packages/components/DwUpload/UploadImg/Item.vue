@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative rounded-6px itemBox"
-    style="width: 100px; height: 100px; background-color: #fff;"
+    style="width: 100px; height: 100px;"
     @mouseenter.stop="enterUploadImg"
     @mouseleave.stop="leaveUploadImg"
   >

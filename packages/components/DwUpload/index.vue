@@ -153,12 +153,9 @@ const httpRequest = async e => {
 const changeUploadImg = (val) => {
   let resData = val
   const { modelValue } = props
-  if (Array.isArray(modelValue)) {
+  if (Array.isArray(modelValue) && val) {
     resData = val.split(',')
   }
-  // if (typeof val === 'string') {
-  //   resData = val.split(',')
-  // }
   emit('update:modelValue', resData)
   emit('change', resData)
 }

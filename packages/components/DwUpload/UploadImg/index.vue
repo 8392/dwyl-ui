@@ -11,7 +11,7 @@
     />
     <div
       v-if="(limit === 1 && fileArr.length === 0) || limit > fileArr.length"
-      class="flex-col-center relative rounded-6px w-100px h-100px bg-#fff mainBox"
+      class="flex-col-center relative rounded-6px w-100px h-100px mainBox"
       @click="uploadFileMeth"
     >
       <template v-if="!loading">
@@ -51,7 +51,8 @@ const props = defineProps({
   modelValue: [Array, String],
   multiple: Boolean,
   limit: {
-    type: Number
+    type: Number,
+    default: 20
   }
 })
 const itemRef = ref(null)
@@ -69,34 +70,13 @@ watchEffect(() => {
     arr = modelValue
   } else {
     // 字符串
-    arr = modelValue?.split?.(',')
-    if (arr?.[0] === '') {
-      arr = []
+    if (modelValue) {
+      arr = modelValue?.split?.(',')
     }
   }
 
   fileArr.value = arr
-
-  // if (modelValue) {
-  //   const res = modelValue.split(',')
-  //   fileArr.value = res
-  // } else {
-  //   fileArr.value = []
-  // }
 })
-
-// watchEffect(() => {
-//   if (Array.isArray(props.modelValue)) {
-//     emit('update:modelValue', fileArr)
-//   } else {
-//     emit('update:modelValue', fileArr.value.join(','))
-//     // const arr = props.modelValue.split(',')
-//     // let resArr = [...arr, data]
-//     // resArr = resArr.filter(o => !!o)
-//     // emit('update:modelValue', resArr.join(','))
-//   }
-//   console.log('结果', Array.isArray(props.modelValue))
-// })
 
 const emit = defineEmits(['change'])
 const loading = ref(false)
