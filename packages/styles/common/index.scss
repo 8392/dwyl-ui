@@ -1,7 +1,8 @@
 
 .dwloadingmain {
   // background: rgba($color: #EFF1F3, $alpha: 0.6);
-  background: rgba($color: #f7f5f1, $alpha: 0.6);
+  // background: rgba($color: #f7f5f1, $alpha: 0.6);
+  background: var(--dw-mask-color);
   z-index: 9999;
 }
 
@@ -18,6 +19,7 @@
   --dw-table-header-color: #292A2C;
   --dw-table-header-bg: #f2f3f5;
   --dw-table-column-bg: #1D2129;
+  --dw-mask-color: rgba(247,245,241,  0.6);
 }
 
 
@@ -36,4 +38,5 @@ html.dark {
   --dw-table-column-bg: #ccc;
   --el-dialog-bg-color: #2c2c32;
   --el-bg-color: #2c2c32;
+  --dw-mask-color: rgba(16,16,20, 0.6);
 }
