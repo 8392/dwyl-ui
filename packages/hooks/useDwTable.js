@@ -18,7 +18,11 @@ export default ({ defParams, deleteApi, diaName } = {}) => {
   }
   const onDelete = (e, key) => {
     const id = key ? getObjectKey(e, key) : e.id
-    ElMessageBox.confirm('确定要删除吗?', '操作提示').then(() => {
+    ElMessageBox.confirm('确定要删除吗?', '操作提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).then(() => {
       deleteApi(id).then(rs => {
         ElMessage({
           message: '操作成功',
