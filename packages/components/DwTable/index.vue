@@ -20,6 +20,10 @@
             <slot v-if="item.slot" :name="item.slot" v-bind="scoped"></slot>
             <Render v-if="item.render" :row="scoped" :render="item.render" />
           </template>
+          <template v-if="item.headerRender" #header="scoped">
+            <!-- <slot v-if="item.slot" :name="item.slot" v-bind="scoped"></slot> -->
+            <Render :row="scoped" :render="item.headerRender" />
+          </template>
         </el-table-column>
       </template>
       <template v-if="!tableLoading" #empty>
