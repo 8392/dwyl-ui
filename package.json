@@ -1,7 +1,7 @@
 {
   "name": "dwyl-ui",
   "private": false,
-  "version": "0.0.59",
+  "version": "0.0.61",
   "main": "dist/dwyl-ui.mjs",
   "module": "dist/dwyl-ui.umd.js",
   "exports": {
@@ -40,12 +40,12 @@
     "dayjs": "^1.11.3",
     "element-plus": "^2.2.17",
     "pinia": "^2.0.14",
-    "vue": "^3.2.39",
+    "vue": "^3.2.45",
     "vue-router": "^4.0.15"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
-    "@vitejs/plugin-vue-jsx": "^1.3.10",
+    "@vitejs/plugin-vue": "^3.2.0",
+    "@vitejs/plugin-vue-jsx": "^2.1.1",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.2",
@@ -55,7 +55,7 @@
     "sass": "^1.52.1",
     "unocss": "^0.34.1",
     "unplugin-vue-define-options": "^0.7.3",
-    "vite": "^3.1.0",
+    "vite": "^3.2.4",
     "vite-plugin-svg-icons": "^2.0.1"
   }
 }
