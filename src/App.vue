@@ -11,21 +11,21 @@
     <!-- <testButton /> -->
     <!-- <dwgrid /> -->
     <!-- <TestDwSelect /> -->
-    <DwProjectConfig
+    <!-- <DwProjectConfig
       ref="testRef"
       :config="projectConfig"
     >
-      <!-- <TestDwUpload /> -->
       <TestTable />
-      <!-- <DwEmpty type="loadFail" /> -->
     </DwProjectConfig>
-    <div>{{ testVal }}</div>
+    <div>{{ testVal }}</div> -->
+    <testAsync />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import TestTable from './test/Table'
+import testAsync from './test/testAsync'
 
 import TestImgView from './test/imgView'
 import testButton from './test/testButton'

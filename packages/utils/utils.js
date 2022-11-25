@@ -204,6 +204,7 @@ export function uploadFile (options = {}) {
   })
 }
 
+/* 把my-name-is-artist转换成驼峰 myNameIsArtist */
 function camelize (str) {
   const camelizeRE = /-(\w)/g
   return str.replace(camelizeRE, function (_, c) {
@@ -268,6 +269,7 @@ export async function getViewComponent (routeKey) {
   return component
 }
 
+/* 返回object深层级的的对象值，path传递key多层级传递utils.name这种格式 */
 export function getObjectKey (object, path, defaultVal = 'undefined') {
   // 先将path处理成统一格式
   let newPath = []
