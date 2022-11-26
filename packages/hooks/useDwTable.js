@@ -1,16 +1,20 @@
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed, inject } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getObjectKey } from '~/utils/utils'
 
 // 请求参数、删除请求、弹窗标题
 export default ({ defParams, deleteApi, diaName } = {}) => {
+  const configData = inject('projectConfigData')
+  const tableConfig = computed(() => configData.value.table)
+  const pageField = computed(() => tableConfig.value.pageField)
+
   const dwTable = ref()
   const dialogVisible = ref(false)
-  const params = reactive(defParams || { limit: 20, page: 1 })
+  const params = reactive(defParams || {})
   const currentItem = ref(null)
   const diaTitle = ref('')
   const onSearch = () => {
-    params.page = 1
+    params[pageField.value] = 1
     getTable()
   }
   const getTable = () => {

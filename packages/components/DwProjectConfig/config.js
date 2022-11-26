@@ -4,7 +4,8 @@ const wlwConfig = {
     pageField: 'pageNumber',
     limitField: 'pageSize',
     totalField: 'total',
-    dataField: 'data'
+    dataField: 'data',
+    defaultLimit: 20
   }
 }
 
@@ -14,7 +15,8 @@ const htConfig = {
     pageField: 'page',
     limitField: 'limit',
     totalField: 'data.total',
-    dataField: 'data.records'
+    dataField: 'data.records',
+    defaultLimit: 20
   }
 }
 

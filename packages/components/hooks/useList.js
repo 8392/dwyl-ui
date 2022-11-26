@@ -35,7 +35,7 @@ export default (props, emits) => {
   const searchPage = computed(() => Number(searchParams.page || 1))
   const pageData = reactive({
     [tableConfig.value.pageField]: searchPage.value,
-    [tableConfig.value.limitField]: 20
+    [tableConfig.value.limitField]: tableConfig.value.defaultLimit || 20
   })
 
   watchEffect(() => {
