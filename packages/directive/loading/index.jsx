@@ -11,7 +11,6 @@ const renderLoading = {
   setup (props) {
     const { nextZIndex } = useZIndex()
     const currIndex = nextZIndex()
-    console.log('currIndex', currIndex)
     return () => {
       return (
         <div class="dwloadingmain absolute top-0 left-0 wh-full flex-col flex-center" style={{ zIndex: currIndex }}>
