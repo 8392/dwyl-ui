@@ -1,5 +1,6 @@
 
 import { h, ref, render, createApp, nextTick } from 'vue'
+import { useZIndex } from 'element-plus'
 import loadingSvg from './loadingSvg'
 
 const renderLoading = {
@@ -8,9 +9,12 @@ const renderLoading = {
     text: String
   },
   setup (props) {
+    const { nextZIndex } = useZIndex()
+    const currIndex = nextZIndex()
+    console.log('currIndex', currIndex)
     return () => {
       return (
-        <div class="dwloadingmain absolute top-0 left-0 wh-full flex-col flex-center">
+        <div class="dwloadingmain absolute top-0 left-0 wh-full flex-col flex-center" style={{ zIndex: currIndex }}>
           <loadingSvg />
           {/* <span class="color-#fff">{props.text}</span> */}
         </div>
