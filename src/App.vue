@@ -6,6 +6,7 @@
         <div class="w-100px h-100px bg-#f00">我是tab1</div>
       </Tab>
       <Tab label="Config" name="second">我是tab2</Tab>
+      <div>测试其它插槽</div>
     </Tabs>
   </div>
 </template>

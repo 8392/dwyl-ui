@@ -7,9 +7,9 @@ import App from './App.vue'
 import 'uno.css'
 import '@/styles/global.scss'
 
-// import dwylUi from '../packages'
-import dwylUi from '../dist/dwyl-ui.mjs'
-import '../dist/style.css'
+import dwylUi from '../packages'
+// import dwylUi from '../dist/dwyl-ui.mjs'
+// import '../dist/style.css'
 
 async function setupApp () {
   const app = createApp(App)
