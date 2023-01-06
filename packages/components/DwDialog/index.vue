@@ -39,7 +39,7 @@
 
 <script lang='jsx' setup>
 import { ref, useSlots } from 'vue'
-import { ElDialog } from 'element-plus'
+import { ElDialog, ElScrollbar } from 'element-plus'
 import { CloseBold } from '@element-plus/icons-vue'
 import DwDialogFoot from '../DwDialogFoot'
 

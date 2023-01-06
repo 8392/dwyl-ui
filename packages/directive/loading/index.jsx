@@ -9,7 +9,6 @@ const renderLoading = {
     text: String
   },
   setup (props) {
-    console.log('来了', props.text)
     const { nextZIndex } = useZIndex()
     const currIndex = nextZIndex()
     return () => {
@@ -69,7 +68,7 @@ export const DwLoading = {
   service ({ text, background = '#ccc' } = { }) {
     const vnode = h(<renderLoading />, { text })
     // const app = createApp(vnode)
-    // const div = app.mount(document.createElement('div'))
+    // const div = app.mount(document.createElement('div')).$el
     const div = document.createElement('div')
     render(vnode, div)
 
