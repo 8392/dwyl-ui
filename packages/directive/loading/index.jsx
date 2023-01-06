@@ -32,16 +32,16 @@ const createInstance = async (trigger, binding) => {
       loadingEl.setAttribute('id', 'dwLoadingId')
       trigger.style.position = 'relative'
       trigger.appendChild(loadingEl)
-      nextTick(() => {
-        const triggerH = trigger.offsetHeight
-        if (triggerH < 200) {
-          trigger.classList.add('!h-320px')
-        }
-      })
+      // nextTick(() => {
+      //   const triggerH = trigger.offsetHeight
+      //   if (triggerH < 200) {
+      //     trigger.classList.add('!h-320px')
+      //   }
+      // })
     } else {
       const childDiv = trigger.querySelector('#dwLoadingId')
       trigger.removeChild(childDiv)
-      trigger.classList.remove('!h-320px')
+      // trigger.classList.remove('!h-320px')
     }
   }
 }

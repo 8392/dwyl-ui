@@ -39,3 +39,11 @@ export function downloadBlob (blob, fileName) {
   })
 }
 ```
+
+
+### svg填充
+
+```svg
+fill="var(--el-color-primary)"
+fill="var(--el-color-primary-light-4)"
+```

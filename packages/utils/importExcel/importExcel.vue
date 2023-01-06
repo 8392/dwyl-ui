@@ -38,8 +38,8 @@
 <script lang='jsx' setup>
 import { ref } from 'vue'
 import { ElButton, ElForm, ElFormItem, ElMessage } from 'element-plus'
-import DwDialog from '@/dwyl-ui/DwDialog'
-import { downloadBlob, uploadFile } from '@/utils/utils'
+import DwDialog from '~/components/DwDialog'
+import { downloadBlob, uploadFile } from '~/utils/utils'
 import { Download, UploadFilled, Close } from '@element-plus/icons-vue'
 
 const props = defineProps({
