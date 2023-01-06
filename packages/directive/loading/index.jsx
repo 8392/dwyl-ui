@@ -9,13 +9,16 @@ const renderLoading = {
     text: String
   },
   setup (props) {
+    console.log('来了', props.text)
     const { nextZIndex } = useZIndex()
     const currIndex = nextZIndex()
     return () => {
       return (
         <div class="dwloadingmain absolute top-0 left-0 wh-full flex-col flex-center" style={{ zIndex: currIndex }}>
           <loadingSvg />
-          {/* <span class="color-#fff">{props.text}</span> */}
+          {
+            props.text && <span class="color-primary font-600">{props.text}</span>
+          }
         </div>
       )
     }
@@ -26,7 +29,7 @@ const createInstance = async (trigger, binding) => {
   const { value, oldValue } = binding
   if (oldValue !== value) {
     if (value && !oldValue) {
-      const vnode = h(renderLoading, { background: '#000', text: '加载中' })
+      const vnode = h(renderLoading, { background: '#000' })
       const app = createApp(vnode)
       const loadingEl = app.mount(document.createElement('div')).$el
       loadingEl.setAttribute('id', 'dwLoadingId')
@@ -64,7 +67,7 @@ export default {
 export const DwLoading = {
   el: null,
   service ({ text, background = '#ccc' } = { }) {
-    const vnode = h(<renderLoading />)
+    const vnode = h(<renderLoading />, { text })
     // const app = createApp(vnode)
     // const div = app.mount(document.createElement('div'))
     const div = document.createElement('div')
