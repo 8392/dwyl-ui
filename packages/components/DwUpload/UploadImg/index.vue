@@ -5,6 +5,7 @@
       :key="index"
       ref="itemRef"
       :index="index"
+      :delBtn="delBtn"
       :imgUrl="item"
       :fileArr="fileArr"
       @handleBtn="handleBtn($event, index)"
@@ -50,6 +51,10 @@ import { dwImgView } from '~/utils/imgView'
 const props = defineProps({
   modelValue: [Array, String],
   multiple: Boolean,
+  delBtn: {
+    type: Boolean,
+    default: true
+  },
   limit: {
     type: Number,
     default: 20

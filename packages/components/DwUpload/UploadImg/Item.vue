@@ -10,8 +10,14 @@
       <transition name="el-fade-in">
         <div v-show="showThum" class="w-100px h-100px flex-center absolute rounded-6px thumbnail" @click.stop>
           <el-icon :size="14" color="#fff" @click="handleBtn(1)"><zoom-in /></el-icon>
-          <el-icon class="mx-10px" :size="20" color="#fff" @click="handleBtn(2)"><Edit /></el-icon>
-          <el-icon :size="20" color="#fff" @click="handleBtn(3)"><Delete /></el-icon>
+          <el-icon class="ml-10px" :size="20" color="#fff" @click="handleBtn(2)"><Edit /></el-icon>
+          <el-icon
+            v-if="delBtn"
+            class="ml-10px"
+            :size="20"
+            color="#fff"
+            @click="handleBtn(3)"
+          ><Delete /></el-icon>
         </div>
       </transition>
     </template>
@@ -45,7 +51,8 @@ import DwImage from '~/components/DwImage'
 const props = defineProps({
   imgUrl: String,
   fileArr: [Array, String],
-  index: Number
+  index: Number,
+  delBtn: Boolean
 })
 
 const emit = defineEmits(['change', 'handleBtn'])
