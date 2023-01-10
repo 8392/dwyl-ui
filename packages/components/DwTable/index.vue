@@ -43,11 +43,15 @@
       :visible="visible"
       :virtual-ref="buttonRef"
       effect="light"
-      placement="top"
+      placement="right"
       virtual-triggering
     >
       <template #content>
-        <div class="max-w-300px lh-22px">{{ tooltipText }}</div>
+        <!-- <div class="max-w-300px lh-22px">{{ tooltipText }}</div> -->
+        <div class="max-w-300px">
+          <div class="font-600">{{ tooltipTitle }}</div>
+          <div class="pt-5px lh-22px">{{ tooltipText }}</div>
+        </div>
       </template>
     </el-tooltip>
   </div>
@@ -97,6 +101,7 @@ const buttonRef = ref()
 const tooltipRef = ref()
 
 const visible = ref(false)
+const tooltipTitle = ref(null)
 const tooltipText = ref(null)
 
 /* 进入单元格 */
@@ -109,6 +114,7 @@ const handleCellMouseEnter = (row, column, cell, e) => {
   if (hasText) {
     buttonRef.value = e.currentTarget
     visible.value = true
+    tooltipTitle.value = column.label
     tooltipText.value = e.target.innerText
   }
 }
@@ -128,7 +134,6 @@ defineExpose({
 </script>
 
 <style lang="scss">
-
 .el-popper.is-tabtoolcustomized {
   /* Set padding to ensure the height is 32px */
   padding: 6px 12px;
@@ -152,5 +157,4 @@ defineExpose({
 .el-table__empty-block {
   height: auto !important;
 }
-
 </style>
