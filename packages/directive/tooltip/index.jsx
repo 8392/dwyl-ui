@@ -69,5 +69,6 @@ export default {
     getTooltip(el, binding)
   },
   updated (el, binding) {
+    getTooltip(el, binding)
   }
 }

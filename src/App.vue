@@ -8,17 +8,19 @@
       <Tab label="Config" name="second">我是tab2</Tab>
       <div>测试其它插槽</div>
     </Tabs> -->
-    <Child />
+    <!-- <Child />
     <div>
       {{ testObj.city }}
     </div>
-    <dw-button @click="handleBtn">点击</dw-button>
+    <dw-button @click="handleBtn">点击</dw-button> -->
+    <TestTooltip />
   </div>
 </template>
 
 <script setup>
 import Tab from '@/components/Tabs/Tab.vue'
 import Tabs from '@/components/Tabs/Tabs.vue'
+import TestTooltip from '@/test/tooltip/index.vue'
 import { ref } from 'vue'
 import { testObj, handleBtn } from '@/components/cusTomerStore'
 import Child from '@/components/cusTomerStore/Child'
