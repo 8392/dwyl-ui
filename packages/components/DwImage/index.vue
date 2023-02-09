@@ -3,7 +3,7 @@
     v-bind="$attrs"
     :title="title"
     fit="contain"
-    :src="src"
+    :src="resSrc"
     :class="{'cursor-pointer': isPreview}"
     @click="handleImg"
   >
@@ -23,7 +23,7 @@
 </template>
 
 <script lang="jsx" setup>
-import { ref, reactive, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { dwImgView } from '~/utils/imgView'
 import { ElImage } from 'element-plus'
 defineOptions({
@@ -44,12 +44,14 @@ const props = defineProps({
   },
   title: [String, Number]
 })
-
+const resSrc = ref('')
 const emit = defineEmits(['click'])
-
+watchEffect(() => {
+  resSrc.value = props.src || ''
+})
 const handleImg = () => {
   if (props.isPreview) {
-    dwImgView(props.src)
+    dwImgView(resSrc.value)
   }
   emit('click')
 }
