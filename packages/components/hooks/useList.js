@@ -70,7 +70,7 @@ export default (props, emits) => {
       } else {
         tableData.value = resData.data
       }
-      emits('callback', tableData.value, tableData)
+      emits('callback', tableData.value, tableData, total.value)
     } finally {
       emits('update:loading', false)
       tableLoading.value = false
