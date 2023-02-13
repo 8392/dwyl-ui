@@ -15,7 +15,13 @@
     >
       <template v-for="item in columnList" :key="item.prop">
         <!-- <el-table-column :show-overflow-tooltip="!item.slot && !item.render" v-bind="item"> -->
-        <el-table-column v-if="item.showCol" :className="(!item.slot && !item.render && item.showOverflowToolip) ? 'dwTableCol' : ''" v-bind="item">
+        <el-table-column
+          v-if="item.showCol"
+          :className="
+            ((!item.slot && !item.render && item.showOverflowToolip) ||
+              ((item.slot || item.render) && item.slotTooltip)) ? 'dwTableCol' : ''"
+          v-bind="item"
+        >
           <template #default="scoped">
             <slot v-if="item.slot" :name="item.slot" v-bind="scoped"></slot>
             <Render v-if="item.render" :row="scoped" :render="item.render" />
