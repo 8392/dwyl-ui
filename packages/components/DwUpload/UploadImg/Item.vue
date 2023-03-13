@@ -11,13 +11,23 @@
         <div v-show="showThum" class="w-100px h-100px flex-center absolute rounded-6px thumbnail" @click.stop>
           <el-icon :size="14" color="#fff" @click="handleBtn(1)"><zoom-in /></el-icon>
           <el-icon class="ml-10px" :size="20" color="#fff" @click="handleBtn(2)"><Edit /></el-icon>
-          <el-icon
+          <el-popconfirm
             v-if="delBtn"
-            class="ml-10px"
-            :size="20"
-            color="#fff"
-            @click="handleBtn(3)"
-          ><Delete /></el-icon>
+            confirm-button-text="确定"
+            cancel-button-text="取消"
+            icon="InfoFilled"
+            icon-color="#f00"
+            title="确认删除吗？"
+            @confirm="handleBtn(3)"
+          >
+            <template #reference>
+              <el-icon
+                class="ml-10px"
+                :size="20"
+                color="#fff"
+              ><Delete /></el-icon>
+            </template>
+          </el-popconfirm>
         </div>
       </transition>
     </template>

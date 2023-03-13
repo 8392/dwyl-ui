@@ -38,11 +38,13 @@ export default (props, emits) => {
     [tableConfig.value.limitField]: tableConfig.value.defaultLimit || 20
   })
 
-  if (!props?.params?.page) {
-    props.params[tableConfig.value.pageField] = pageData[tableConfig.value.pageField]
-  }
-  if (!props?.params?.size) {
-    props.params[tableConfig.value.limitField] = pageData[tableConfig.value.limitField]
+  if (props.isPage) {
+    if (!props?.params?.page) {
+      props.params[tableConfig.value.pageField] = pageData[tableConfig.value.pageField]
+    }
+    if (!props?.params?.size) {
+      props.params[tableConfig.value.limitField] = pageData[tableConfig.value.limitField]
+    }
   }
 
   watchEffect(() => {
