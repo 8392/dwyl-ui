@@ -13,7 +13,8 @@
       {{ testObj.city }}
     </div>
     <dw-button @click="handleBtn">点击</dw-button> -->
-    <TestTooltip />
+    <!-- <TestTooltip /> -->
+    <Slider />
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import TestTooltip from '@/test/tooltip/index.vue'
 import { ref } from 'vue'
 import { testObj, handleBtn } from '@/components/cusTomerStore'
 import Child from '@/components/cusTomerStore/Child'
+import Slider from '@/test/Slider/index.vue'
 
 const activeName = ref('first')
 
