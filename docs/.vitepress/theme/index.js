@@ -5,10 +5,11 @@ import 'element-plus/dist/index.css'
 import DwylUi from '../../../packages/index'
 import 'uno.css'
 
+
 export default {
     ...DefaultTheme,
     enhanceApp({ app }) {
-        app.use(ElementPlus, { locale: zhCn })
-        app.use(DwylUi)
+      app.use(ElementPlus, { locale: zhCn })
+      app.use(DwylUi)
     }
 }

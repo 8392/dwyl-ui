@@ -3,6 +3,9 @@ node_modules
 .DS_Store
 dist
 dist-ssr
+* dist
+
+cache
 
 # local env files
 .env.local
@@ -26,3 +29,4 @@ pnpm-debug.log*
 
 package-lock.json
 yarn.lock
+

@@ -24,7 +24,7 @@
   </dw-button>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { Eleme } from '@element-plus/icons-vue'
 </script>
 
