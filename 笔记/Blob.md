@@ -47,3 +47,21 @@ export function downloadBlob (blob, fileName) {
 fill="var(--el-color-primary)"
 fill="var(--el-color-primary-light-4)"
 ```
+
+
+### vue3组件自带$attr，透视
+- 我们就不用手动加 `v-bind="$attrs"`
+  
+- 关掉方法
+- 中间组件接收了的属性方法，不会向下面传递，那么只有在中间组件调用这个方法才能让父组件去执行
+  
+  
+```vue
+<script lang='jsx'>
+export default {
+  inheritAttrs: false
+}
+</script>
+```
+
+`npm 账号名：artist_caibo`

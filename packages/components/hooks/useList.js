@@ -27,7 +27,7 @@ export default (props, emits) => {
   const limitField = computed(() => tableConfig.value.limitField)
   const totalField = computed(() => tableConfig.value.totalField)
   const dataField = computed(() => tableConfig.value.dataField)
-  const searchParams = useUrlSearchParams('hash')
+  const searchParams = useUrlSearchParams('history')
 
   const tableData = ref([])
   const total = ref(0)
@@ -37,6 +37,15 @@ export default (props, emits) => {
     [tableConfig.value.pageField]: searchPage.value,
     [tableConfig.value.limitField]: tableConfig.value.defaultLimit || 20
   })
+
+  if (props.isPage) {
+    if (!props?.params?.page) {
+      props.params[tableConfig.value.pageField] = pageData[tableConfig.value.pageField]
+    }
+    if (!props?.params?.size) {
+      props.params[tableConfig.value.limitField] = pageData[tableConfig.value.limitField]
+    }
+  }
 
   watchEffect(() => {
     const { loading } = props
@@ -70,7 +79,7 @@ export default (props, emits) => {
       } else {
         tableData.value = resData.data
       }
-      emits('callback', tableData.value, tableData)
+      emits('callback', tableData.value, tableData, total.value)
     } finally {
       emits('update:loading', false)
       tableLoading.value = false
@@ -81,6 +90,7 @@ export default (props, emits) => {
   const clickPage = (e) => {
     searchParams.page = e
     pageData[tableConfig.value.pageField] = e
+    props.params[tableConfig.value.pageField] = e
     getList()
   }
 
