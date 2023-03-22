@@ -237,5 +237,4 @@ const currImg = ref('https://fire.diweiyunlian.cn/file/312009389047525376.png')
 
 ```
 
-`npm 账号名：artist_caibo`
 

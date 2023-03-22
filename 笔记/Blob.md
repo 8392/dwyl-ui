@@ -63,3 +63,5 @@ export default {
 }
 </script>
 ```
+
+`npm 账号名：artist_caibo`
