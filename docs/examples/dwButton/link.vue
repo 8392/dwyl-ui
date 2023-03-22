@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const buttons = [
   { type: '', text: 'plain' },
   { type: 'primary', text: 'primary' },
