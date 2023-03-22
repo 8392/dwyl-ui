@@ -6,7 +6,7 @@ export default {
         nav: [
             { text: '规范', link: '/standard/index' },
             { text: '组件', link: '/components/dwButton' },
-            { text: '指令', link: '/index' }
+            { text: '指令', link: '/directive/loading' }
         ],
         sidebar: {
             '/components': [
@@ -17,6 +17,12 @@ export default {
                 {
                     text: 'dialog 对话框',
                     link: '/components/dwDialog'
+                }
+            ],
+            '/directive': [
+                {
+                    text: 'v-loading',
+                    link: '/directive/loading'
                 }
             ]
         }
