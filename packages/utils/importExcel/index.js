@@ -1,5 +1,6 @@
 import { render, createVNode } from 'vue'
 import importExcelVue from './importExcel.vue'
+import FormData from 'form-data'
 
 export const importExcel = (options = {}) => {
   /* 是字符串 */

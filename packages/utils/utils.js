@@ -1,5 +1,6 @@
 import { ElMessage } from 'element-plus'
 import { fileTypeMap } from './base'
+import FormData from 'form-data'
 
 export function deepClone (obj = {}) {
   if (typeof obj !== 'object' || obj == null) {

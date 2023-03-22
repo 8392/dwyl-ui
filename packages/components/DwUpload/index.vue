@@ -38,11 +38,11 @@ import { dwImgView } from '~/utils/imgView'
 import { pdfView } from '~/utils/pdfView'
 import { downloadBlob, getBlob } from '~/utils/utils'
 import { fileTypeMap, pdfFileArr, imgFileArr } from '~/utils/base'
+import FormData from 'form-data'
 import UploadImg from './UploadImg'
 defineOptions({
   name: 'DwUpload'
 })
-
 const configData = inject('projectConfigData')
 const uploadConfig = computed(() => configData.value.upload)
 
@@ -54,7 +54,7 @@ const props = defineProps({
   fileType: { // 上传文件类型
     type: String
   },
-  modelValue: [Array, String, FormData],
+  modelValue: [Array, String],
   stream: {
     type: [Array, Object]
   },

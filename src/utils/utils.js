@@ -4,6 +4,7 @@ import * as dayjs from 'dayjs'
 import { fileTypeMap } from './base'
 // import { useRouter } from 'vue-router'
 import { uploadApi, uploadMoreApi } from '@/api/post'
+import FormData from 'form-data'
 
 let router = {}
 import('@/router').then(({ router: r }) => {
