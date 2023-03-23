@@ -254,5 +254,15 @@ default: `连接出错(${err.response.status})!`;
 
 2. 返回200，成功根据业务code错误码code_message提示
 
+## vue3 组合式API规范
 
+应按如下顺序编写代码
 
+* import 方法
+* 定义变量
+* 定义function
+* watch、computed...等方法
+* onMounted
+* create
+
+（尚待补充...）
