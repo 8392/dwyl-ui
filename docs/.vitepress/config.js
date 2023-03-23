@@ -9,6 +9,16 @@ export default {
             { text: '指令', link: '/directive/loading' }
         ],
         sidebar: {
+            '/standard': [
+                {
+                    text: '编码规范',
+                    link: '/standard/index'
+                },
+                {
+                    text: '设计规范',
+                    link: '/standard/design'
+                }
+            ],
             '/components': [
                 {
                     text: 'button 按钮',
