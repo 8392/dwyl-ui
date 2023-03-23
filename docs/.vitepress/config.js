@@ -23,6 +23,14 @@ export default {
                 {
                     text: 'v-loading',
                     link: '/directive/loading'
+                },
+                {
+                    text: 'v-permission',
+                    link: '/directive/permission'
+                },
+                {
+                    text: 'v-tooltip',
+                    link: '/directive/tooltip'
                 }
             ]
         }
