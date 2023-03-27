@@ -1,6 +1,3 @@
-<script setup>
-import Permission from './examples/permission'
-</script>
 
 # v-permission 按钮权限指令
 
@@ -8,7 +5,7 @@ import Permission from './examples/permission'
 
 将与后端约定的按钮key绑定到v-permisssion, 拥有该key权限的角色便会生效板块的显示与隐藏
 
-<Permission />
+
 
 <<<@/directive/examples/permission.vue
 
