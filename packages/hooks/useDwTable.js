@@ -1,6 +1,6 @@
 import { reactive, ref, computed, inject } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { getObjectKey } from '~/utils/utils'
+import { getObjectKey, deepClone } from '~/utils/utils'
 
 // 请求参数、删除请求、弹窗标题
 export default ({ defParams, deleteApi, diaName } = {}) => {
@@ -44,7 +44,7 @@ export default ({ defParams, deleteApi, diaName } = {}) => {
 
   const onEdit = e => {
     diaTitle.value = '编辑' + diaName
-    currentItem.value = e
+    currentItem.value = deepClone(e)
     dialogVisible.value = true
   }
 

@@ -64,3 +64,10 @@ export default {
 ```
 
 `npm 账号名：artist_caibo`
+
+### npm迪威镜像
+- http://222.209.208.86:1917/repository/npm-diwei/
+
+
+- npm config set registry https://registry.npmjs.org
+- npm config set registry http://222.209.208.86:1917/repository/npm-diwei/
