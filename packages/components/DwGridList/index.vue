@@ -47,7 +47,7 @@ const emits = defineEmits(listEmit)
 const { tableConfig, pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, refresh } = useList(props, emits)
 
 const onSizeChange = (e) => {
-  pageData[tableConfig.value.limitField] = e * 5
+  pageData.value[tableConfig.value.limitField] = e * 5
   getList()
 }
 
