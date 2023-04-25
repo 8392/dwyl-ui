@@ -11,7 +11,7 @@
       <el-image
         :title="title || '暂无图片'"
         class="wh-full"
-        src="https://fire.diweiyunlian.cn/file/290168546839285760.png"
+        :src="errorImg"
         fit="contain"
         @click="handleImg"
       />
@@ -26,6 +26,9 @@
 import { ref, watchEffect } from 'vue'
 import { dwImgView } from '~/utils/imgView'
 import { ElImage } from 'element-plus'
+import { useImageUrl } from '~/utils/packageUtils'
+const errorImg = useImageUrl('290168546839285760.png')
+
 defineOptions({
   name: 'DwImage'
 })

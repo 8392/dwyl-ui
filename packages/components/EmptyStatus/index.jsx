@@ -1,9 +1,10 @@
 import { RouterLink, useRouter } from 'vue-router'
+import { useImageUrl } from '~/utils/packageUtils'
 
 const statusList = [
   {
     type: 'No_DATA',
-    img: 'https://fire.diweiyunlian.cn/file/290167826333356032.png',
+    img: useImageUrl('290167826333356032.png'),
     des: '暂无数据'
   },
   {

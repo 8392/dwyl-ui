@@ -7,6 +7,7 @@
 <script lang="jsx" setup>
 import { ref, computed } from 'vue'
 import DwImage from '../DwImage'
+import { useImageUrl } from '~/utils/packageUtils'
 
 defineOptions({
   name: 'DwEmpty'
@@ -20,10 +21,10 @@ const props = defineProps({
 })
 
 const imgMap = new Map([
-  ['noData', 'https://fire.diweiyunlian.cn/file/312009389047525376.png'],
-  ['404', 'https://fire.diweiyunlian.cn/file/312009321707974656.png'],
-  ['error', 'https://fire.diweiyunlian.cn/file/312011357912543232.png'],
-  ['loadFail', 'https://fire.diweiyunlian.cn/file/312011581565415424.png']
+  ['noData', useImageUrl('312009389047525376.png')],
+  ['404', useImageUrl('312009321707974656.png')],
+  ['error', useImageUrl('312011357912543232.png')],
+  ['loadFail', useImageUrl('312011581565415424.png')]
 ])
 
 const currImg = computed(() => imgMap.get(props.type))
