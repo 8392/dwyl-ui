@@ -71,3 +71,8 @@ export default {
 
 - npm config set registry https://registry.npmjs.org
 - npm config set registry http://222.209.208.86:1917/repository/npm-diwei/
+
+
+### 图片，视频布局
+
+object-fit:fill 适用于图片img和视频video
