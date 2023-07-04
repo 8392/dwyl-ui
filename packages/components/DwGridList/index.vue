@@ -52,6 +52,7 @@ const { tableConfig, pageField, limitField, tableData, total, tableLoading, page
 
 const onSizeChange = (e) => {
   pageData.value[tableConfig.value.limitField] = e * props.lineCount
+  props.params[tableConfig.value.limitField] = e * props.lineCount
   getList()
 }
 
