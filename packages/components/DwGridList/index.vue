@@ -32,6 +32,10 @@ defineOptions({
 const props = defineProps({
   ...listProps,
   minWidth: Number,
+  lineCount: {
+    type: Number,
+    default: 5
+  },
   columnGap: {
     type: Number,
     default: 20
@@ -47,7 +51,7 @@ const emits = defineEmits(listEmit)
 const { tableConfig, pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, refresh } = useList(props, emits)
 
 const onSizeChange = (e) => {
-  pageData.value[tableConfig.value.limitField] = e * 5
+  pageData.value[tableConfig.value.limitField] = e * props.lineCount
   getList()
 }
 
