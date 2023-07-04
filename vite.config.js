@@ -7,44 +7,44 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 import Unocss from 'unocss/vite'
 
-const getProxy = () => {
-  return {
-    '/proxy': {
-      target: 'https://test.diweiyunlian.cn/gateway', // 后端接口的域名
-      // target: 'http://192.168.1.3:9091', // dyw
-      changeOrigin: true,
-      rewrite: (path) => path.replace(/^\/proxy/, '')
-    }
+const configProxy = {
+  byl: {
+    ucenter: 'http://192.168.3.9:9000',
+    manager: 'http://192.168.3.9:8881'
+  },
+  test: {
+    ucenter: 'http://222.209.208.86:2203/',
+    manager: 'http://222.209.208.86:2548/'
+  },
+  line: {
+    auth: 'http://222.209.208.86:2548',
+    manager: 'http://222.209.208.86:2548'
   }
 }
 
-// const configProxy = {
-//   dyw: {
-//     auth: 'http://192.168.1.3:8819',
-//     manager: 'http://192.168.1.3:8881'
-//   },
-//   line: {
-//     auth: 'http://222.209.208.86:1548',
-//     manager: 'http://222.209.208.86:1548'
-//   },
-//   test: {
-//     auth: 'http://139.186.136.53:1548',
-//     manager: 'http://139.186.136.53:1548'
-//   }
-// }
-
-// const getProxy = (name) => {
-//   return {
-//     '/auth': {
-//       target: configProxy[name].auth,
-//       rewrite: path => name === 'dyw' ? path.replace('/auth', '') : path
-//     },
-//     '/manager': {
-//       target: configProxy[name].manager,
-//       rewrite: path => name === 'dyw' ? path.replace('/manager', '') : path
-//     }
-//   }
-// }
+const getProxy = (name) => {
+  return {
+    '/ucenter': {
+      target: configProxy[name].ucenter,
+      changeOrigin: true
+    },
+    '/manager': {
+      target: configProxy[name].manager,
+      changeOrigin: true
+    },
+    '/v2': {
+      target: 'https://api.map.baidu.com/place/',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/v2': ''
+      }
+    },
+    '/excel-server': {
+      target: 'https://xzy.diweiyunlian.cn/',
+      changeOrigin: true
+    }
+  }
+}
 
 export default defineConfig({
   mode: 'production',
@@ -104,7 +104,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '~': fileURLToPath(new URL('./packages', import.meta.url))
+      '~': fileURLToPath(new URL('./packages', import.meta.url)),
+      'dwyl-ui': fileURLToPath(new URL('./packages', import.meta.url))
     },
     extensions: ['.js', '.jsx', '.json', '.vue', '.css', '.scss']
   },

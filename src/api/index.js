@@ -3,6 +3,7 @@ import { request } from '@/utils/request'
 const proxy = '/proxy'
 const basics = '/basics-api'
 const apiData = '/data-api'
+export const manager = '/manager'
 
 export const sysUserListPage = (data) => {
   return request({
@@ -25,6 +26,15 @@ export const uploadApi = (data) => {
 export const uploadMoreApi = (data) => {
   return request({
     url: proxy + basics + '/minio/file/upload/list',
+    method: 'post',
+    data
+  })
+}
+
+// 接入设备列表
+export const productVersionVo = (data) => {
+  return request({
+    url: manager + '/product/page/vo',
     method: 'post',
     data
   })
