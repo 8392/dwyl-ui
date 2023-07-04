@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
-const token = 'oVcdI21l5DyeUu3ezlmAp0ln5d8vuvbWw5CxVq1lyyB2L1huNFScXpb41Kdk'
+const token = 'Da4lbMaIEhpUiAHbMlxwB7xGISg1FSd6hEY2PSMqIzCtnBKmHsfYfIHEJ3zT'
 
 const service = axios.create({
   baseURL: '',
