@@ -38,22 +38,20 @@ export default ({ api, callback, defForm, detailApi }) => {
     })
   }
 
-  console.log(route, 1111)
-  const title = route.meta.title
-  const obj = {
-    permissionUrl: route.path,
-    permissionName: '新增' + title
-  }
-  if (route.query.id) {
-    obj.permissionName = '编辑' + title
-    emitter.emit('routerBread', obj)
-    formTitle.value = '编辑' + title
-  } else {
-    emitter.emit('routerBread', obj)
-    formTitle.value = '新增' + title
-  }
-
   onMounted(() => {
+    const title = route.meta.title
+    const obj = {
+      permissionUrl: route.path,
+      permissionName: '新增' + title
+    }
+    if (route.query.id) {
+      obj.permissionName = '编辑' + title
+      emitter.emit('routerBread', obj)
+      formTitle.value = '编辑' + title
+    } else {
+      emitter.emit('routerBread', obj)
+      formTitle.value = '新增' + title
+    }
     if (route.query.id) {
       loading.value = true
       const params = detailApi.params ? detailApi.params : route.query.id
