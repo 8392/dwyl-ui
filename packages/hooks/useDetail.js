@@ -38,6 +38,7 @@ export default ({ api, callback, defForm, detailApi }) => {
     })
   }
 
+  console.log(route, 1111)
   const title = route.meta.title
   const obj = {
     permissionUrl: route.path,
