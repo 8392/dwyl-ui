@@ -33,17 +33,18 @@ export default (props, emits) => {
   const total = ref(0)
   const tableLoading = ref(true)
   const searchPage = computed(() => Number(searchParams.page || 1))
-  const pageData = reactive({
+  const defaultPage = ref({
     [tableConfig.value.pageField]: searchPage.value,
     [tableConfig.value.limitField]: tableConfig.value.defaultLimit || 20
   })
+  const pageData = ref({ ...defaultPage.value })
 
   if (props.isPage) {
     if (!props?.params?.page) {
-      props.params[tableConfig.value.pageField] = pageData[tableConfig.value.pageField]
+      props.params[tableConfig.value.pageField] = pageData.value[tableConfig.value.pageField]
     }
     if (!props?.params?.size) {
-      props.params[tableConfig.value.limitField] = pageData[tableConfig.value.limitField]
+      props.params[tableConfig.value.limitField] = pageData.value[tableConfig.value.limitField]
     }
   }
 
@@ -57,7 +58,11 @@ export default (props, emits) => {
   })
 
   watchEffect(() => {
-    Object.assign(pageData, props.params)
+    pageData.value = {
+      ...defaultPage.value,
+      ...props.params
+    }
+    // Object.assign(pageData, props.params)
   })
 
   /* 获取列表数据 */
@@ -68,7 +73,7 @@ export default (props, emits) => {
     try {
       emits('update:loading', true)
       tableLoading.value = true
-      let queryData = pageData
+      let queryData = pageData.value
       if (!props.isPage) {
         queryData = props.params
       }
@@ -89,7 +94,7 @@ export default (props, emits) => {
   /* 点击当前页 */
   const clickPage = (e) => {
     searchParams.page = e
-    pageData[tableConfig.value.pageField] = e
+    pageData.value[tableConfig.value.pageField] = e
     props.params[tableConfig.value.pageField] = e
     getList()
   }
@@ -98,7 +103,7 @@ export default (props, emits) => {
   const refresh = () => {
     if (props.isPage) {
       searchParams.page = 1
-      pageData[tableConfig.value.pageField] = 1
+      pageData.value[tableConfig.value.pageField] = 1
     }
     nextTick(() => {
       getList()

@@ -16,7 +16,7 @@
       @click="uploadFileMeth"
     >
       <template v-if="!loading">
-        <img class="w-30px h-25px" src="https://fire.diweiyunlian.cn/file/285171761802764288.png" alt="">
+        <img class="w-30px h-25px" src="../../../assets/285171761802764288.png" alt="">
         <div class="color-#B1B5BB pt-8px text-12px">上传图片</div>
       </template>
       <template v-if="loading">

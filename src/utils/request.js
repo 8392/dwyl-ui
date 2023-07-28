@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 
-const token = 'd67abec9ffde46cd8d1773d62f13ebb3'
-// const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRfaWQiOjE2MDc4Nzk4MTM2Mzc0ODg2NCwidXNlcl9uYW1lIjoiYWRtaW4iLCJwcm9qZWN0X2lkX2xpc3QiOiIxOTM4MjQ0OTYxMTcyNjAyODgsMTk2MzE2MDU0MTQxNTA1NTM3IiwicmVhbF9uYW1lIjoiYWRtaW4iLCJhdmF0YXIiOiJodHRwczovL2lvdC5kaXdlaXl1bmxpYW4uY246MTQ0My9pb3QtZmlsZS8zMDE4Mjc0OTgyODU5Njk0MDgvYS5wbmciLCJhdXRob3JpdGllcyI6WyJhZG1pbmlzdHJhdG9yIl0sImNsaWVudF9pZCI6IndlYi1pb3QiLCJyb2xlX25hbWUiOiJhZG1pbmlzdHJhdG9yIiwibGljZW5zZSI6InBvd2VyZWQgYnkgZGl3ZWlmdSIsInVzZXJfaWQiOiIxNjA4MDA0MDM1NDE2MzA5NzYiLCJyb2xlX2lkIjoiMSIsInNjb3BlIjpbImFsbCJdLCJuaWNrX25hbWUiOiLotoXnuqfnrqHnkIblkZgiLCJvYXV0aF9pZCI6IiIsImRldGFpbCI6bnVsbCwiZXhwIjoxNjYwMDU0MTM1LCJqdGkiOiJiZTY1ZWFiZi1lNzQwLTRiZjItOGEyNy01NjY3OWE3ZmQ2MzUiLCJhY2NvdW50IjoiYWRtaW4ifQ.jKffrC1n71NjFQeyaX5QKg7eRwKpo45J3-mwTSPHw70'
+const token = 'Da4lbMaIEhpUiAHbMlxwB7xGISg1FSd6hEY2PSMqIzCtnBKmHsfYfIHEJ3zT'
 
 const service = axios.create({
   baseURL: '',
@@ -19,7 +18,7 @@ service.interceptors.request.use(
       //   config.headers.Authorization = 'Bearer ' + token
       // }
       if (token) {
-        config.headers.Authorization = token
+        config.headers.Satoken = token
       }
     }
     return config
