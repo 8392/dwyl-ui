@@ -73,7 +73,7 @@ const value = ref('')
 const options = [
   {
     value: '1',
-    label: '啊实打实的，阿松大，玛纳斯ask领导看了发发监考老师发生'
+     label: '啊实打实的，阿松大，玛纳斯ask领导看了发发监考老师发生'
   },
   {
     value: '2',
