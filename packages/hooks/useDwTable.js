@@ -60,7 +60,6 @@ export default ({ defParams, deleteApi, diaName, page } = {}) => {
   }
 
   const goAdd = () => {
-    console.log(111)
     router.push(page)
   }
 
