@@ -1,14 +1,14 @@
 import { reactive, ref, computed, inject } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getObjectKey, deepClone } from '~/utils/utils'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 
 // 请求参数、删除请求、弹窗标题
 export default ({ defParams, deleteApi, diaName, page } = {}) => {
   const configData = inject('projectConfigData')
   const tableConfig = computed(() => configData.value.table)
   const pageField = computed(() => tableConfig.value.pageField)
-  const router = useRouter()
+  // const router = useRouter()
   const dwTable = ref()
   const dialogVisible = ref(false)
   const params = reactive(defParams || {})
@@ -55,13 +55,13 @@ export default ({ defParams, deleteApi, diaName, page } = {}) => {
     dialogVisible.value = true
   }
 
-  const goEdit = id => {
-    router.push(page + `?id=${id}`)
-  }
+  // const goEdit = id => {
+  //   router.push(page + `?id=${id}`)
+  // }
 
-  const goAdd = () => {
-    router.push(page)
-  }
+  // const goAdd = () => {
+  //   router.push(page)
+  // }
 
   const onClose = () => {
     dialogVisible.value = false
@@ -78,8 +78,8 @@ export default ({ defParams, deleteApi, diaName, page } = {}) => {
     onClose,
     currentItem,
     diaTitle,
-    dwTable,
-    goEdit,
-    goAdd
+    dwTable
+    // goEdit,
+    // goAdd
   }
 }
