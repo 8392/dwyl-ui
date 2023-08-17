@@ -106,7 +106,14 @@ export function getBlob (url) {
     xhr.open('GET', url)
     xhr.responseType = 'blob'
     xhr.onload = () => {
-      resolve(xhr.response)
+      const contentDisposition = xhr.getResponseHeader('content-disposition')
+      const fileName = contentDisposition?.split?.(';')?.[1]?.split?.('filename=')?.[1]
+      resolve({
+        data: xhr.response,
+        header: {
+          fileName: decodeURIComponent(fileName)
+        }
+      })
     }
     xhr.onerror = (err) => {
       reject

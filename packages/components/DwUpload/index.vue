@@ -188,8 +188,8 @@ const handlePictureCardPreview = async (e) => {
     dwImgView(imgArr, index)
   } else {
     /* 其它文件类型，下载 */
-    const res = await getBlob(e.url)
-    downloadBlob(res, e.name)
+    const { data } = await getBlob(e.url)
+    downloadBlob(data, e.name)
   }
 }
 
