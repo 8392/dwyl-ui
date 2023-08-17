@@ -16,6 +16,7 @@ import DwPicker from './DwPicker'
 import DwEmpty from './DwEmpty'
 import DwImage from './DwImage'
 import DwGridList from './DwGridList'
+import DwImgList from './DwImgList'
 
 const modules = [
   DwButton,
@@ -34,7 +35,8 @@ const modules = [
   DwPicker,
   DwEmpty,
   DwImage,
-  DwGridList
+  DwGridList,
+  DwImgList
 ]
 
 // 提供按需导入
@@ -55,7 +57,8 @@ export {
   DwPicker,
   DwEmpty,
   DwImage,
-  DwGridList
+  DwGridList,
+  DwImgList
 }
 
 export default modules
