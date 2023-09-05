@@ -278,7 +278,7 @@ export async function getViewComponent (routeKey) {
 }
 
 /* 返回object深层级的的对象值，path传递key多层级传递utils.name这种格式 */
-export function getObjectKey (object, path, defaultVal = 'undefined') {
+export function getObjectKey (object, path, defaultVal = undefined) {
   // 先将path处理成统一格式
   let newPath = []
   if (Array.isArray(path)) {

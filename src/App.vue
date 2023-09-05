@@ -17,7 +17,8 @@
     <dw-button @click="handleBtn">点击</dw-button> -->
       <!-- <TestTooltip /> -->
       <!-- <Slider /> -->
-      <gridList />
+      <!-- <gridList /> -->
+      <gridCss />
     </DwProjectConfig>
 
   </div>
@@ -32,6 +33,7 @@ import { testObj, handleBtn } from '@/components/cusTomerStore'
 import Child from '@/components/cusTomerStore/Child'
 import Slider from '@/test/Slider/index.vue'
 import gridList from '@/test/gridList'
+import gridCss from '@/test/gridCss'
 
 const activeName = ref('first')
 

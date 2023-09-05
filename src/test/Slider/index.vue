@@ -21,9 +21,6 @@
 import { ref, computed } from 'vue'
 import axios from 'axios'
 
-console.log('axios', axios)
-console.log('get', axios.get)
-
 const img1 = 'https://n.sinaimg.cn/tech/crawl/116/w550h366/20210122/3dec-khxeamw5822755.jpg'
 const img2 = 'https://www.nippon.com/cn/ncommon/contents/japan-glances/2003393/2003393.jpg'
 const img3 = 'https://n.sinaimg.cn/tech/crawl/116/w550h366/20210122/3dec-khxeamw5822755.jpg'
