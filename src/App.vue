@@ -18,7 +18,7 @@
       <!-- <TestTooltip /> -->
       <!-- <Slider /> -->
       <!-- <gridList /> -->
-      <gridCss />
+      <vrSocket />
     </DwProjectConfig>
 
   </div>
@@ -34,6 +34,7 @@ import Child from '@/components/cusTomerStore/Child'
 import Slider from '@/test/Slider/index.vue'
 import gridList from '@/test/gridList'
 import gridCss from '@/test/gridCss'
+import vrSocket from '@/test/vrSocket/test2.vue'
 
 const activeName = ref('first')
 
