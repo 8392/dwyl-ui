@@ -36,7 +36,7 @@ import ScreenShot from 'js-web-screen-shot'
 import { ZIM } from 'zego-zim-web'
 import { ElMessage } from 'element-plus'
 import { dwUtils } from 'dwyl-ui'
-import zgConfig from './config2.js'
+import zgConfig from './config.js'
 
 const imgSrc = ref('')
 
@@ -210,17 +210,19 @@ const joinBuild = async () => {
   height: 300px;
   border: 1px solid #dfdfdf;
 }
-.newUser{
+
+.newUser {
   width: 400px;
   height: 300px;
   border: 1px solid #f00;
 }
 
-.confirm  {
+.confirm {
   width: 40px !important;
   background-image: inherit !important;
   position: relative;
-  &::before{
+
+  &::before {
     cursor: pointer;
     text-align: center;
     line-height: 24px;
@@ -233,5 +235,4 @@ const joinBuild = async () => {
     color: #f00;
   }
 }
-
 </style>
