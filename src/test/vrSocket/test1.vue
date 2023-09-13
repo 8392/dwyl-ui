@@ -200,7 +200,7 @@ const sendMessageMeth = () => {
 }
 
 const joinBuild = async () => {
-  await joinRoom()
+  await zim.joinRoom()
 }
 </script>
 

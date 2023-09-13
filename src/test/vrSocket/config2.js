@@ -3,6 +3,6 @@ export default {
   server: 'wss://webliveroom1781365118-api.imzego.com/ws',
   serverSecret: '70780f88069d31770cfaf2a8b688bcd7',
   roomID: '0002',
-  userID: 'caibo',
-  token: '04AAAAAGUCtn0AEDViZW92amZseDByY3B5ajEAoBxs9CEkiBdsYHdtXIDLpQLPQ+aZrcbmOl8uqeJiC15xQE2/w952Eb5Hlu9vTAT016OBeGHmgfDf5QyksqHsinKaxN4l4wYcCWQLQFE2vk6NECqF8Bg0bB8N7xokpYLxGWcDtXGVh3lN+tV8CZydn8A1CfMvoYitE7wSsJEpQou04zPidpAnyq5k6h78hbqVlfffGLVMzQwIz9e1tbpu++k='
+  userID: 'caibo2',
+  token: '04AAAAAGUCzEkAEHRqOWNwYTV3cDgyZjk1ZjEAsHGwkt6lcdycPCVIe9mEUve2TtGxmkXPehp6z8KP12dSj8zZ6AzNP/rm4Up8WN4lTd63MximKfWvRX4GYs9/8PMarRwA3AFqf8e/QetsGpypQ5E11Wg3rVB3f7W0RKGEVZFdKK58cyQUI6hQuvrBQyuyLm4r0BRu58xUUYMjhBMbrt/uJAL8BDPYC0CMghcCJS1ZYqYk0q7vRKWAp/1qZ2XpSooQVfzeq4JqlKrv29F2'
 }
