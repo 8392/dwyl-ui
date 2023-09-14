@@ -4,5 +4,5 @@ export default {
   serverSecret: '70780f88069d31770cfaf2a8b688bcd7',
   roomID: '0002',
   userID: 'caibo',
-  token: '04AAAAAGUCtn0AEDViZW92amZseDByY3B5ajEAoBxs9CEkiBdsYHdtXIDLpQLPQ+aZrcbmOl8uqeJiC15xQE2/w952Eb5Hlu9vTAT016OBeGHmgfDf5QyksqHsinKaxN4l4wYcCWQLQFE2vk6NECqF8Bg0bB8N7xokpYLxGWcDtXGVh3lN+tV8CZydn8A1CfMvoYitE7wSsJEpQou04zPidpAnyq5k6h78hbqVlfffGLVMzQwIz9e1tbpu++k='
+  token: '04AAAAAGUECQcAEHYyejU4eDZwMXJwYWh6YXYAsK2eIGUnVeY1bmrz7PFxG8A9BkTP7dEuTyxgO3N0Mi0+ir3qeyC1tiAwE2zVBl4mVr/skY2+BnH/69i5sXpyGks4SwtdfnkkjkVAB6f8ilc3SO+qMMkNoZbMzQ9w5uaH9J4TXB5wevPD6wR8grjycc3PRbKqFHNZiAPFJaJ8YXPCEMIxhFh9DJ/iZCIQoqf4YCuhQ2jcDX2YigXZyigyJlcPorgEvNgmTY5eylagNlHd'
 }
