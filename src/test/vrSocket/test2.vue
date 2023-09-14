@@ -1,31 +1,33 @@
 <template>
   <div class="p-20px h-100vh">
-    <div>
+    <div class="flex">
       <div class="pb-20px">
-        <el-button type="primary" @click="loginRoomMeth">登录</el-button>
-        <el-button @click="startPlayingStreamMeth">视频通话</el-button>
+        <!-- <el-button type="primary" @click="loginRoomMeth">登录</el-button> -->
+        <el-button type="primary" @click="startPlayingStreamMeth">求助专家</el-button>
 
-        <div class="pt-20px">
+        <!-- <div class="pt-20px">
           <el-button @click="screenShotBtn">截屏</el-button>
 
           <el-button type="primary" @click="loginMessage">消息登录</el-button>
           <el-button type="primary" @click="joinBuild">加入房间</el-button>
           <el-button type="primary" @click="sendMessageMeth">发送消息</el-button>
-        </div>
+        </div> -->
+
+        <div id="localVideo"></div>
+
       </div>
-      <div id="localVideo"></div>
+      <!-- <div id="localVideo"></div> -->
+      <div class="border-1px border-#f00">
+        <div>专家发来的截图</div>
+        <DwImage isPreview :src="imgSrc" />
+      </div>
     </div>
 
-    <div class="border-1px border-#f00">
-      <div>图片展示</div>
-      <img :src="imgSrc" />
-    </div>
-
-    <div class="flex gap-20px mt-20px">
+    <!-- <div class="flex gap-20px mt-20px">
       <div v-for="(item, index) in userList" :id="`newUser_${item.streamID}`" :key="index" class="newUser">
 
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -53,6 +55,8 @@ const loginRoomMeth = async () => {
     console.log('错误', err)
   }
 }
+
+loginRoomMeth()
 
 const config = {
   camera: {
@@ -164,22 +168,29 @@ const zim = ZIM.getInstance()
 const loginMessage = async () => {
   try {
     await zim.login({ userID, userName: userID }, token)
-    ElMessage.success('登录成功')
+    ElMessage.success('消息登录成功')
   } catch (err) {
     console.log('错误', err)
   }
 }
 
+loginMessage()
+
 // 收到单聊通信的消息回调
-zim.on('receivePeerMessage', function (zim, { messageList, fromConversationID }) {
-  console.log('消息来了', messageList, fromConversationID)
+
+zim.on('receivePeerMessage', function (zim, res) {
+  // console.log(messageList, fromConversationID);
+  // console.log('消息来了', zim, messageList, fromConversationID)
+  console.log('专家发来消息', res)
+  imgSrc.value = res.messageList[0].fileDownloadUrl
 })
 
 const sendMessageMeth = () => {
   // 发送自定义信息
   // 指定用户的 ID
-  const toConversationID = 'lcc.pc'
+  const toConversationID = 'caibo'
 
+  console.log('发送', imgSrc.value)
   const zimCustomMessage = {
     fileLocalPath: imgSrc.value,
     type: 11
@@ -193,10 +204,32 @@ const sendMessageMeth = () => {
 
   zim.sendMediaMessage(zimCustomMessage, toConversationID, conversationType, config)
     .then((res) => {
-      console.log('发送成功', res)
+      // console.log('发送成功11，图片', res)
     }).catch(() => {
 
     })
+
+  // var toConversationID = ''; // 对方 userID
+  // var conversationType = 0; // 会话类型，取值为 单聊：0，房间：1，群组：2
+  // var config = {
+  //   priority: 1, // 设置消息优先级，取值为 低：1（默认），中:2，高：3
+  // };
+
+  // let messageTextObj = { type: 1, message: '文本消息内容', extendedData: '消息的扩展信息（可选）' }
+  // let notification = {
+  //   onMessageAttached: function (message) {
+  //     // todo: Loading
+  //   }
+  // }
+
+  // zim.sendMessage(messageTextObj, toConversationID, conversationType, config, notification)
+  //   .then(function (res) {
+  //     console.log('成功', res)
+  //     // 发送成功
+  //   }).catch(function (err) {
+  //     // 发送失败
+  //     console.log('失败', err)
+  //   })
 }
 
 const joinBuild = async () => {

@@ -20,7 +20,7 @@
       <!-- <gridList /> -->
       <div class="flex">
         <vrSocket />
-        <vrSocket1 />
+        <!-- <vrSocket1 /> -->
       </div>
     </DwProjectConfig>
 
