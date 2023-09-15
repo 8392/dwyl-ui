@@ -23,11 +23,11 @@
       </div>
     </div>
 
-    <!-- <div class="flex gap-20px mt-20px">
+    <div class="flex gap-20px mt-20px">
       <div v-for="(item, index) in userList" :id="`newUser_${item.streamID}`" :key="index" class="newUser">
 
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
