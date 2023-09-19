@@ -4,6 +4,7 @@
       <div class="pb-20px">
         <!-- <el-button type="primary" @click="loginRoomMeth">登录</el-button> -->
         <el-button type="primary" @click="startPlayingStreamMeth">求助专家</el-button>
+        <el-button type="primary" @click="handleVideo">视频救助</el-button>
 
         <!-- <div class="pt-20px">
           <el-button @click="screenShotBtn">截屏</el-button>
@@ -46,17 +47,6 @@ const { appID, server, roomID, userID, token, serverSecret } = zgConfig
 const zg = new ZegoExpressEngine(appID, server)
 
 const isLogin = ref(false)
-
-const loginRoomMeth = async () => {
-  try {
-    isLogin.value = await zg.loginRoom(roomID, token, { userID, userName: userID }, { userUpdate: true })
-    ElMessage.success('登录成功')
-  } catch (err) {
-    console.log('错误', err)
-  }
-}
-
-loginRoomMeth()
 
 const config = {
   camera: {
@@ -179,10 +169,47 @@ loginMessage()
 // 收到单聊通信的消息回调
 
 zim.on('receivePeerMessage', function (zim, res) {
-  // console.log(messageList, fromConversationID);
-  // console.log('消息来了', zim, messageList, fromConversationID)
-  console.log('专家发来消息', res)
-  imgSrc.value = res.messageList[0].fileDownloadUrl
+  const extendedData = JSON.parse(res.messageList[0].extendedData)
+  console.log('消息来了', extendedData)
+
+  const loginRoomMeth = async () => {
+    try {
+      isLogin.value = await zg.loginRoom(extendedData.roomID, token, { userID, userName: userID }, { userUpdate: true })
+      ElMessage.success('登录成功')
+      startPlayingStreamMeth()
+    } catch (err) {
+      console.log('错误', err)
+    }
+  }
+  if (extendedData.connectVideo) {
+    loginRoomMeth()
+  } else {
+    imgSrc.value = res.messageList[0].fileDownloadUrl
+  }
+})
+
+// 邀请者拒绝邀请后的回调通知
+zim.on('callUserStateChanged', (zim, info) => {
+  // 相关的 callID
+  const changeCallID = info.callID
+
+  info.callUserList.forEach(userInfo => {
+    console.log('拒绝了', userInfo)
+
+    // 状态变化用户的 userID、最新用户状态、透传字段（与用户该调用接受、拒绝、退出呼叫时携带的 extended data 一致）
+    const { userID, state, extendedData } = userInfo
+    // state = 2 表示接受，具体可以参考枚举 ZIMCallUserState
+    console.log('AA', state)
+    if (state == 2) {
+      // 您的业务逻辑
+    }
+  })
+})
+
+// 呼叫成员收到的回调通知
+zim.on('callInvitationEnded', (zim, info) => {
+  console.log('结束视频', info)
+  // console.log('callInvitationEnded', info)
 })
 
 const sendMessageMeth = () => {
@@ -234,6 +261,21 @@ const sendMessageMeth = () => {
 
 const joinBuild = async () => {
   await joinRoom()
+}
+
+const handleVideo = () => {
+  /** 向在线用户发送呼叫邀请 */
+  const invitees = ['test001'] // 被邀请人ID列表
+  const config = { timeout: 30, mode: 1 } // 邀请超时时间，单位为秒，范围1-600
+  zim.callInvite(invitees, config)
+    .then((res) => {
+      console.log('发送邀请', res)
+      // 操作成功
+      // 此处的 callID 是用户发起呼叫后，SDK 内部生成的 ID，用于唯一标识一次呼叫邀请；之后发起人取消呼叫、被邀请人接受/拒绝呼叫，都会使用此 callID
+    })
+    .catch(err => {
+      // 操作失败
+    })
 }
 </script>
 
