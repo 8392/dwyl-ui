@@ -28,7 +28,7 @@ const createInstance = async (trigger, binding) => {
   const { value, oldValue } = binding
   if (oldValue !== value) {
     if (value && !oldValue) {
-      const vnode = h(renderLoading, { background: '#000' })
+      const vnode = h(renderLoading, { text: binding.arg, background: '#000' })
       const app = createApp(vnode)
       const loadingEl = app.mount(document.createElement('div')).$el
       loadingEl.setAttribute('id', 'dwLoadingId')

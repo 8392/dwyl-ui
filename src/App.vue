@@ -19,9 +19,10 @@
       <!-- <Slider /> -->
       <!-- <gridList /> -->
       <div class="flex">
-        <vrSocket />
+        <!-- <vrSocket /> -->
         <!-- <vrSocket1 /> -->
       </div>
+      <loading />
     </DwProjectConfig>
 
   </div>
@@ -37,6 +38,7 @@ import Child from '@/components/cusTomerStore/Child'
 import Slider from '@/test/Slider/index.vue'
 import gridList from '@/test/gridList'
 import gridCss from '@/test/gridCss'
+import loading from '@/test/loading/loading'
 import vrSocket from '@/test/vrSocket/test2.vue'
 import vrSocket1 from '@/test/vrSocket/test1.vue'
 
