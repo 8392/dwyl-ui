@@ -4,14 +4,14 @@ import { getObjectKey, deepClone } from '~/utils/utils'
 // import { useRouter } from 'vue-router'
 
 // 请求参数、删除请求、弹窗标题
-export default ({ defParams, deleteApi, diaName, page } = {}) => {
+export default ({ defParams = {}, deleteApi, diaName, page } = {}) => {
   const configData = inject('projectConfigData')
   const tableConfig = computed(() => configData.value.table)
   const pageField = computed(() => tableConfig.value.pageField)
   // const router = useRouter()
   const dwTable = ref()
   const dialogVisible = ref(false)
-  const params = reactive(defParams || {})
+  let params = reactive(deepClone(defParams))
   const currentItem = ref(null)
   const diaTitle = ref('')
   const onSearch = () => {
@@ -67,11 +67,24 @@ export default ({ defParams, deleteApi, diaName, page } = {}) => {
     dialogVisible.value = false
   }
 
+  const onResetSearch = () => {
+    for (const key in params) {
+      /* 通过循环对象，改变属性，让其不失去响应式 */
+      if (defParams[key]) {
+        params[key] = defParams[key]
+      } else {
+        delete params[key]
+      }
+    }
+    onSearch()
+  }
+
   return {
     params,
     dialogVisible,
     updatePage,
     onSearch,
+    onResetSearch,
     onDelete,
     onAdd,
     onEdit,

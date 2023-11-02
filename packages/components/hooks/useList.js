@@ -123,10 +123,8 @@ export default (props, emits) => {
     tableLoading,
     searchPage,
     pageData,
-
     getList,
     clickPage,
     refresh
-
   }
 }

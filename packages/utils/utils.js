@@ -3,28 +3,47 @@ import { fileTypeMap } from './base'
 import FormData from 'form-data'
 
 export function deepClone (obj = {}) {
-  if (typeof obj !== 'object' || obj == null) {
-    // obj 是 null ，或者不是对象和数组，直接返回
+  // if (typeof obj !== 'object' || obj == null) {
+  //   // obj 是 null ，或者不是对象和数组，直接返回
+  //   console.log('是否执行AAA', obj)
+  //   return obj
+  // }
+
+  // // 初始化返回结果
+  // let result
+  // if (obj instanceof Array) {
+  //   result = []
+  // } else {
+  //   result = {}
+  // }
+
+  // for (const key in obj) {
+  //   // 保证 key 不是原型的属性
+  //   if (Object.prototype.hasOwnProperty.call(obj, key)) {
+  //     // 递归调用！！！
+
+  //     result[key] = deepClone(obj[key])
+
+  //     console.log('AAA', result, key, obj[key])
+  //   }
+  // }
+  // // 返回结果
+  // return result
+
+  if (obj == null) return obj
+  let newObj = obj.constructor === Array ? [] : {}
+  if (typeof obj !== 'object') {
     return obj
-  }
-
-  // 初始化返回结果
-  let result
-  if (obj instanceof Array) {
-    result = []
   } else {
-    result = {}
-  }
-
-  for (const key in obj) {
-    // 保证 key 不是原型的属性
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      // 递归调用！！！
-      result[key] = deepClone(obj[key])
+    for (let i in obj) {
+      if (typeof obj[i] === 'object') {
+        newObj[i] = deepClone(obj[i])
+      } else {
+        newObj[i] = obj[i]
+      }
     }
   }
-  // 返回结果
-  return result
+  return newObj
 }
 
 // 防抖
