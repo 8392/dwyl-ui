@@ -13,6 +13,7 @@ import DwOption from './DwSelect/DwOption'
 import DwUpload from './DwUpload'
 import DwProjectConfig from './DwProjectConfig'
 import DwPicker from './DwPicker'
+import DwPicker2 from './DwPicker2'
 import DwEmpty from './DwEmpty'
 import DwImage from './DwImage'
 import DwGridList from './DwGridList'
@@ -33,6 +34,7 @@ const modules = [
   DwUpload,
   DwProjectConfig,
   DwPicker,
+  DwPicker2,
   DwEmpty,
   DwImage,
   DwGridList,
@@ -55,6 +57,7 @@ export {
   DwUpload,
   DwProjectConfig,
   DwPicker,
+  DwPicker2,
   DwEmpty,
   DwImage,
   DwGridList,
