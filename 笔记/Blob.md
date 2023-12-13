@@ -74,8 +74,10 @@ export default {
 
 
 
-### 迪威npm仓库
+### 迪威npm仓库，发布包的仓库，npm publish
 - npm config set registry http://maven.diweiyunlian.cn/repository/npm-diwei
+### 下载包的仓库，pnpm i
+- npm config set registry http://maven.diweiyunlian.cn/repository/npm-public
 
 
 
