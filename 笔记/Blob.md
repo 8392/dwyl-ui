@@ -70,6 +70,15 @@ export default {
 
 
 - npm config set registry https://registry.npmjs.org
+
+
+
+
+### 迪威npm仓库
+- npm config set registry http://maven.diweiyunlian.cn/repository/npm-diwei
+
+
+
 - npm config set registry http://222.209.208.86:1917/repository/npm-diwei/
 
 
