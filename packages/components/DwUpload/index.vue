@@ -10,6 +10,7 @@
     v-else
     v-bind="$attrs"
     ref="uploadRef"
+    v-loading="loading"
     class="upload"
     action="#"
     :list-type="listType"
@@ -65,6 +66,7 @@ const props = defineProps({
   limit: Number
 })
 
+const loading = ref(false)
 const accept = computed(() => {
   const { fileType } = props
   let acceptType = null
@@ -131,6 +133,7 @@ const beforeUpload = (e) => {
 
 const httpRequest = async e => {
   try {
+    loading.value = true
     const formData = new FormData()
     formData.append('files', e.file)
     const { data } = await uploadConfig.value.uploadMoreApi(formData)
@@ -146,6 +149,8 @@ const httpRequest = async e => {
     emit('change', data)
   } catch (err) {
     emit('change', err)
+  } finally {
+    loading.value = false
   }
 }
 
