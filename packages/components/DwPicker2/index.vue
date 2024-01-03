@@ -47,10 +47,16 @@ const props = defineProps({
   },
   end: {
     type: String
+  },
+  startEnd: {
+    type: Array
+  },
+  disabledDate: {
+    type: String
   }
 })
 
-const emits = defineEmits(['update:start', 'update:end', 'change'])
+const emits = defineEmits(['update:start', 'update:end', 'update:startEnd', 'change'])
 
 const startTime = ref(null)
 const endTime = ref(null)
@@ -66,37 +72,60 @@ watchEffect(() => {
 })
 
 const disabledDateFun1 = (time) => {
-  if (endTime.value) {
-    return Date.parse(time) > Date.parse(endTime.value)
+  if (props.disabledDate) {
+    if (!endTime.value) {
+      return Date.parse(time) < Date.parse(props.disabledDate)
+    }
+    if (endTime.value) {
+      if (Date.parse(time) < Date.parse(props.disabledDate)) {
+        return true
+      }
+      if (Date.parse(time) > Date.parse(endTime.value)) {
+        return true
+      }
+    }
   } else {
-    return false
+    if (endTime.value) {
+      return Date.parse(time) > Date.parse(endTime.value)
+    } else {
+      return false
+    }
   }
 }
 
 const disabledDateFun2 = (time) => {
-  if (startTime.value) {
-    return Date.parse(time) < Date.parse(startTime.value)
+  if (props.disabledDate) {
+    if (!startTime.value) {
+      return Date.parse(time) < Date.parse(props.disabledDate)
+    }
+    if (startTime.value) {
+      if (Date.parse(time) < Date.parse(startTime.value)) {
+        return true
+      }
+    }
   } else {
-    return false
+    if (startTime.value) {
+      return Date.parse(time) < Date.parse(startTime.value)
+    } else {
+      return false
+    }
   }
 }
 
 const changeDate1 = (val) => {
+  const startEnd = [startTime.value, endTime.value]
   emits('update:start', startTime.value)
   emits('update:end', endTime.value)
-  emits('change', {
-    start: startTime.value,
-    end: endTime.value
-  })
+  emits('update:startEnd', startEnd)
+  emits('change', startEnd)
 }
 
 const changeDate2 = (val) => {
+  const startEnd = [startTime.value, endTime.value]
   emits('update:start', startTime.value)
   emits('update:end', endTime.value)
-  emits('change', {
-    start: startTime.value,
-    end: endTime.value
-  })
+  emits('update:startEnd', startEnd)
+  emits('change', startEnd)
 }
 
 </script>

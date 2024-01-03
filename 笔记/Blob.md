@@ -87,3 +87,5 @@ export default {
 ### 图片，视频布局
 
 object-fit:fill 适用于图片img和视频video
+
+https://nodejs.org/download/release
