@@ -1,6 +1,7 @@
 import { ref, reactive, watch, watchEffect, computed, nextTick, inject } from 'vue'
 import { getObjectKey } from '~/utils/utils'
 import { useUrlSearchParams } from '@vueuse/core'
+import { useRouter, useRoute } from 'vue-router'
 
 export const listProps = {
   params: Object,
@@ -21,12 +22,16 @@ export const listProps = {
 export const listEmit = ['update:loading', 'callback']
 
 export default (props, emits) => {
+  const router = useRouter()
+  const route = useRoute()
+
   const configData = inject('projectConfigData')
   const tableConfig = computed(() => configData.value.table)
   const pageField = computed(() => tableConfig.value.pageField)
   const limitField = computed(() => tableConfig.value.limitField)
   const totalField = computed(() => tableConfig.value.totalField)
   const dataField = computed(() => tableConfig.value.dataField)
+  const isHistorySearch = computed(() => tableConfig.value.isHistorySearch)
   const searchParams = useUrlSearchParams('history')
 
   const tableData = ref([])
@@ -93,10 +98,20 @@ export default (props, emits) => {
 
   /* 点击当前页 */
   const clickPage = (e) => {
-    searchParams.page = e
+    searchParams[tableConfig.value.pageField] = e
     pageData.value[tableConfig.value.pageField] = e
     props.params[tableConfig.value.pageField] = e
-    getList()
+    if (isHistorySearch.value) {
+      router.push({
+        path: route.path,
+        query: {
+          ...route.query,
+          [tableConfig.value.pageField]: e
+        }
+      })
+    } else {
+      getList()
+    }
   }
 
   /* 刷新 */

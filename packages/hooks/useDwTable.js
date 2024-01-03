@@ -1,17 +1,37 @@
 import { reactive, ref, computed, inject } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getObjectKey, deepClone } from '~/utils/utils'
-// import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 // 请求参数、删除请求、弹窗标题
 export default ({ defParams = {}, deleteApi, diaName, page } = {}) => {
   const configData = inject('projectConfigData')
   const tableConfig = computed(() => configData.value.table)
   const pageField = computed(() => tableConfig.value.pageField)
-  // const router = useRouter()
+  const limitField = computed(() => tableConfig.value.limitField)
+  const isHistorySearch = computed(() => tableConfig.value.isHistorySearch)
+
+  const router = useRouter()
+  const route = useRoute()
   const dwTable = ref()
   const dialogVisible = ref(false)
-  let params = reactive(deepClone(defParams))
+
+  let params = reactive(deepClone({
+    ...defParams
+  }))
+
+  if (isHistorySearch.value) {
+    const resQeury = deepClone({
+      ...route.query,
+      ...defParams
+    })
+
+    delete resQeury[pageField.value]
+    delete resQeury[limitField.value]
+
+    params = reactive(resQeury)
+  }
+
   const currentItem = ref(null)
   const diaTitle = ref('')
   const onSearch = () => {
@@ -79,11 +99,32 @@ export default ({ defParams = {}, deleteApi, diaName, page } = {}) => {
     onSearch()
   }
 
+  const onHistorySearch = () => {
+    const queryData = {
+      ...params
+    }
+    delete queryData[pageField.value]
+    delete queryData[limitField.value]
+
+    const oldQuery = JSON.stringify(queryData)
+    const currQuery = JSON.stringify(route.query)
+
+    if (oldQuery === currQuery) {
+      getTable()
+    } else {
+      router.push({
+        path: route.path,
+        query: queryData
+      })
+    }
+  }
+
   return {
     params,
     dialogVisible,
     updatePage,
     onSearch,
+    onHistorySearch,
     onResetSearch,
     onDelete,
     onAdd,
