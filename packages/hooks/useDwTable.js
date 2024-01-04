@@ -1,18 +1,23 @@
 import { reactive, ref, computed, inject } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getObjectKey, deepClone } from '~/utils/utils'
-import { useRouter, useRoute } from 'vue-router'
+import { useUrlSearchParams } from '@vueuse/core'
 
 // 请求参数、删除请求、弹窗标题
 export default ({ defParams = {}, deleteApi, diaName, page } = {}) => {
   const configData = inject('projectConfigData')
+  const vueRouter = computed(() => configData.value.vueRouter)
+  const searchParams = useUrlSearchParams('history')
+
+  const { useRouter, useRoute } = vueRouter.value || {}
+  const router = useRouter?.()
+  const route = useRoute?.()
+
   const tableConfig = computed(() => configData.value.table)
   const pageField = computed(() => tableConfig.value.pageField)
   const limitField = computed(() => tableConfig.value.limitField)
   const isHistorySearch = computed(() => tableConfig.value.isHistorySearch)
 
-  const router = useRouter()
-  const route = useRoute()
   const dwTable = ref()
   const dialogVisible = ref(false)
 
@@ -96,7 +101,25 @@ export default ({ defParams = {}, deleteApi, diaName, page } = {}) => {
         delete params[key]
       }
     }
+
     onSearch()
+
+    // const queryData = {
+    //   ...params
+    // }
+    // queryData[pageField.value] = 1
+
+    // const oldQuery = JSON.stringify(queryData)
+    // const currQuery = JSON.stringify(route.query)
+
+    // if (oldQuery === currQuery) {
+    //   getTable()
+    // } else {
+    //   router.replace({
+    //     path: route.path,
+    //     query: queryData
+    //   })
+    // }
   }
 
   const onHistorySearch = () => {

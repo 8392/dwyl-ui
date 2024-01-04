@@ -69,6 +69,11 @@ watchEffect(() => {
   if (end) {
     endTime.value = end
   }
+
+  if (start && end) {
+    const startEnd = [start, end]
+    emits('update:startEnd', startEnd)
+  }
 })
 
 const disabledDateFun1 = (time) => {

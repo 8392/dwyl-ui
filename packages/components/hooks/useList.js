@@ -1,7 +1,6 @@
 import { ref, reactive, watch, watchEffect, computed, nextTick, inject } from 'vue'
 import { getObjectKey } from '~/utils/utils'
 import { useUrlSearchParams } from '@vueuse/core'
-import { useRouter, useRoute } from 'vue-router'
 
 export const listProps = {
   params: Object,
@@ -22,10 +21,13 @@ export const listProps = {
 export const listEmit = ['update:loading', 'callback']
 
 export default (props, emits) => {
-  const router = useRouter()
-  const route = useRoute()
-
   const configData = inject('projectConfigData')
+  const vueRouter = computed(() => configData.value.vueRouter)
+
+  const { useRouter, useRoute } = vueRouter.value || {}
+  const router = useRouter?.()
+  const route = useRoute?.()
+
   const tableConfig = computed(() => configData.value.table)
   const pageField = computed(() => tableConfig.value.pageField)
   const limitField = computed(() => tableConfig.value.limitField)
