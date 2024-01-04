@@ -4,7 +4,7 @@ import { getObjectKey, deepClone } from '~/utils/utils'
 import { useUrlSearchParams } from '@vueuse/core'
 
 // 请求参数、删除请求、弹窗标题
-export default ({ defParams = {}, deleteApi, diaName, page } = {}) => {
+export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) => {
   const configData = inject('projectConfigData')
   const vueRouter = computed(() => configData.value.vueRouter)
   const searchParams = useUrlSearchParams('history')
@@ -30,6 +30,18 @@ export default ({ defParams = {}, deleteApi, diaName, page } = {}) => {
       ...route.query,
       ...defParams
     })
+
+    for (const key in resQeury) {
+      if (numberFields.includes(key)) {
+        const keyVal = resQeury[key]
+        const num = parseInt(keyVal)
+        if (isNaN(num)) {
+          resQeury[key] = ''
+        } else {
+          resQeury[key] = num
+        }
+      }
+    }
 
     delete resQeury[pageField.value]
     delete resQeury[limitField.value]
@@ -102,24 +114,25 @@ export default ({ defParams = {}, deleteApi, diaName, page } = {}) => {
       }
     }
 
-    onSearch()
+    if (isHistorySearch.value) {
+      const queryData = {
+        ...params
+      }
+      queryData[pageField.value] = '1'
 
-    // const queryData = {
-    //   ...params
-    // }
-    // queryData[pageField.value] = 1
-
-    // const oldQuery = JSON.stringify(queryData)
-    // const currQuery = JSON.stringify(route.query)
-
-    // if (oldQuery === currQuery) {
-    //   getTable()
-    // } else {
-    //   router.replace({
-    //     path: route.path,
-    //     query: queryData
-    //   })
-    // }
+      const oldQuery = JSON.stringify(queryData)
+      const currQuery = JSON.stringify(route.query)
+      if (oldQuery === currQuery) {
+        getTable()
+      } else {
+        router.replace({
+          path: route.path,
+          query: queryData
+        })
+      }
+    } else {
+      onSearch()
+    }
   }
 
   const onHistorySearch = () => {
