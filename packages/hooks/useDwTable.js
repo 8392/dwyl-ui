@@ -1,13 +1,11 @@
 import { reactive, ref, computed, inject } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getObjectKey, deepClone } from '~/utils/utils'
-import { useUrlSearchParams } from '@vueuse/core'
 
 // 请求参数、删除请求、弹窗标题
 export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) => {
   const configData = inject('projectConfigData')
   const vueRouter = computed(() => configData.value.vueRouter)
-  const searchParams = useUrlSearchParams('history')
 
   const { useRouter, useRoute } = vueRouter.value || {}
   const router = useRouter?.()
@@ -125,7 +123,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
       if (oldQuery === currQuery) {
         getTable()
       } else {
-        router.replace({
+        router.push({
           path: route.path,
           query: queryData
         })
