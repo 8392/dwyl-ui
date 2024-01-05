@@ -137,19 +137,18 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
 
   const onHistorySearch = () => {
     const routeQuery = route.query
-    params[pageField.value] ? params[pageField.value] = parseInt(params[pageField.value]) : params[pageField.value] = 1
+    params[pageField.value] = 1
     routeQuery[pageField.value] ? routeQuery[pageField.value] = parseInt(routeQuery[pageField.value]) : routeQuery[pageField.value] = 1
     params[limitField.value] ? params[limitField.value] = parseInt(params[limitField.value]) : params[limitField.value] = defaultLimit.value
     routeQuery[limitField.value] ? routeQuery[limitField.value] = parseInt(routeQuery[limitField.value]) : routeQuery[limitField.value] = defaultLimit.value
 
     const oldQuery = JSON.stringify(params)
     const currQuery = JSON.stringify(routeQuery)
+    console.log('搜索', oldQuery, currQuery, oldQuery === currQuery)
 
     if (oldQuery === currQuery) {
-      params[pageField.value] = 1
       getList()
     } else {
-      params[pageField.value] = 1
       router.push({
         path: route.path,
         query: params
