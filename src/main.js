@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import { setupRouter } from '@/router'
 
 import App from './App.vue'
 
@@ -16,7 +17,7 @@ async function setupApp () {
   app.use(ElementPlus, { locale: zhCn })
   app.use(dwylUi)
   // setupStore(app)
-  // await setupRouter(app)
+  await setupRouter(app)
   app.mount('#app')
 }
 

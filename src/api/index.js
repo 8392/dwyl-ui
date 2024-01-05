@@ -1,4 +1,5 @@
 import { request } from '@/utils/request'
+export const social = '/social'
 
 const proxy = '/proxy'
 const basics = '/basics-api'
@@ -37,5 +38,27 @@ export const productVersionVo = (data) => {
     url: manager + '/product/page/vo',
     method: 'post',
     data
+  })
+}
+
+export const selfProPage = data => {
+  return request({
+    url: social + '/norm/self/pro/page',
+    method: 'post',
+    data
+  })
+}
+
+export const socialNormList = async () => {
+  return request({
+    url: social + '/norm/standard/list',
+    method: 'get'
+  })
+}
+
+export const normSelfDelete = id => {
+  return request({
+    url: social + `/norm/self/${id}`,
+    method: 'delete'
   })
 }

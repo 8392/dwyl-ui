@@ -18,17 +18,17 @@
       <!-- <TestTooltip /> -->
       <!-- <Slider /> -->
       <!-- <gridList /> -->
-      <div class="flex">
-        <!-- <vrSocket /> -->
-        <!-- <vrSocket1 /> -->
-      </div>
-      <loading />
+
+      <!-- <testTable /> -->
+      <router-view />
+
     </DwProjectConfig>
 
   </div>
 </template>
 
 <script setup>
+import { useRouter, useRoute } from 'vue-router'
 import Tab from '@/components/Tabs/Tab.vue'
 import Tabs from '@/components/Tabs/Tabs.vue'
 import TestTooltip from '@/test/tooltip/index.vue'
@@ -41,6 +41,7 @@ import gridCss from '@/test/gridCss'
 import loading from '@/test/loading/loading'
 import vrSocket from '@/test/vrSocket/test2.vue'
 import vrSocket1 from '@/test/vrSocket/test1.vue'
+import testTable from '@/test/testTable/index.vue'
 
 const activeName = ref('first')
 
@@ -51,7 +52,12 @@ const projectConfig = {
     limitField: 'size',
     totalField: 'total',
     dataField: 'data',
-    defaultLimit: 20 // 默认展示多少条
+    defaultLimit: 20, // 默认展示多少条
+    isHistorySearch: true
+  },
+  vueRouter: {
+    useRouter,
+    useRoute
   },
   upload: {
     uploadMoreApi: ''

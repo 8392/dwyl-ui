@@ -13,8 +13,9 @@ const configProxy = {
     manager: 'http://192.168.3.9:8881'
   },
   test: {
-    ucenter: 'http://222.209.208.86:2203/',
-    manager: 'http://222.209.208.86:2548/'
+    version: 'http://wbfwweb.diweiyunlian.cn',
+    ucenter: 'http://wbfwweb.diweiyunlian.cn',
+    social: 'http://wbfwweb.diweiyunlian.cn'
   },
   line: {
     auth: 'http://222.209.208.86:2548',
@@ -24,20 +25,21 @@ const configProxy = {
 
 const getProxy = (name) => {
   return {
+    '/VERSION': {
+      target: configProxy[name].version,
+      changeOrigin: true
+    },
     '/ucenter': {
       target: configProxy[name].ucenter,
       changeOrigin: true
     },
-    '/manager': {
-      target: configProxy[name].manager,
+    '/monitor': {
+      target: configProxy[name].ucenter,
       changeOrigin: true
     },
-    '/v2': {
-      target: 'https://api.map.baidu.com/place/',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/v2': ''
-      }
+    '/social': {
+      target: configProxy[name].social,
+      changeOrigin: true
     },
     '/excel-server': {
       target: 'https://xzy.diweiyunlian.cn/',
@@ -45,7 +47,6 @@ const getProxy = (name) => {
     }
   }
 }
-
 export default defineConfig({
   mode: 'production',
   plugins: [
