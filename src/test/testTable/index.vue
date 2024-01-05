@@ -11,7 +11,7 @@
       <div class="w-200px mr-12px">
         <el-input v-model="params.projectName" clearable placeholder="维保项目" />
       </div>
-      <dw-button type="primary" icon="Search" @click="onSearch">查询</dw-button>
+      <dw-button type="primary" icon="Search" @click="onHistorySearch">查询</dw-button>
       <el-button type="primary" icon="RefreshRight" @click="onResetSearch">重置</el-button>
     </div>
     <DwTable
@@ -59,7 +59,7 @@ const {
   params,
   dwTable,
   onDelete,
-  onSearch,
+  onHistorySearch,
   onResetSearch
 } = useDwTable({
   deleteApi: normSelfDelete

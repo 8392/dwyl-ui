@@ -1,4 +1,4 @@
-import { reactive, ref, computed, inject } from 'vue'
+import { reactive, ref, computed, inject, watch, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getObjectKey, deepClone } from '~/utils/utils'
 
@@ -14,6 +14,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
   const tableConfig = computed(() => configData.value.table)
   const pageField = computed(() => tableConfig.value.pageField)
   const limitField = computed(() => tableConfig.value.limitField)
+  const defaultLimit = computed(() => tableConfig.value.defaultLimit || 20)
   const isHistorySearch = computed(() => tableConfig.value.isHistorySearch)
 
   const dwTable = ref()
@@ -90,16 +91,14 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
     dialogVisible.value = true
   }
 
-  // const goEdit = id => {
-  //   router.push(page + `?id=${id}`)
-  // }
-
-  // const goAdd = () => {
-  //   router.push(page)
-  // }
-
   const onClose = () => {
     dialogVisible.value = false
+  }
+
+  const getList = () => {
+    nextTick(() => {
+      dwTable.value.getList()
+    })
   }
 
   const onResetSearch = () => {
@@ -116,10 +115,13 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
       const queryData = {
         ...params
       }
-      queryData[pageField.value] = '1'
-
+      const routeQuery = route.query
+      delete queryData[pageField.value]
+      delete queryData[limitField.value]
+      delete routeQuery[pageField.value]
+      delete routeQuery[limitField.value]
       const oldQuery = JSON.stringify(queryData)
-      const currQuery = JSON.stringify(route.query)
+      const currQuery = JSON.stringify(routeQuery)
       if (oldQuery === currQuery) {
         getTable()
       } else {
@@ -134,24 +136,76 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
   }
 
   const onHistorySearch = () => {
-    const queryData = {
-      ...params
-    }
-    delete queryData[pageField.value]
-    delete queryData[limitField.value]
+    const routeQuery = route.query
+    params[pageField.value] ? params[pageField.value] = parseInt(params[pageField.value]) : params[pageField.value] = 1
+    routeQuery[pageField.value] ? routeQuery[pageField.value] = parseInt(routeQuery[pageField.value]) : routeQuery[pageField.value] = 1
+    params[limitField.value] ? params[limitField.value] = parseInt(params[limitField.value]) : params[limitField.value] = defaultLimit.value
+    routeQuery[limitField.value] ? routeQuery[limitField.value] = parseInt(routeQuery[limitField.value]) : routeQuery[limitField.value] = defaultLimit.value
 
-    const oldQuery = JSON.stringify(queryData)
-    const currQuery = JSON.stringify(route.query)
+    const oldQuery = JSON.stringify(params)
+    const currQuery = JSON.stringify(routeQuery)
 
     if (oldQuery === currQuery) {
-      getTable()
+      params[pageField.value] = 1
+      getList()
     } else {
+      params[pageField.value] = 1
       router.push({
         path: route.path,
-        query: queryData
+        query: params
       })
     }
   }
+
+  watch(() => route.query, (newRoute, oldRoute) => {
+    const newRouteArr = Object.keys(newRoute)
+    const oldRouteArr = Object.keys(oldRoute)
+    if (!newRouteArr.includes(pageField.value)) {
+      newRoute[pageField.value] = 1
+    }
+
+    // 减少的路由key
+    const reduceRouteArr = oldRouteArr.filter(o => !newRouteArr.includes(o))
+
+    // 去掉没有的
+    reduceRouteArr.forEach(item => {
+      if (item !== pageField.value && item !== limitField.value) {
+        params[item] = null
+      }
+    })
+
+    // 添加新增的
+    for (const key in newRoute) {
+      let keyVal = newRoute[key]
+      if (numberFields.includes(key)) {
+        const num = parseInt(keyVal)
+        if (isNaN(num)) {
+          keyVal = ''
+        } else {
+          keyVal = num
+        }
+      }
+      if (key === pageField.value) {
+        if (keyVal) {
+          keyVal = parseInt(keyVal)
+        } else {
+          keyVal = 1
+        }
+      }
+      if (key === limitField.value) {
+        if (keyVal) {
+          keyVal = parseInt(keyVal)
+        } else {
+          keyVal = defaultLimit.value
+        }
+      }
+      params[key] = keyVal
+    }
+
+    getList()
+  }, {
+    deep: true
+  })
 
   return {
     params,

@@ -100,9 +100,6 @@ export default (props, emits) => {
 
   /* 点击当前页 */
   const clickPage = (e) => {
-    searchParams[tableConfig.value.pageField] = e
-    pageData.value[tableConfig.value.pageField] = e
-    props.params[tableConfig.value.pageField] = e
     if (isHistorySearch.value) {
       router.push({
         path: route.path,
@@ -112,6 +109,9 @@ export default (props, emits) => {
         }
       })
     } else {
+      searchParams[tableConfig.value.pageField] = e
+      pageData.value[tableConfig.value.pageField] = e
+      props.params[tableConfig.value.pageField] = e
       getList()
     }
   }
