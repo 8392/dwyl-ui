@@ -1,6 +1,14 @@
 import { reactive, ref, computed, inject, watch, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { getObjectKey, deepClone } from '~/utils/utils'
+import { getObjectKey, deepClone, areNestedStructuresEqual } from '~/utils/utils'
+
+// 获取当前时间搓，记录路由query跳转改变
+const getTimestampRouteQuery = (query = {}) => {
+  return {
+    ...query
+    // timestamp: Date.now()
+  }
+}
 
 // 请求参数、删除请求、弹窗标题
 export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) => {
@@ -69,7 +77,23 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
           message: '操作成功',
           type: 'success'
         })
-        getTable()
+        const data = dwTable.value.tableData
+        const pageData = dwTable.value.pageData
+        if (isHistorySearch.value) {
+          if (pageData.page > 1 && data.length === 1) {
+            router.replace({
+              path: route.path,
+              query: {
+                ...route.query,
+                [pageField.value]: 1
+              }
+            })
+          } else {
+            getList()
+          }
+        } else {
+          getTable()
+        }
       })
     })
   }
@@ -101,6 +125,42 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
     })
   }
 
+  const onHistorySearch = () => {
+    for (const key in params) {
+      if (params[key] === '' || params[key] === null) {
+        delete params[key]
+      }
+    }
+    params[pageField.value] = 1
+
+    // 取得page--size判断query是否相等
+    const obj1 = { ...params }
+    const obj2 = { ...route.query }
+
+    if (!obj1[limitField.value]) {
+      obj1[limitField.value] = defaultLimit.value
+    }
+
+    if (!obj2[pageField.value]) {
+      obj2[pageField.value] = 1
+    }
+    if (!obj2[limitField.value]) {
+      obj2[limitField.value] = defaultLimit.value
+    }
+
+    const isEqual = areNestedStructuresEqual(obj1, obj2)
+    // 取得page--size判断query是否相等
+
+    if (isEqual) {
+      getList()
+    } else {
+      router.push({
+        path: route.path,
+        query: getTimestampRouteQuery(params)
+      })
+    }
+  }
+
   const onResetSearch = () => {
     for (const key in params) {
       /* 通过循环对象，改变属性，让其不失去响应式 */
@@ -112,51 +172,16 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
     }
 
     if (isHistorySearch.value) {
-      const queryData = {
-        ...params
-      }
-      const routeQuery = route.query
-      delete queryData[pageField.value]
-      delete queryData[limitField.value]
-      delete routeQuery[pageField.value]
-      delete routeQuery[limitField.value]
-      const oldQuery = JSON.stringify(queryData)
-      const currQuery = JSON.stringify(routeQuery)
-      if (oldQuery === currQuery) {
-        getTable()
-      } else {
-        router.push({
-          path: route.path,
-          query: queryData
-        })
-      }
+      onHistorySearch()
     } else {
       onSearch()
     }
   }
 
-  const onHistorySearch = () => {
-    const routeQuery = route.query
-    params[pageField.value] = 1
-    routeQuery[pageField.value] ? routeQuery[pageField.value] = parseInt(routeQuery[pageField.value]) : routeQuery[pageField.value] = 1
-    params[limitField.value] ? params[limitField.value] = parseInt(params[limitField.value]) : params[limitField.value] = defaultLimit.value
-    routeQuery[limitField.value] ? routeQuery[limitField.value] = parseInt(routeQuery[limitField.value]) : routeQuery[limitField.value] = defaultLimit.value
-
-    const oldQuery = JSON.stringify(params)
-    const currQuery = JSON.stringify(routeQuery)
-    console.log('搜索', oldQuery, currQuery, oldQuery === currQuery)
-
-    if (oldQuery === currQuery) {
-      getList()
-    } else {
-      router.push({
-        path: route.path,
-        query: params
-      })
-    }
-  }
-
   watch(() => route.query, (newRoute, oldRoute) => {
+    if (!isHistorySearch.value) {
+      return
+    }
     const newRouteArr = Object.keys(newRoute)
     const oldRouteArr = Object.keys(oldRoute)
     if (!newRouteArr.includes(pageField.value)) {
@@ -169,7 +194,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
     // 去掉没有的
     reduceRouteArr.forEach(item => {
       if (item !== pageField.value && item !== limitField.value) {
-        params[item] = null
+        delete params[item]
       }
     })
 

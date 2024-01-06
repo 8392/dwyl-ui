@@ -133,6 +133,7 @@ const handleCellMouseLeave = (e, row) => {
 defineExpose({
   getList,
   refresh,
+  tableData,
   pageData,
   dwTableRef
 })

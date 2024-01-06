@@ -313,3 +313,67 @@ export function getObjectKey (object, path, defaultVal = undefined) {
     return (o || {})[k]
   }, object) || defaultVal
 }
+
+export function areNestedStructuresEqual (obj1, obj2) {
+  // 辅助函数，用于递归比较数组
+  function areArraysEqual (arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+      return false
+    }
+
+    for (let i = 0; i < arr1.length; i++) {
+      const value1 = arr1[i]
+      const value2 = arr2[i]
+
+      if (typeof value1 === 'object' && typeof value2 === 'object') {
+        if (!areNestedStructuresEqual(value1, value2)) {
+          return false
+        }
+      } else {
+        if (value1 != value2) {
+          return false
+        }
+      }
+    }
+
+    return true
+  }
+
+  // 主要函数，用于递归比较对象
+  function areObjectsEqual (obj1, obj2) {
+    const keys1 = Object.keys(obj1)
+    const keys2 = Object.keys(obj2)
+
+    if (keys1.length !== keys2.length) {
+      return false
+    }
+
+    for (const key of keys1) {
+      const value1 = obj1[key]
+      const value2 = obj2[key]
+
+      if (typeof value1 === 'object' && typeof value2 === 'object') {
+        if (!areNestedStructuresEqual(value1, value2)) {
+          return false
+        }
+      } else {
+        if (value1 != value2) {
+          return false
+        }
+      }
+    }
+
+    return true
+  }
+
+  // 开始比较
+  if (typeof obj1 === 'object' && typeof obj2 === 'object') {
+    if (Array.isArray(obj1) && Array.isArray(obj2)) {
+      return areArraysEqual(obj1, obj2)
+    } else {
+      return areObjectsEqual(obj1, obj2)
+    }
+  } else {
+    return obj1 === obj2
+  }
+}

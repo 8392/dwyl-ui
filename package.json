@@ -3,15 +3,6 @@
   "private": false,
   "version": "0.1.27",
   "main": "dist/dwyl-ui.mjs",
-  "module": "dist/dwyl-ui.umd.js",
-  "exports": {
-    ".": {
-      "import": "./dist/dwyl-ui.mjs",
-      "require": "./dist/dwyl-ui.umd.js"
-    },
-    "./*": "./*",
-    "./utils": "./packages/utils/utils.js"
-  },
   "description": "dwyl-ui",
   "keywords": [
     "vue",
