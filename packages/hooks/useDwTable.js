@@ -148,8 +148,6 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [], arrFiel
     }
     params[pageField.value] = 1
 
-    console.log('测试', params)
-
     // 取得page--size判断query是否相等
     const obj1 = { ...params }
     const obj2 = { ...route.query }
@@ -195,7 +193,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [], arrFiel
     }
   }
 
-  watch(() => route.query, (newRoute, oldRoute) => {
+  watch(() => route?.query, (newRoute, oldRoute) => {
     if (!isHistorySearch.value) {
       return
     }
