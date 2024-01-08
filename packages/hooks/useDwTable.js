@@ -11,7 +11,7 @@ const getTimestampRouteQuery = (query = {}) => {
 }
 
 // 请求参数、删除请求、弹窗标题
-export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) => {
+export default ({ defParams = {}, deleteApi, diaName, numberFields = [], arrFields = [] } = {}) => {
   const configData = inject('projectConfigData')
   const vueRouter = computed(() => configData.value.vueRouter)
 
@@ -39,8 +39,23 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
     })
 
     for (const key in resQeury) {
+      const keyVal = resQeury[key]
+
+      if (arrFields.includes(key)) {
+        if (Array.isArray(keyVal)) {
+          const resArr = keyVal.map(o => parseInt(o))
+          resQeury[key] = resArr
+        } else {
+          const num = parseInt(keyVal)
+          if (isNaN(num)) {
+            resQeury[key] = ''
+          } else {
+            resQeury[key] = [num]
+          }
+        }
+      }
+
       if (numberFields.includes(key)) {
-        const keyVal = resQeury[key]
         const num = parseInt(keyVal)
         if (isNaN(num)) {
           resQeury[key] = ''
@@ -133,6 +148,8 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
     }
     params[pageField.value] = 1
 
+    console.log('测试', params)
+
     // 取得page--size判断query是否相等
     const obj1 = { ...params }
     const obj2 = { ...route.query }
@@ -201,6 +218,21 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
     // 添加新增的
     for (const key in newRoute) {
       let keyVal = newRoute[key]
+
+      if (arrFields.includes(key)) {
+        if (Array.isArray(keyVal)) {
+          const resArr = keyVal.map(o => parseInt(o))
+          keyVal = resArr
+        } else {
+          const num = parseInt(keyVal)
+          if (isNaN(num)) {
+            keyVal = ''
+          } else {
+            keyVal = [num]
+          }
+        }
+      }
+
       if (numberFields.includes(key)) {
         const num = parseInt(keyVal)
         if (isNaN(num)) {
@@ -209,6 +241,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [] } = {}) 
           keyVal = num
         }
       }
+
       if (key === pageField.value) {
         if (keyVal) {
           keyVal = parseInt(keyVal)
