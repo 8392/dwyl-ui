@@ -99,7 +99,7 @@ const columnList = computed(() => {
 
 const emits = defineEmits(listEmit)
 
-const { pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, refresh } = useList(props, emits)
+const { pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, refresh, isHistorySearch } = useList(props, emits)
 
 getList()
 
@@ -135,7 +135,8 @@ defineExpose({
   refresh,
   tableData,
   pageData,
-  dwTableRef
+  dwTableRef,
+  isHistorySearch
 })
 
 </script>

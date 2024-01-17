@@ -28,6 +28,10 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [], arrFiel
   const dwTable = ref()
   const dialogVisible = ref(false)
 
+  const tableIsHistory = () => {
+    return dwTable.value.isHistorySearch
+  }
+
   let params = reactive(deepClone({
     ...defParams
   }))
@@ -94,7 +98,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [], arrFiel
         })
         const data = dwTable.value.tableData
         const pageData = dwTable.value.pageData
-        if (isHistorySearch.value) {
+        if (isHistorySearch.value && tableIsHistory()) {
           if (pageData.page > 1 && data.length === 1) {
             router.replace({
               path: route.path,
@@ -169,7 +173,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [], arrFiel
     if (isEqual) {
       getList()
     } else {
-      router.push({
+      router.replace({
         path: route.path,
         query: getTimestampRouteQuery(params)
       })
@@ -186,7 +190,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [], arrFiel
       }
     }
 
-    if (isHistorySearch.value) {
+    if (isHistorySearch.value && tableIsHistory()) {
       onHistorySearch()
     } else {
       onSearch()
@@ -194,7 +198,7 @@ export default ({ defParams = {}, deleteApi, diaName, numberFields = [], arrFiel
   }
 
   watch(() => route?.query, (newRoute, oldRoute) => {
-    if (!isHistorySearch.value) {
+    if (!isHistorySearch.value || !tableIsHistory()) {
       return
     }
     const newRouteArr = Object.keys(newRoute)

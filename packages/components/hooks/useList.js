@@ -12,6 +12,10 @@ export const listProps = {
       return city
     }
   },
+  isHistorySearch: {
+    type: Boolean,
+    default: true
+  },
   isPage: {
     type: Boolean,
     default: true
@@ -100,8 +104,8 @@ export default (props, emits) => {
 
   /* 点击当前页 */
   const clickPage = (e) => {
-    if (isHistorySearch.value) {
-      router.push({
+    if (isHistorySearch.value && props.isHistorySearch) {
+      router.replace({
         path: route.path,
         query: {
           ...route.query,
@@ -146,6 +150,7 @@ export default (props, emits) => {
     tableLoading,
     searchPage,
     pageData,
+    isHistorySearch: props?.isHistorySearch,
     getList,
     clickPage,
     refresh
