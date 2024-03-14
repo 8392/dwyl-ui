@@ -18,6 +18,8 @@ import DwEmpty from './DwEmpty'
 import DwImage from './DwImage'
 import DwGridList from './DwGridList'
 import DwImgList from './DwImgList'
+import DwTabs from './DwTabs'
+import TabPane from './DwTabs/TabPane'
 
 const modules = [
   DwButton,
@@ -38,7 +40,9 @@ const modules = [
   DwEmpty,
   DwImage,
   DwGridList,
-  DwImgList
+  DwImgList,
+  DwTabs,
+  TabPane
 ]
 
 // 提供按需导入
@@ -61,7 +65,9 @@ export {
   DwEmpty,
   DwImage,
   DwGridList,
-  DwImgList
+  DwImgList,
+  DwTabs,
+  TabPane
 }
 
 export default modules

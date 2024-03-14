@@ -1,6 +1,6 @@
 <template>
-  <div class="flex items-center pt-20px justify-end">
-    <div class="pr-20px">共 {{ total }} 条</div>
+  <div class="dw_pagination flex items-center pt-20px justify-end">
+    <div class="dw_pagination-total pr-20px">共查询到<span class="dw_pagination-count">{{ total }}</span> 条</div>
     <el-pagination
       v-bind="$attrs"
       style="margin:0"

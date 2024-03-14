@@ -113,7 +113,7 @@ export default (props, emits) => {
         }
       })
     } else {
-      searchParams[tableConfig.value.pageField] = e
+      // searchParams[tableConfig.value.pageField] = e
       pageData.value[tableConfig.value.pageField] = e
       props.params[tableConfig.value.pageField] = e
       getList()
