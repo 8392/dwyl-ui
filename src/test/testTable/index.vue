@@ -1,73 +1,101 @@
 <template>
-  <div class="h-100vh py-20px flex flex-col">
-    <div class="flex flex-row mb-12px">
-      <dw-select
-        v-model="params.normId"
-        class="w-200px mr-12px"
-        placeholder="消防系统"
-      >
-        <dw-option v-for="item in sysOpts" :key="item.id" :label="item.name" :value="item.id" />
-      </dw-select>
-      <div class="w-200px mr-12px">
-        <el-input v-model="params.projectName" clearable placeholder="维保项目" />
-      </div>
-      <dw-button type="primary" icon="Search" @click="onHistorySearch">查询</dw-button>
-      <el-button type="primary" icon="RefreshRight" @click="onResetSearch">重置</el-button>
-    </div>
-    <DwTable
-      ref="dwTable"
-      :column="column"
-      :params="params"
-      :api="selfProPage"
-    >
-      <template #cz="{ row }">
-        <dw-button type="danger" link @click="onDelete(row)">删除</dw-button>
-      </template>
-    </DwTable>
+  <div ref="box" class="box">
+    <div v-for="(point, index) in points" :key="index" ref="pointRef" class="point"
+         :style="{ top: point.top + 'px', left: point.left + 'px' }"></div>
+    <svg class="connector" width="500" height="500">
+      <line v-for="(line, index) in lines" :key="index"
+            :x1="line.x1" :y1="line.y1" :x2="line.x2" :y2="line.y2"
+            style="stroke:black;stroke-width:2" />
+    </svg>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { dwHooks } from 'dwyl-ui'
-import { selfProPage, socialNormList, normSelfDelete } from '@/api'
-const sysOpts = ref([])
-const { useDwTable } = dwHooks
+import { ref, onMounted, watch, nextTick } from 'vue'
 
-const column = [
-  {
-    type: 'index',
-    width: 80,
-    label: '序号'
-  },
-  {
-    prop: 'normName',
-    label: '消防系统'
-  },
-  {
-    prop: 'projectName',
-    label: '维保项目 '
-  },
-  {
-    label: '操作',
-    slot: 'cz',
-    width: 80
+const box = ref(null)
+const points = ref([])
+const lines = ref([])
+
+const pointRef = ref(null)
+
+onMounted(() => {
+  updatePoints()
+})
+
+watch(points, () => {
+  nextTick(() => {
+    updateLines()
+  })
+})
+
+function updatePoints () {
+  // 模拟异步获取数据
+  // 假设接口返回的数据格式为 [{ top: 20, left: 30 }, { top: 300, left: 300 }, { top: 400, left: 200 }]
+  // 这里需要根据实际情况来获取数据，并更新 points 数组
+  points.value = [
+    { top: 20, left: 30 },
+    { top: 100, left: 200 },
+    { top: 220, left: 260 },
+    { top: 300, left: 320 },
+    { top: 300, left: 400 }
+  ]
+}
+
+function updateLines () {
+  lines.value = []
+
+  points.value.forEach((item, index) => {
+    const nextItem = points.value[index + 1]
+
+    if (nextItem) {
+      const startPoint = getCenterPosition(item, index)
+      const endPoint = getCenterPosition(nextItem, index + 1)
+
+      lines.value.push({
+        x1: startPoint.x,
+        y1: startPoint.y,
+        x2: endPoint.x,
+        y2: endPoint.y
+      })
+    }
+  })
+}
+
+function getCenterPosition (item, index) {
+  const width = pointRef.value[index].offsetWidth / 2
+  const height = pointRef.value[index].offsetHeight / 2
+
+  return {
+    x: item.left + width,
+    y: item.top + height
   }
-]
+}
 
-const {
-  params,
-  dwTable,
-  onDelete,
-  onHistorySearch,
-  onResetSearch
-} = useDwTable({
-  deleteApi: normSelfDelete
-})
-
-socialNormList().then(({ data }) => {
-  sysOpts.value = data
-})
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.box {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  background-color: #ebf87a;
+}
+
+.point {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  background-color: #f00;
+  z-index: 6;
+}
+
+.connector {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border: 1px solid blue; /* 添加调试边框 */
+}
+</style>
