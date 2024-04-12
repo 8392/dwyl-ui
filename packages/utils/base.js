@@ -227,7 +227,7 @@ export const orderOpts = [
   }
 ]
 
-export const imgFileArr = ['.gif', '.jpg', '.jpeg', '.png', '.GIF', '.JPG', 'JPEG', '.PNG', '.webp', '.WEBP']
+export const imgFileArr = ['.gif', '.jpg', '.jpeg', '.png', '.GIF', '.JPG', 'JPEG', '.PNG', '.webp', '.WEBP', '.svg', '.SVG']
 export const pdfFileArr = ['.pdf', '.PDF']
 export const excelArr = ['.xls', '.xlsx', '.XLS', '.XLSX']
 
