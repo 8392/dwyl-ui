@@ -123,13 +123,15 @@ export default (props, emits) => {
   /* 刷新 */
   const refresh = () => {
     if (props.isPage) {
-      router.replace({
-        path: route.path,
-        query: {
-          ...route.query,
-          [tableConfig.value.pageField]: 1
-        }
-      })
+      if (router) {
+        router.replace({
+          path: route.path,
+          query: {
+            ...route.query,
+            [tableConfig.value.pageField]: 1
+          }
+        })
+      }
       pageData.value[tableConfig.value.pageField] = 1
     }
     nextTick(() => {
