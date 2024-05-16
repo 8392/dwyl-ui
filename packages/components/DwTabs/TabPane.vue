@@ -30,7 +30,8 @@ const bgUrl = `url(${filePrefixPath}20240311131341.png)`
 
 <style lang="scss" scoped>
 .dw_tabpane{
-  width: 90px;
+  min-width: 90px;
+  padding: 0 20px;
   height: 30px;
   background: v-bind(bgUrl);
   background-size: 100% 100%;
