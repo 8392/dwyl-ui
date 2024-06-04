@@ -47,6 +47,9 @@ const props = defineProps({
   temApi: { // 模板接口
     type: Function
   },
+  temParams: {
+    type: Object
+  },
   close: Function,
   success: Function
 })
@@ -59,7 +62,13 @@ const closeViewer = () => {
 
 /* 下载模板 */
 const downloadFile = async () => {
-  const { fileName, blob } = await props.temApi()
+  let params = {}
+  if (props.temParams) {
+    params = props.temParams
+  }
+
+  console.log('来了', params, props.temParams)
+  const { fileName, blob } = await props.temApi(params)
   downloadBlob(blob, fileName)
   ElMessage.success('模板下载成功')
 }
