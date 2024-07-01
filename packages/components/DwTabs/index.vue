@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="dwTabs">
     <slot />
   </div>
 </template>
@@ -27,5 +27,7 @@ provide('dwsteps', { props, setActiveMenu })
 </script>
 
 <style lang="scss" scoped>
-
+.dwTabs{
+  display: flex;
+}
 </style>
