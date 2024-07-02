@@ -13,7 +13,7 @@
         <template v-if="slots.header">
           <slot name="header"></slot>
         </template>
-        <div v-else class="text-16px font-600" style="color: var(--dw-dialog-title-bg)">{{ title }}</div>
+        <div v-else class="dw_dialog-title text-16px font-600" style="color: var(--dw-dialog-title-bg)">{{ title }}</div>
         <!-- <el-icon class="cursor-pointer" color="#4e5969" :size="20" @click="close"><CloseBold /></el-icon> -->
         <CloseBold style="width: 20px; height: 20px;color: var(--dw-dialog-title-xbg)" class="cursor-pointer" @click="close" />
       </div>
