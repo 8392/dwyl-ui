@@ -84,11 +84,11 @@ export default {
   setup (props, ctx) {
     const data = statusList.find(o => o.type === props.type)
     return () => {
-      return <div>
+      return <div class="dwempty">
         <div class="flex-col-center">
-          <img class="mb-60px" src={data.img} alt="" v-show={data.img} />
+          <img class="mb-60px dwempty_img" src={data.img} alt="" v-show={data.img} />
           {
-            data.des && <span class="color-#6E7279 text-12px lh-22px">{ props.description || data.des }</span>
+            data.des && <span class="color-#6E7279 text-12px lh-22px dwempty_des">{ props.description || data.des }</span>
           }
           {
             data.slot && <>{ data.slot }</>

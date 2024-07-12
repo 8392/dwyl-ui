@@ -64,13 +64,16 @@
 </template>
 
 <script lang='jsx' setup>
-import { ref, computed } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { ElTable, ElTableColumn, ElTooltip } from 'element-plus'
 import DwPagination from '../DwPagination'
 import Render from './render'
 import EmptyStatus from '../EmptyStatus'
 import { judgeTextOverflow } from '../../utils/utils'
 import useList, { listProps, listEmit } from '~/components/hooks/useList'
+
+const configData = inject('projectConfigData')
+const tableConfig = computed(() => configData.value.table)
 
 defineOptions({
   name: 'DwTable'
@@ -93,6 +96,11 @@ const columnList = computed(() => {
     if (item.showCol !== false) {
       item.showCol = true
     }
+
+    if (!item.align) {
+      item.align = tableConfig?.value?.align || 'left'
+    }
+
     return item
   })
 })
