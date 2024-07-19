@@ -1,7 +1,6 @@
 <template>
   <div
     class="relative rounded-6px itemBox"
-    style="width: 100px; height: 100px;"
     @mouseenter.stop="enterUploadImg"
     @mouseleave.stop="leaveUploadImg"
   >
@@ -93,6 +92,8 @@ defineExpose({
 .itemBox {
   border: 1px solid var(--el-border-color);
   cursor: pointer;
+  width: 100px;
+  height: 100px;
 }
 .thumbnail {
   top: 0;
