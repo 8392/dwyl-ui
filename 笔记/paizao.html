@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拍照功能示例</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        video, canvas {
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>拍照功能示例</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="snap">拍照</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <script>
+        // 获取视频元素和canvas元素
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const snapButton = document.getElementById('snap');
+
+        // 使用getUserMedia API获取用户媒体设备（相机）
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                // 将视频流设置为视频元素的源
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch((err) => {
+                console.error(`Error: ${err}`);
+            });
+
+        // 点击按钮时，在canvas上绘制当前视频帧
+        snapButton.addEventListener('click', () => {
+            context.drawImage(video, 0, 0, 1000, 1000);
+        });
+    </script>
+</body>
+</html>
