@@ -1,8 +1,8 @@
 <template>
-  <div class="flex gap-20px flex-wrap">
+  <div class="flex gap-20px flex-wrap dwImgList">
     <div
       v-for="(item, index) in list" :key="item"
-      class="border-1px border-dwBorder rounded-6px cursor-pointer"
+      class="dwImgList_item rounded-6px cursor-pointer"
       @click="handlePreview(list, index)"
     >
       <DwImage :src="item" class="w-100px h-100px" />
@@ -35,5 +35,9 @@ const handlePreview = (arr, index) => {
 </script>
 
 <style lang="scss" scoped>
-
+.dwImgList{
+  .dwImgList_item{
+    border: 1px solid var(--dw-border-color);
+  }
+}
 </style>
