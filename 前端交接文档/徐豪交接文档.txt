@@ -1,0 +1,41 @@
+app项目：
+app_monorepo_maintenance
+	公共插件目录:  app_monorepo_maintenance\packages\components
+	项目目录：app_monorepo_maintenance\projects
+		用户信息模块： projects/app_useh5
+		消防管家模块: projects/fire_manage
+		未使用： projects/main_app
+		维保老板端模块: projects/maintenance_boss
+		小程序模块：projects/mini_program
+			app模块(安装): projects/mini_program/src/views/adbInstall
+			app模块(未使用): projects/mini_program/src/views/housemanage
+			app模块(集成商): projects/mini_program/src/views/integrator
+			app模块(运维): projects/mini_program/src/views/operation
+			app模块(智慧家庭): projects/mini_program/src/views/that_person
+
+		维保服务app：projects/service_manage
+		
+
+
+小程序项目：
+wx_cloud2.0
+    公共api、方法、静态数据： wx_cloud2/src/common
+    老版本公共组件： wx_cloud2/src/components
+    未使用： wx_cloud2/src/mainSplit
+    老版本维保端： wx_cloud2/src/maintain
+    重构后小程序： wx_cloud2/src/newCode
+        重构后公共方法、静态数据：wx_cloud2/src/newCode/utils
+        重构后公共api：  wx_cloud2/src/newCode/api
+        重构后全局样式：  wx_cloud2/src/newCode/scss
+        重构后公共组件：  wx_cloud2/src/newCode/components
+        重构后联网单位： wx_cloud2/src/newCode/network
+        集成商： wx_cloud2/src/newCode/integrator
+    老版本运维： wx_cloud2/src/operation
+    老版本联网单位： wx_cloud2/src/packages
+    老版本监管单位： wx_cloud2/src/supervises
+    老版本个人中心： wx_cloud2/src/user
+    登录： wx_cloud2/src/pages
+    老版本个人端： wx_cloud2/src/person
+    老版本公共js： wx_cloud2/src/scripts
+    全局样式： wx_cloud2/src/scss
+    静态资源： wx_cloud2/src/static
