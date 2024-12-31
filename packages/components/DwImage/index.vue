@@ -2,7 +2,7 @@
   <el-image
     v-bind="$attrs"
     :title="title"
-    fit="contain"
+    :fit="fit"
     :src="resSrc"
     :class="{'cursor-pointer': isPreview}"
     @click="handleImg"
