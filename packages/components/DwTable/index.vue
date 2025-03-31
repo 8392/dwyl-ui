@@ -42,6 +42,7 @@
       :page-size="pageData[limitField]"
       :total="total"
       @current-change="clickPage"
+      @size-change="clickPageSize"
     />
 
     <el-tooltip
@@ -107,7 +108,7 @@ const columnList = computed(() => {
 
 const emits = defineEmits(listEmit)
 
-const { pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, refresh, isHistorySearch } = useList(props, emits)
+const { pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, clickPageSize, refresh, isHistorySearch } = useList(props, emits)
 
 getList()
 

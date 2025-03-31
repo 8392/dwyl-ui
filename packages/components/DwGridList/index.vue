@@ -14,6 +14,7 @@
       :page-size="pageData[limitField]"
       :total="total"
       @current-change="clickPage"
+      @size-change="clickPageSize"
     />
   </div>
 </template>
@@ -48,7 +49,7 @@ const props = defineProps({
 
 const emits = defineEmits(listEmit)
 
-const { tableConfig, pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, refresh, isHistorySearch } = useList(props, emits)
+const { tableConfig, pageField, limitField, tableData, total, tableLoading, pageData, getList, clickPage, clickPageSize, refresh, isHistorySearch } = useList(props, emits)
 
 const onSizeChange = (e) => {
   pageData.value[tableConfig.value.limitField] = e * props.lineCount

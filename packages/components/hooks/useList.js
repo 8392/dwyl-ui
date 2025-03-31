@@ -120,20 +120,28 @@ export default (props, emits) => {
     }
   }
 
+  const clickPageSize = (e) => {
+    pageData.value[tableConfig.value.pageField] = 1
+    props.params[tableConfig.value.pageField] = 1
+    pageData.value[tableConfig.value.limitField] = e
+    props.params[tableConfig.value.limitField] = e
+    getList()
+  }
+
   /* 刷新 */
   const refresh = () => {
-    if (props.isPage) {
-      if (router) {
-        router.replace({
-          path: route.path,
-          query: {
-            ...route.query,
-            [tableConfig.value.pageField]: 1
-          }
-        })
-      }
-      pageData.value[tableConfig.value.pageField] = 1
-    }
+    // if (props.isPage) {
+    //   if (router) {
+    //     router.replace({
+    //       path: route.path,
+    //       query: {
+    //         ...route.query,
+    //         [tableConfig.value.pageField]: 1
+    //       }
+    //     })
+    //   }
+    //   pageData.value[tableConfig.value.pageField] = 1
+    // }
     nextTick(() => {
       getList()
     })
@@ -145,6 +153,7 @@ export default (props, emits) => {
     pageField,
     limitField,
     totalField,
+    clickPageSize,
     dataField,
     searchParams,
     tableData,

@@ -8,10 +8,12 @@
       background
       :current-page="currentPage"
       :page-size="pageSize"
-      layout="prev, pager, next"
       :total="total"
+      :page-sizes="[20, 50, 100, 200]"
+      layout="sizes, prev, pager, next"
       class="mt-4"
     />
+    <!-- layout="prev, pager, next" -->
   </div>
 </template>
 
