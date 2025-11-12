@@ -1,5 +1,5 @@
 ### 项目下地图json对应文件内
-### 后面这个AK统一用一个，定义不同的styleId`NPD1A3x31nlJvrGOsqZDuX27U34izNjU`，去统一处理
+### 后面这个AK统一用一个，定义不同的styleId`vNruKFoQh9POgeFPq4QZBWYieEM60NIj`，去统一处理
 
 
 > 新版联网大屏，监管大屏，个人大屏 all_large_screen
@@ -10,7 +10,7 @@
 
 > 广德寺项目 large_screen_monorepo项目下的这个文件`gds_screen`
 1. 用的`广德寺.json`   styleId= ba6bf5d4d48507543b13aa94c32e3681  
-2. 用的AK`NPD1A3x31nlJvrGOsqZDuX27U34izNjU`
+2. 用的AK`vNruKFoQh9POgeFPq4QZBWYieEM60NIj`
 
 
 > 养老大屏项目 large_screen_monorepo项目下的这个文件`yljg_screen`
