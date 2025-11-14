@@ -16,3 +16,8 @@
 - **广德寺大屏：** `/ucenter/minio/cdn/web/biduMap/baidu_gds_api.js`
 
 - **h5：** `/ucenter/minio/cdn/web/biduMap/baidu_h5_api.js`
+
+
+## 通过接口方式引入，字典配置用的下面的接口，在`all_large_screen`项目中有用到
+
+1. https://xzy.diweiyunlian.cn/ucenter/dict/get-value?dictKey=apikey&code=baidu_api_key
