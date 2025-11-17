@@ -12,6 +12,8 @@
 
 项目分支：`new_prod`
 
+rancher2名称：`iot-cloud-ucenter`
+
 访问域名：
 
 **https://device.diweiyunlian.cn**
@@ -25,6 +27,8 @@
 **http://git.diweiyunlian.cn:8090/xiaozhiyun/web/wisdom_admin_2.0**
 
 项目分支：`new_release`
+
+rancher2名称：`wisdom-admin-prod`
 
 访问域名：
 
@@ -45,14 +49,17 @@
 ### 3.1 维保服务
 - **访问域名：** `https://wbfw.diweiyunlian.cn`
 - **项目目录：** `service_manage`
+- **rancher2名称：** `service-manage`
 
 ### 3.2 消防管理
 - **访问域名：** `https://xfgl.diweiyunlian.cn`
 - **项目目录：** `fire_manage`
+- **rancher2名称：** `fire-manage`
 
 ### 3.3 演示环境首页
 - **访问域名：** `https://yshome.diweiyunlian.cn/`
 - **项目目录：** `display_system`
+- **rancher2名称：** `display-system`
 
 ---
 
@@ -63,6 +70,8 @@
 **http://git.diweiyunlian.cn:8090/xiaozhiyun/web/operation_center_vue3**
 
 项目分支：`master`
+
+rancher2名称：`operation-center-vue3`
 
 访问域名：
 
@@ -77,6 +86,8 @@
 **http://git.diweiyunlian.cn:8090/xiaozhiyun/web/integrator_screen**
 
 项目分支：`master`
+
+rancher2名称：`integrator-screen`
 
 访问域名：
 
@@ -94,6 +105,8 @@
 
 项目用的`nuxt2`服务端渲染
 
+rancher2名称：`official-website`
+
 访问域名：
 
 **https://www.diweiyunlian.cn/**
@@ -107,6 +120,8 @@
 **http://git.diweiyunlian.cn:8090/xiaozhiyun/web/supervise_big_scree_vue3**
 
 项目分支：`main`
+
+rancher2名称：`supervise-big-scree-vue3`
 
 访问域名：
 
@@ -129,38 +144,17 @@
 ### 7.1 维保监管大屏
 - **访问域名：** `https://wbjg.diweiyunlian.cn`
 - **项目目录：** `wb_screen`
+- **rancher2名称：** `wb-screen`
 
 ### 7.2 广德寺联网大屏
 - **访问域名：** `http://gds.diweiyunlian.cn`
 - **项目目录：** `gds_screen`
+- **rancher2名称：** `gds-screen`
 
 ### 7.3 养老监管大屏
 - **访问域名：** `https://yljg.diweiyunlian.cn`
 - **项目目录：** `yljg_screen`
-
----
-
-## 7. 维保监管大屏，广德寺联网大屏，养老监管大屏（个人，目前主要巴中在用）
-
-统一仓库地址：
-
-**http://git.diweiyunlian.cn:8090/xiaozhiyun/web/large_screen_monorepo**
-
-项目分支：`release`
-
-所有项目均在此 Monorepo 中维护。
-
-### 7.1 维保监管大屏
-- **访问域名：** `https://wbjg.diweiyunlian.cn`
-- **项目目录：** `wb_screen`
-
-### 7.2 广德寺联网大屏
-- **访问域名：** `http://gds.diweiyunlian.cn`
-- **项目目录：** `gds_screen`
-
-### 7.3 养老监管大屏
-- **访问域名：** `https://yljg.diweiyunlian.cn`
-- **项目目录：** `yljg_screen`
+- **rancher2名称：** `yljg-screen`
 
 ---
 
@@ -183,17 +177,22 @@
 ### 7.1 联网大屏
 - **访问域名：** `https://lw.diweiyunlian.cn`
 - **项目目录：** `basic_screen`
+- **rancher2名称：** `basic-screen-v2`
 
 ### 7.2 监管大屏
 - **访问域名：** `https://jgdw.diweiyunlian.cn/`
 - **项目目录：** `basic_screen`
+- **rancher2名称：** `basic-screen-v2`
 
 ### 7.3 郫都监管大屏
 - **访问域名：** `https://pidu.diweiyunlian.cn`
 - **项目目录：** `pidu_supervision`
+- **rancher2名称：** `	pidu-supervision`
 
 ### 7.4 个人监管大屏，（智慧家庭）
 - **访问域名：** `https://grjg.diweiyunlian.cn`
 - **项目目录：** `supervise_screen`
+- **rancher2名称：** `supervise-screen-v2`
+
 
 ---

@@ -19,18 +19,22 @@
 ### 2.1 维保服务
 - **访问域名：** `https://prod.wbfwh5.diweiyunlian.cn`
 - **项目目录：** `service_manage`
+- **rancher2名称：** `service-manage-app`
 
 ### 2.2 消防管理
 - **访问域名：** `https://prod.xfglh5.diweiyunlian.cn`
 - **项目目录：** `fire_manage`
+- **rancher2名称：** `fire-manage-app`
 
 ### 2.3 维保老板
 - **访问域名：** `https://prod.wblbh5.diweiyunlian.cn`
 - **项目目录：** `maintenance_boss`
+- **rancher2名称：** `maintenance-boss-app`
 
 ### 2.4 肖智云 APP（相关页面）
 - **访问域名：** `https://prod.appuseh5.diweiyunlian.cn`
 - **项目目录：** `app_useh5`
+- **rancher2名称：** `app-useh5-app`
 
 ### 2.5. 多应用融合到一个模块
 
